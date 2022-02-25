@@ -4,15 +4,6 @@ The main purpose of the app would be for the end user to be able to go hunting f
 
 Two smaller features planned in the app would be the ability for the user to hunt down locations of Amiibos and/or Amiibo cards related to Animal Crossing. The other feature would be an RSS feed of Animal Crossing’s official Twitter and Nintendo’s News and Events, for the possibility of Nintendo Direct being announced. 
 
-Intents
-
-The intents that we plan on using throughout our app are as follows:
-
-An official link to the Animal Crossing twitter via a social media intent
-A calendar event for the user to track game releases, Nintendo directs, etc.
-A map intent used to show to the user where to buy product 
-A music player so the user can listen to different K.K Slider tracks 
-
 ### Mock Ups
 #### Home Screen
 ![Home_MockUp](https://user-images.githubusercontent.com/90527594/155817972-4073e048-4ab5-4998-9c01-a54d89353f08.png)
@@ -23,8 +14,10 @@ A music player so the user can listen to different K.K Slider tracks
 #### KK Slider Music and/or Bingo Screen
 ![KK_Music_Bingo_MockUp](https://user-images.githubusercontent.com/90527594/155817970-04ca066f-97e8-4401-8905-5f1bc51b89d9.png)
 
-
-
+##### Authors
+| Brooke Baird | w0766373@myscc.ca |
+| --- | --- |
+| Ashley McCallum | w0765596@myscc.ca |
 
 
 
