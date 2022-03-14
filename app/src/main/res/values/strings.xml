@@ -2,7 +2,7 @@
     <string name="app_name">MADimalCrossing</string>
     <string name="title_villager">Villagers</string>
     <string name="title_bingo">BINGO</string>
-<!--    TODO: rename fragment -->
+    <!--    TODO: rename fragment -->
     <string name="title_misc">Misc Fragment</string>
 
     <!-- TODO: Remove or change this placeholder text -->
