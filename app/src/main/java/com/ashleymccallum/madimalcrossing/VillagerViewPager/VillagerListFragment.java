@@ -1,5 +1,7 @@
 package com.ashleymccallum.madimalcrossing.VillagerViewPager;
 
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,6 +13,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.ashleymccallum.madimalcrossing.R;
+import com.ashleymccallum.madimalcrossing.VillagerDetailHostActivity;
+import com.google.android.material.snackbar.Snackbar;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -63,7 +67,7 @@ public class VillagerListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_villager_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_villager_viewpager, container, false);
         TextView listName = view.findViewById(R.id.listName);
         Button listButton = view.findViewById(R.id.villagerListButton);
 
@@ -72,7 +76,12 @@ public class VillagerListFragment extends Fragment {
             listButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //TODO - navigate to lists
+                    Intent i = new Intent(getActivity(), VillagerDetailHostActivity.class);
+                    try {
+                        startActivity(i);
+                    }catch (ActivityNotFoundException e) {
+                        Snackbar.make(view, "Could not open list", Snackbar.LENGTH_LONG).show();
+                    }
                 }
             });
         }
