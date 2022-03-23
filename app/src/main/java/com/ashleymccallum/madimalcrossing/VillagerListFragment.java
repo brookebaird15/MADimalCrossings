@@ -8,12 +8,14 @@ import android.os.Bundle;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -76,6 +78,7 @@ public class VillagerListFragment extends Fragment {
         ViewCompat.addOnUnhandledKeyEventListener(view, unhandledKeyEventListenerCompat);
 
         RecyclerView recyclerView = binding.villagerList;
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
 
         // Leaving this not using view binding as it relies on if the view is visible the current
         // layout configuration (layout, layout-sw600dp)
@@ -161,8 +164,8 @@ public class VillagerListFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
-            holder.mIdView.setText(mValues.get(position).id);
-            holder.mContentView.setText(mValues.get(position).content);
+//            holder.villagerImg.setImageResource(mValues.get(position).id);
+            holder.villagerName.setText(mValues.get(position).content);
 
             holder.itemView.setTag(mValues.get(position));
             holder.itemView.setOnClickListener(mOnClickListener);
@@ -204,13 +207,13 @@ public class VillagerListFragment extends Fragment {
         }
 
         class ViewHolder extends RecyclerView.ViewHolder {
-            final TextView mIdView;
-            final TextView mContentView;
+            protected ImageView villagerImg;
+            protected TextView villagerName;
 
             ViewHolder(VillagerListContentBinding binding) {
                 super(binding.getRoot());
-                mIdView = binding.idText;
-                mContentView = binding.content;
+                villagerImg = binding.villagerListImg;
+                villagerName = binding.villagerListName;
             }
 
         }
