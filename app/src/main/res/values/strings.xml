@@ -10,4 +10,15 @@
     <string name="title_activity_villager_detail_host">VillagerDetailHostActivity</string>
     <string name="title_villager_list">Villagers</string>
     <string name="title_villager_detail">Villager Detail</string>
+
+    <string name="hobby_label">Hobby: </string>
+    <string name="personality_label">Personality: </string>
+    <string name="species_label">Species: </string>
+    <string name="catchphrase_label">Catchphrase: </string>
+    <string name="birthday_label">Birthday: </string>
+    <string name="gender_f">Female</string>
+    <string name="gender_m">Male</string>
+
+<!--    TODO: test placeholder for catchphrase -->
+    <string name="catchphrase">"%1$s!"</string>
 </resources>
