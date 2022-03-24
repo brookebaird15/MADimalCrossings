@@ -17,7 +17,7 @@ import com.ashleymccallum.madimalcrossing.databinding.FragmentVillagerDetailBind
 
 /**
  * A fragment representing a single Villager detail screen.
- * This fragment is either contained in a {@link VillagerListFragment}
+ * This fragment is either contained in a {@link VillagerRecyclerFragment}
  * in two-pane mode (on larger screen devices) or self-contained
  * on handsets.
  */
