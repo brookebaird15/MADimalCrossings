@@ -19,6 +19,7 @@ public class BingoGame {
     public static final String BINGO_X_KEY = "x combo";
     public static final String BINGO_CORNERS_KEY = "4 corners";
     public static final String BINGO_BLACKOUT_KEY = "blackout";
+    public static final String BINGO_RING_KEY = "ring combo";
     //TODO: set strings to be hidden values of buttons user uses to select game mode
 
     /**
@@ -27,6 +28,7 @@ public class BingoGame {
      * int[] xCombo -> an int array of the possible winning tile values for the X combo
      * int[] cornerCombo -> an int array of the possible winning tile values for the 4-corners combo
      * int[] blackoutCombo -> an int array of the possible winning tile values for the blackout combo
+     * int[] ringCombo -> an int array of the possible winning tile values for the outer-ring combo
      * allWinningCombos -> a hashmap of all winning combos where the String key is the name of the combo the player is using and the int[] value is the array possible scores
      * int boardScore -> the score of all marked pieces currently on the board
      * int[] winCombos -> an int array of the winning combos for the specific game mode the user has selected
@@ -36,6 +38,7 @@ public class BingoGame {
     private final int[] xCombo = new int[] {18162001};
     private final int[] cornerCombo = new int[] {17825809};
     private final int[] blackoutCombo = new int[] {33554431};
+    private final int[] ringCombo = new int[] {33080895};
 
     HashMap<String, int[]> allWinningCombos = new HashMap<>();
     {
@@ -43,6 +46,7 @@ public class BingoGame {
         allWinningCombos.put(BINGO_X_KEY, xCombo);
         allWinningCombos.put(BINGO_CORNERS_KEY, cornerCombo);
         allWinningCombos.put(BINGO_BLACKOUT_KEY, blackoutCombo);
+        allWinningCombos.put(BINGO_RING_KEY, ringCombo);
     }
 
     private int boardScore = 0;
