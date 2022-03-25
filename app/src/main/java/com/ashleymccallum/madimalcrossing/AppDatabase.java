@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -14,6 +15,7 @@ import com.ashleymccallum.madimalcrossing.pojos.VillagerList;
 
 import org.json.JSONArray;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -94,6 +96,8 @@ public class AppDatabase extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(CREATE_VILLAGER_TABLE);
         sqLiteDatabase.execSQL(CREATE_SONG_TABLE);
         sqLiteDatabase.execSQL(CREATE_LIST_TABLE);
+        sqLiteDatabase.execSQL(CREATE_LIST_VILLAGER_TABLE);
+        Log.d("AppDB-------", "Tables created");
     }
 
     @Override
@@ -140,7 +144,7 @@ public class AppDatabase extends SQLiteOpenHelper {
     }
 
     /**
-     * Updates a villagers information in the table
+     * Updates a villager's information in the table
      * Users can only update a villager's catchphrase and spotted columns
      * @param villager the villager being updated
      * @author Ashley McCallum
@@ -188,6 +192,45 @@ public class AppDatabase extends SQLiteOpenHelper {
     }
 
     /**
+     * Updates a song's information in the table
+     * Users can only update the collection status of a song
+     * @param song the song being updated
+     * @author Ashley McCallum
+     */
+    public void updateSong(Song song) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLLECTED_COLUMN, song.getCollected());
+        db.update(SONG_TABLE, values, ID_COLUMN + "=?", new String[]{String.valueOf(song.getId())});
+        db.close();
+    }
+
+    /**
+     * Creates an empty list item in the table
+     * @param name is the name the user wants to use for the list
+     * @author Ashley McCallum
+     */
+    public void createList(String name) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(NAME_COLUMN, name);
+        db.insert(LIST_TABLE, null, values);
+        db.close();
+    }
+
+    /**
+     * Removes a list from the table
+     * @param listID is the list being deleted
+     * @author Ashley McCallum
+     */
+    public void deleteList(int listID) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        emptyList(listID);  //first remove all relationships to the list being deleted
+        db.delete(LIST_TABLE, ID_COLUMN + "=?", new String[]{String.valueOf(listID)});
+        db.close();
+    }
+
+    /**
      * Retrieves all lists in the list table
      * @return ArrayList of VillagerList objects
      */
@@ -204,15 +247,81 @@ public class AppDatabase extends SQLiteOpenHelper {
         return list;
     }
 
-    public void createList(String name) {
+    //TODO: verify all methods below work correctly for villager list relation table
+    /**
+     * Adds a single villager to a list
+     * @param list the list being added to
+     * @param villager the villager being added to the list
+     * @author Ashley McCallum
+     */
+    public void createOneVillagerListRelation(VillagerList list, Villager villager) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(NAME_COLUMN, name);
+        values.put(LIST_FK_COLUMN, list.getId());
+        values.put(VILLAGER_FK_COLUMN, villager.getId());
+        db.insert(LIST_VILLAGER_TABLE, null, values);
+        db.close();
     }
 
-    public void deleteList(int list) {
+    /**
+     * Adds several villagers to a list
+     * @param list the list being added to
+     * @param villagers the villagers being added to the list
+     * @author Ashley McCallum
+     */
+    public void createManyVillagerListRelations(VillagerList list, ArrayList<Villager> villagers) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(LIST_TABLE, ID_COLUMN + "=?", new String[]{String.valueOf(list)});
+        ContentValues values = new ContentValues();
+        values.put(LIST_FK_COLUMN, list.getId());
+        for (Villager villager : villagers) {
+            values.put(VILLAGER_FK_COLUMN, villager.getId());
+            db.insert(LIST_VILLAGER_TABLE, null, values);
+        }
+        db.close();
+    }
+
+    /**
+     * Retrieves all villagers from the database associated with a specific list
+     * @param listID the int id of the list being queried
+     * @return ArrayList of Villager objects associated with that list
+     * @author Ashley McCallum
+     */
+    public ArrayList<Villager> getAllVillagersForList(int listID) {
+        ArrayList<Villager> villagers = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(
+                "Select v.* FROM " + VILLAGER_TABLE + " AS v INNER JOIN "
+                        + LIST_VILLAGER_TABLE + " AS lvr ON v." + ID_COLUMN + "=lvr."
+                        + VILLAGER_FK_COLUMN + " INNER JOIN " + LIST_TABLE + " AS l on lvr."
+                        + LIST_FK_COLUMN + "=l." + ID_COLUMN + " WHERE l." + ID_COLUMN
+                        + "=" + listID, null);
+        while (cursor.moveToNext()) {
+            villagers.add(new Villager(
+                    cursor.getInt(0),
+                    cursor.getString(1),
+                    cursor.getString(2),
+                    cursor.getString(3),
+                    cursor.getString(4),
+                    cursor.getString(5),
+                    cursor.getString(6),
+                    cursor.getString(7),
+                    cursor.getString(8),
+                    cursor.getString(9),
+                    cursor.getInt(10)));
+        }
+        db.close();
+        return villagers;
+    }
+
+    /**
+     * Removes all relationships to a specific list in the list villager relation table
+     * This effectively empties a list
+     * @param listID the id of the list being emptied
+     * @author Ashley McCallum
+     */
+    private void emptyList(int listID) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(LIST_VILLAGER_TABLE, ID_COLUMN + "=?", new String[]{String.valueOf(listID)});
         db.close();
     }
 

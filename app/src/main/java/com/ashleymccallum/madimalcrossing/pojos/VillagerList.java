@@ -2,17 +2,14 @@ package com.ashleymccallum.madimalcrossing.pojos;
 
 import java.util.ArrayList;
 
+/**
+ * VillagerList Class
+ * @author Ashley McCallum
+ */
 public class VillagerList {
 
     private int id;
     private String name;
-    private ArrayList<Villager> villagers;
-
-    public VillagerList(int id, String name, ArrayList<Villager> villagers) {
-        this.id = id;
-        this.name = name;
-        this.villagers = villagers;
-    }
 
     public VillagerList(int id, String name) {
         this.id = id;
@@ -29,13 +26,5 @@ public class VillagerList {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public ArrayList<Villager> getVillagers() {
-        return villagers;
-    }
-
-    public void setVillagers(ArrayList<Villager> villagers) {
-        this.villagers = villagers;
     }
 }

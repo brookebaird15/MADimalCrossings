@@ -1,5 +1,11 @@
 package com.ashleymccallum.madimalcrossing.pojos;
 
+import android.os.Parcelable;
+
+/**
+ * Villager Class
+ * @author Ashley McCallum
+ */
 public class Villager {
 
     private int id;
@@ -76,7 +82,11 @@ public class Villager {
         return spotted;
     }
 
-    public void setSpotted(int spotted) {
-        this.spotted = spotted;
+    public void setSpottedStatus() {
+        if(spotted == 0) {
+            spotted = 1;
+        } else {
+            spotted = 0;
+        }
     }
 }
