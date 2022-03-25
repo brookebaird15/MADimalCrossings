@@ -11,16 +11,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ashleymccallum.madimalcrossing.R;
-import com.ashleymccallum.madimalcrossing.pojos.Villager;
 
-import java.util.ArrayList;
-
-public class BingoRecyclerViewAdapter extends RecyclerView.Adapter<BingoViewHolder>{
-    private ArrayList<Villager> villagers;
+public class BingoRecyclerViewAdapter extends RecyclerView.Adapter<BingoRecyclerViewAdapter.BingoViewHolder>{
+    private BingoGame game;
     private Context context;
 
-    public BingoRecyclerViewAdapter(Context context, ArrayList<Villager> villagers) {
-        this.villagers = villagers;
+    public BingoRecyclerViewAdapter(Context context, BingoGame game) {
+        this.game = game;
         this.context = context;
     }
 
@@ -33,29 +30,37 @@ public class BingoRecyclerViewAdapter extends RecyclerView.Adapter<BingoViewHold
 
     @Override
     public void onBindViewHolder(@NonNull BingoViewHolder holder, int position) {
-        Villager villager = villagers.get(position);
-//        holder.bingoImg.setImageResource();
-        holder.bingoText.setText(villager.getName());
+        BingoTile tile = game.tiles[position];
+        holder.bingoText.setText(tile.getName());
+//        holder.bingoImg.setImageResource();     SET IMAGE TO TILE IMG
+        //TODO: check if itemview having onClickListener works as intended
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(game.selectTile(holder.getAbsoluteAdapterPosition())) {
+                    //TODO: stamp tile to indicate used
+                }
+                if(game.isWon()) {
+                    //TODO: flag as won -> need to somehow pass this info to bingo fragment to prompt new game or mode change
+                }
+            }
+        });
+
     }
 
     @Override
     public int getItemCount() {
-        return villagers.size();
+        return game.tiles.length;
+    }
+
+    static class BingoViewHolder extends RecyclerView.ViewHolder {
+        protected ImageView bingoImg;
+        protected TextView bingoText;
+
+        public BingoViewHolder(@NonNull View itemView) {
+            super(itemView);
+            this.bingoImg = itemView.findViewById(R.id.bingoImage);
+            this.bingoText = itemView.findViewById(R.id.bingoName);
+        }
     }
 }
- class BingoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-    protected ImageView bingoImg;
-    protected TextView bingoText;
-
-     public BingoViewHolder(@NonNull View itemView) {
-         super(itemView);
-         this.bingoImg = itemView.findViewById(R.id.bingoImage);
-         this.bingoText = itemView.findViewById(R.id.bingoName);
-         itemView.setOnClickListener(this);
-     }
-
-     @Override
-     public void onClick(View view) {
-         //TODO: on click, update game
-     }
- }

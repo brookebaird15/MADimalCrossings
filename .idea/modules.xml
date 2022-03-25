@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/MADimalCrossing.iml" filepath="$PROJECT_DIR$/.idea/MADimalCrossing.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MADimalCrossing.iml" filepath="$PROJECT_DIR$/.idea/modules/MADimalCrossing.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/MADimalCrossing.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/MADimalCrossing.app.iml" />
     </modules>
   </component>
 </project>

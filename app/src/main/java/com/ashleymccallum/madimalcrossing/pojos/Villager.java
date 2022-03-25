@@ -1,6 +1,5 @@
 package com.ashleymccallum.madimalcrossing.pojos;
 
-import android.os.Parcelable;
 
 /**
  * Villager Class
