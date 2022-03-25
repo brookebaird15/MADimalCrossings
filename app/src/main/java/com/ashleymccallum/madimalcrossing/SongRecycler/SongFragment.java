@@ -1,30 +1,33 @@
-package com.ashleymccallum.madimalcrossing;
+package com.ashleymccallum.madimalcrossing.SongRecycler;
 
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.ashleymccallum.madimalcrossing.AppDatabase;
+import com.ashleymccallum.madimalcrossing.R;
+
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link MusicFragment#newInstance} factory method to
+ * Use the {@link SongFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MusicFragment extends Fragment {
+public class SongFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
-    public MusicFragment() {
+    public SongFragment() {
         // Required empty public constructor
     }
 
@@ -36,9 +39,8 @@ public class MusicFragment extends Fragment {
      * @param param2 Parameter 2.
      * @return A new instance of fragment MusicFragment.
      */
-    // TODO: Rename and change types and number of parameters
-    public static MusicFragment newInstance(String param1, String param2) {
-        MusicFragment fragment = new MusicFragment();
+    public static SongFragment newInstance(String param1, String param2) {
+        SongFragment fragment = new SongFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -59,6 +61,11 @@ public class MusicFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_music, container, false);
+        View view = inflater.inflate(R.layout.fragment_music, container, false);
+        AppDatabase db = new AppDatabase(getContext());
+        RecyclerView recyclerView = view.findViewById(R.id.songRecycler);
+        recyclerView.setAdapter(new SongRecyclerViewAdapter(getContext(), db.getAllSongs()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        return view;
     }
 }

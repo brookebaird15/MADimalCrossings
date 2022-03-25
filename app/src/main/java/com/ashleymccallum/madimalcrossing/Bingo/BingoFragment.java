@@ -1,4 +1,4 @@
-package com.ashleymccallum.madimalcrossing;
+package com.ashleymccallum.madimalcrossing.Bingo;
 
 import android.os.Bundle;
 
@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.ashleymccallum.madimalcrossing.R;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link BingoFragment#newInstance} factory method to
@@ -16,12 +18,10 @@ import android.view.ViewGroup;
  */
 public class BingoFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
@@ -37,7 +37,6 @@ public class BingoFragment extends Fragment {
      * @param param2 Parameter 2.
      * @return A new instance of fragment BingoFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static BingoFragment newInstance(String param1, String param2) {
         BingoFragment fragment = new BingoFragment();
         Bundle args = new Bundle();
@@ -62,6 +61,9 @@ public class BingoFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_bingo, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.bingoRecycler);
+        //TODO: get 25 random villagers for the bingo card
+//        recyclerView.setAdapter(new BingoRecyclerViewAdapter(getContext(), ));
+//        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 5));
         return view;
     }
 }
