@@ -41,7 +41,7 @@ public class AppDatabase extends SQLiteOpenHelper {
     public static final String CATCHPHRASE_COLUMN = "catchphrase";
     public static final String ICON_COLUMN = "icon_uri";
     public static final String IMG_COLUMN = "img_uri";
-    public static final String SPOTTED_COLUMN = "spotted";  //a boolean if the player has seen the villager
+    public static final String SPOTTED_COLUMN = "spotted";  //an int (0/1) if the player has seen the villager
 
     //villager table columns: id, name, personality, birthday, species, gender, hobby, catchphrase, icon_uri, img_uri, spotted
     public static final String CREATE_VILLAGER_TABLE = "CREATE TABLE " +
@@ -57,8 +57,8 @@ public class AppDatabase extends SQLiteOpenHelper {
     public static final String TITLE_COLUMN = "title";
     public static final String BUY_COLUMN = "buy_price";
     public static final String SELL_COLUMN = "sell_price";
-    public static final String ORDERABLE_COLUMN = "orderable";  //a boolean if the track can be ordered
-    public static final String COLLECTED_COLUMN = "collected";  //a boolean if the track has been collected
+    public static final String ORDERABLE_COLUMN = "orderable";  //an int (0/1) if the track can be ordered
+    public static final String COLLECTED_COLUMN = "collected";  //an int (0/1) if the track has been collected
 
     //song table columns: id, title, buy_price, sell_price, orderable, collected
     public static final String CREATE_SONG_TABLE = "CREATE TABLE " +
@@ -70,7 +70,7 @@ public class AppDatabase extends SQLiteOpenHelper {
     //List Table
     public static final String LIST_TABLE = "lists";
 
-    //list table columns: id, name, villager_id
+    //list table columns: id, name
     public static final String CREATE_LIST_TABLE = "CREATE TABLE " +
             LIST_TABLE + "(" + ID_COLUMN + " INTEGER PRIMARY KEY," +
             NAME_COLUMN + " TEXT)";
@@ -80,6 +80,7 @@ public class AppDatabase extends SQLiteOpenHelper {
     public static final String LIST_FK_COLUMN = "list_id";
     public static final String VILLAGER_FK_COLUMN = "villager_id";
 
+    //list villager relation table columns: list_id, villager_id
     public static final String CREATE_LIST_VILLAGER_TABLE = "CREATE TABLE " +
             LIST_VILLAGER_TABLE + "(" + LIST_FK_COLUMN + " INTEGER," +
             VILLAGER_FK_COLUMN + " INTEGER," +
