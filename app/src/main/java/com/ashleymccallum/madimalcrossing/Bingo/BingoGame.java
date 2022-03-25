@@ -53,15 +53,14 @@ public class BingoGame {
     private int[] winCombos;
     private static BingoGame instance = null;
 
-    public static BingoGame getInstance(ArrayList<Villager> villagers, String gameMode) {
+    public static BingoGame getInstance() {
         if (instance == null) {
-            instance = new BingoGame(villagers, gameMode);
+            instance = new BingoGame();
         }
         return instance;
     }
 
-    private BingoGame(ArrayList<Villager> villagers, String gameMode) {
-        startNew(villagers, gameMode);
+    private BingoGame (){
     }
 
     /**

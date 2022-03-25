@@ -63,8 +63,9 @@ public class BingoFragment extends Fragment implements OnTileClickListener{
         View view = inflater.inflate(R.layout.fragment_bingo, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.bingoRecycler);
         //TODO: get 25 random villagers for the bingo card & prompt user to choose mode
-//        BingoGame game = BingoGame.getInstance();
-//        recyclerView.setAdapter(new BingoRecyclerViewAdapter(getContext(), game, this));
+        BingoGame game = BingoGame.getInstance();
+//        game.startNew();
+        recyclerView.setAdapter(new BingoRecyclerViewAdapter(getContext(), game, this));
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 5));
         //TODO: if the game has been won, just do: game = new BingoGame() with the new selection and list of villagers??? (probably not, probably need a method for this)
         return view;
