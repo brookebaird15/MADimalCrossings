@@ -319,9 +319,23 @@ public class AppDatabase extends SQLiteOpenHelper {
      * @param listID the id of the list being emptied
      * @author Ashley McCallum
      */
-    private void emptyList(int listID) {
+    public void emptyList(int listID) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(LIST_VILLAGER_TABLE, ID_COLUMN + "=?", new String[]{String.valueOf(listID)});
+        db.delete(LIST_VILLAGER_TABLE, LIST_FK_COLUMN + "=?", new String[]{String.valueOf(listID)});
+        db.close();
+    }
+
+    /**
+     * Removes the relationship between a specific list and a specific villager
+     * @param villagerID the villager being removed from the list
+     * @param listID the list the villager is being removed from
+     * @author Ashley McCallum
+     */
+    public void removeVillagerFromList(int villagerID, int listID) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        //TODO: check placeholders in where clause function correctly
+        db.delete(LIST_VILLAGER_TABLE, LIST_FK_COLUMN + "=? AND "
+                + VILLAGER_FK_COLUMN + "=?", new String[]{String.valueOf(listID), String.valueOf(villagerID)});
         db.close();
     }
 
