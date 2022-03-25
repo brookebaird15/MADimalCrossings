@@ -64,6 +64,7 @@ public class BingoGame {
      * Generates a new set of tiles and sets the game mode
      * @param villagers ArrayList of Villager objects to be used in generating tiles
      * @param gameMode String representation of the game mode the user selected
+     * @author Ashley McCallum
      */
     //TODO: user must select game mode before anything is loaded, prompt user on screen load and also when game is over
     public void startNew(ArrayList<Villager> villagers, String gameMode) {
@@ -74,6 +75,7 @@ public class BingoGame {
     /**
      * Generates the BingoTiles for the game
      * @param villagers the ArrayList of Villager objects being used to generate the board
+     * @author Ashley McCallum
      */
     private void generateTiles(ArrayList<Villager> villagers) {
         for (int i = 0; i < villagers.size(); i++) {
@@ -85,6 +87,7 @@ public class BingoGame {
     /**
      * Selects the game mode the user wants to use
      * @param gameMode the String key representing the game mode
+     * @author Ashley McCallum
      */
     private void selectMode(String gameMode) {
         winCombos = allWinningCombos.get(gameMode);
@@ -95,6 +98,7 @@ public class BingoGame {
      * Selects the tile the user chooses
      * @param position the position of the selected tile
      * @return true if the tile was valid, false if not
+     * @author Ashley McCallum
      */
     public boolean canSelectTile(int position) {
         //get the tile at the position
@@ -112,6 +116,7 @@ public class BingoGame {
     /**
      * Checks if the game has been won
      * @return true if there is a winning combo, false if not
+     * @author Ashley McCallum
      */
     public boolean isWon() {
         //for each score in the winCombo array
@@ -129,7 +134,8 @@ public class BingoGame {
     /**
      * Changes the mode of the game so the user can continue to play with the same board
      * @param mode the mode the user wants to select
-     * @return false if the user was using the blackout mode (a new board must be generated), true if the mode was changed sucessfully
+     * @return false if the user was using the blackout mode (a new board must be generated), true if the mode was changed successfully
+     * @author Ashley McCallum
      */
     public boolean canChangeMode(String mode) {
         if(Arrays.equals(winCombos, allWinningCombos.get(BINGO_BLACKOUT_KEY))) {
