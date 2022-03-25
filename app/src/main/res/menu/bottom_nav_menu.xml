@@ -7,9 +7,14 @@
         android:title="@string/title_villager" />
 
     <item
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/nav_news"
         android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="@string/title_misc" />
+        android:title="@string/title_news" />
+
+    <item
+        android:id="@+id/nav_song"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="@string/title_music" />
 
     <item
         android:id="@+id/nav_bingo"
