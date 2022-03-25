@@ -24,7 +24,7 @@ public class BingoGame {
     /**
      * BingoTile[] tiles -> an array of 25 BingoTile objects representing the board positions
      * int[] rowCombo -> an int array of the possible winning tile values for the 5-in-a-row combo
-     * int[] xCombo -> an int array of the possible winning tile values for the X-combo
+     * int[] xCombo -> an int array of the possible winning tile values for the X combo
      * int[] cornerCombo -> an int array of the possible winning tile values for the 4-corners combo
      * int[] blackoutCombo -> an int array of the possible winning tile values for the blackout combo
      * allWinningCombos -> a hashmap of all winning combos where the String key is the name of the combo the player is using and the int[] value is the array possible scores
@@ -47,12 +47,28 @@ public class BingoGame {
 
     private int boardScore = 0;
     private int[] winCombos;
+    private static BingoGame instance = null;
 
-    //constructor, requires an array of villagers to generate the tiles and a string for the game mode
-    //TODO: user must select game mode before anything is loaded, prompt user on screen load
-    public BingoGame(ArrayList<Villager> villagers, String gameMode) {
+    public static BingoGame getInstance(ArrayList<Villager> villagers, String gameMode) {
+        if (instance == null) {
+            instance = new BingoGame(villagers, gameMode);
+        }
+        return instance;
+    }
+
+    private BingoGame(ArrayList<Villager> villagers, String gameMode) {
+        startNew(villagers, gameMode);
+    }
+
+    /**
+     * Generates a new set of tiles and sets the game mode
+     * @param villagers ArrayList of Villager objects to be used in generating tiles
+     * @param gameMode String representation of the game mode the user selected
+     */
+    //TODO: user must select game mode before anything is loaded, prompt user on screen load and also when game is over
+    public void startNew(ArrayList<Villager> villagers, String gameMode) {
         generateTiles(villagers);
-        selectGameMode(gameMode);
+        selectMode(gameMode);
     }
 
     /**
@@ -68,10 +84,10 @@ public class BingoGame {
 
     /**
      * Selects the game mode the user wants to use
-     * @param gameKey the String key representing the game mode
+     * @param gameMode the String key representing the game mode
      */
-    private void selectGameMode(String gameKey) {
-        winCombos = allWinningCombos.get(gameKey);
+    private void selectMode(String gameMode) {
+        winCombos = allWinningCombos.get(gameMode);
     }
 
     //TODO: select tile to be called when user clicks a tile
@@ -80,7 +96,7 @@ public class BingoGame {
      * @param position the position of the selected tile
      * @return true if the tile was valid, false if not
      */
-    public boolean selectTile(int position) {
+    public boolean canSelectTile(int position) {
         //get the tile at the position
         BingoTile tile = tiles[position];
         //if the tile is available
@@ -115,11 +131,11 @@ public class BingoGame {
      * @param mode the mode the user wants to select
      * @return false if the user was using the blackout mode (a new board must be generated), true if the mode was changed sucessfully
      */
-    public boolean changeGameMode(String mode) {
+    public boolean canChangeMode(String mode) {
         if(Arrays.equals(winCombos, allWinningCombos.get(BINGO_BLACKOUT_KEY))) {
             return false;
         }
-        selectGameMode(mode);
+        selectMode(mode);
         return true;
     }
 }

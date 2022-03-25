@@ -3,6 +3,7 @@ package com.ashleymccallum.madimalcrossing.Bingo;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -16,7 +17,7 @@ import com.ashleymccallum.madimalcrossing.R;
  * Use the {@link BingoFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class BingoFragment extends Fragment {
+public class BingoFragment extends Fragment implements OnTileClickListener{
 
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -62,10 +63,22 @@ public class BingoFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_bingo, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.bingoRecycler);
         //TODO: get 25 random villagers for the bingo card & prompt user to choose mode
-//        BingoGame game = new BingoGame();
-//        recyclerView.setAdapter(new BingoRecyclerViewAdapter(getContext(), game));
-//        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 5));
+//        BingoGame game = BingoGame.getInstance();
+//        recyclerView.setAdapter(new BingoRecyclerViewAdapter(getContext(), game, this));
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 5));
         //TODO: if the game has been won, just do: game = new BingoGame() with the new selection and list of villagers??? (probably not, probably need a method for this)
         return view;
     }
+
+    @Override
+    public void onTileClick(BingoGame game) {
+        //TODO: prompt for new game or continue game
+        //TODO: prompt for select new mode
+        //TODO: check if methods function as intended
+//        if(game.canChangeMode()) {
+//            game.startNew();
+//        }
+
+    }
+
 }

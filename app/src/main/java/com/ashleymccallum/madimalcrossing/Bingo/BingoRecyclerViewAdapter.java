@@ -15,10 +15,12 @@ import com.ashleymccallum.madimalcrossing.R;
 public class BingoRecyclerViewAdapter extends RecyclerView.Adapter<BingoRecyclerViewAdapter.BingoViewHolder>{
     private BingoGame game;
     private Context context;
+    private OnTileClickListener listener;
 
-    public BingoRecyclerViewAdapter(Context context, BingoGame game) {
+    public BingoRecyclerViewAdapter(Context context, BingoGame game, OnTileClickListener listener) {
         this.game = game;
         this.context = context;
+        this.listener = listener;
     }
 
     @NonNull
@@ -37,11 +39,12 @@ public class BingoRecyclerViewAdapter extends RecyclerView.Adapter<BingoRecycler
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(game.selectTile(holder.getAbsoluteAdapterPosition())) {
+                if(game.canSelectTile(holder.getAbsoluteAdapterPosition())) {
                     //TODO: stamp tile to indicate used
                 }
                 if(game.isWon()) {
-                    //TODO: flag as won -> need to somehow pass this info to bingo fragment to prompt new game or mode change
+                    //TODO: check that this passes the game back to the fragment
+                    listener.onTileClick(game);
                 }
             }
         });
