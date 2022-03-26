@@ -40,7 +40,7 @@ public class VillagerDetailFragment extends Fragment {
         if (event.getAction() == DragEvent.ACTION_DROP) {
             ClipData.Item clipDataItem = event.getClipData().getItemAt(0);
             mItem = PlaceholderContent.ITEM_MAP.get(clipDataItem.getText().toString());
-            updateContent();
+//            updateContent();
         }
         return true;
     };
@@ -72,27 +72,26 @@ public class VillagerDetailFragment extends Fragment {
         binding = FragmentVillagerDetailBinding.inflate(inflater, container, false);
         View rootView = binding.getRoot();
 
-        mToolbarLayout = rootView.findViewById(R.id.toolbar_layout);
-        mTextView = binding.villagerDetail;
+
 
         // Show the placeholder content as text in a TextView & in the toolbar if available.
-        updateContent();
+//        updateContent();
         rootView.setOnDragListener(dragListener);
         return rootView;
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
-    }
+//    @Override
+//    public void onDestroyView() {
+//        super.onDestroyView();
+//        binding = null;
+//    }
 
-    private void updateContent() {
-        if (mItem != null) {
-            mTextView.setText(mItem.details);
-            if (mToolbarLayout != null) {
-                mToolbarLayout.setTitle(mItem.content);
-            }
-        }
-    }
+//    private void updateContent() {
+//        if (mItem != null) {
+//            mTextView.setText(mItem.details);
+//            if (mToolbarLayout != null) {
+//                mToolbarLayout.setTitle(mItem.content);
+//            }
+//        }
+//    }
 }
