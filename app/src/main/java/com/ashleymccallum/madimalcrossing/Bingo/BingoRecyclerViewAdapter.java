@@ -40,7 +40,7 @@ public class BingoRecyclerViewAdapter extends RecyclerView.Adapter<BingoRecycler
             @Override
             public void onClick(View view) {
                 if(game.canSelectTile(holder.getAbsoluteAdapterPosition())) {
-                    //TODO: stamp tile to indicate used
+                    holder.bingoStamp.setVisibility(View.VISIBLE);
                 }
                 if(game.isWon()) {
                     //TODO: check that this passes the game back to the fragment
@@ -59,11 +59,14 @@ public class BingoRecyclerViewAdapter extends RecyclerView.Adapter<BingoRecycler
     static class BingoViewHolder extends RecyclerView.ViewHolder {
         protected ImageView bingoImg;
         protected TextView bingoText;
+        protected ImageView bingoStamp;
 
         public BingoViewHolder(@NonNull View itemView) {
             super(itemView);
             this.bingoImg = itemView.findViewById(R.id.bingoImage);
             this.bingoText = itemView.findViewById(R.id.bingoName);
+            this.bingoStamp = itemView.findViewById(R.id.bingoStamp);
+            bingoStamp.setVisibility(View.INVISIBLE);
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.ashleymccallum.madimalcrossing.Bingo;
 
+import com.ashleymccallum.madimalcrossing.R;
 import com.ashleymccallum.madimalcrossing.pojos.Villager;
 
 import java.util.ArrayList;
@@ -51,6 +52,7 @@ public class BingoGame {
 
     private int boardScore = 0;
     private int[] winCombos;
+    public String currentMode;
     private static BingoGame instance = null;
 
     public static BingoGame getInstance() {
@@ -65,14 +67,14 @@ public class BingoGame {
 
     /**
      * Generates a new set of tiles and sets the game mode
+     * Default starting game mode is 5-in-a-row
      * @param villagers ArrayList of Villager objects to be used in generating tiles
-     * @param gameMode String representation of the game mode the user selected
      * @author Ashley McCallum
      */
-    //TODO: user must select game mode before anything is loaded, prompt user on screen load and also when game is over
-    public void startNew(ArrayList<Villager> villagers, String gameMode) {
+    //TODO: is it a good idea to set mode to 5 in a row by default?
+    public void startNew(ArrayList<Villager> villagers) {
         generateTiles(villagers);
-        selectMode(gameMode);
+        selectMode(BINGO_ROW_KEY);
     }
 
     /**
@@ -93,6 +95,7 @@ public class BingoGame {
      * @author Ashley McCallum
      */
     private void selectMode(String gameMode) {
+        currentMode = gameMode;
         winCombos = allWinningCombos.get(gameMode);
     }
 
@@ -137,11 +140,11 @@ public class BingoGame {
     /**
      * Changes the mode of the game so the user can continue to play with the same board
      * @param mode the mode the user wants to select
-     * @return false if the user was using the blackout mode (a new board must be generated), true if the mode was changed successfully
+     * @return false if the user was using the blackout mode and won (a new board must be generated), true if the mode was changed successfully
      * @author Ashley McCallum
      */
     public boolean canChangeMode(String mode) {
-        if(Arrays.equals(winCombos, allWinningCombos.get(BINGO_BLACKOUT_KEY))) {
+        if(Arrays.equals(winCombos, allWinningCombos.get(BINGO_BLACKOUT_KEY)) && boardScore == 33554431) {
             return false;
         }
         selectMode(mode);

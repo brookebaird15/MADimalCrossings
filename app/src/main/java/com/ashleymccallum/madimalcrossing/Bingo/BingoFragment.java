@@ -1,5 +1,7 @@
 package com.ashleymccallum.madimalcrossing.Bingo;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,8 +11,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.ashleymccallum.madimalcrossing.R;
+import com.google.android.material.snackbar.Snackbar;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -61,10 +68,77 @@ public class BingoFragment extends Fragment implements OnTileClickListener{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_bingo, container, false);
-        RecyclerView recyclerView = view.findViewById(R.id.bingoRecycler);
         //TODO: get 25 random villagers for the bingo card & prompt user to choose mode
         BingoGame game = BingoGame.getInstance();
 //        game.startNew();
+        TextView modeText = view.findViewById(R.id.bingoModeText);
+        TextView selectModeText = view.findViewById(R.id.bingoModeSelector);
+        selectModeText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO: select game mode
+                AlertDialog.Builder modeDialog = new AlertDialog.Builder(getContext());
+                modeDialog.setTitle(getString(R.string.bingo_selector));
+                //add custom layout
+                LayoutInflater alertInflater = modeDialog.create().getLayoutInflater();
+                View alertView = alertInflater.inflate(R.layout.bingo_mode_select, null);
+                modeDialog.setView(alertView);
+
+                RadioGroup radioGroup = view.findViewById(R.id.bingoGroup);
+                radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                        //get selected radio button
+                        RadioButton radioButton = radioGroup.findViewById(i);
+                    }
+                });
+                modeDialog.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //get the ID of the selected button
+                        int selectedID = radioGroup.getCheckedRadioButtonId();
+                        //get the current mode the game is in
+                        String modeSelection = game.currentMode;
+                        //set the text of the display and the mode selection accordingly
+                        switch (selectedID) {
+                            case R.id.rowBtn:
+                                modeText.setText(getString(R.string.bingo_row));
+                                modeSelection = BingoGame.BINGO_ROW_KEY;
+                                break;
+                            case R.id.xBtn:
+                                modeText.setText(getString(R.string.bingo_x));
+                                modeSelection = BingoGame.BINGO_X_KEY;
+                                break;
+                            case R.id.ringBtn:
+                                modeText.setText(getString(R.string.bingo_ring));
+                                modeSelection = BingoGame.BINGO_RING_KEY;
+                                break;
+                            case R.id.cornerBtn:
+                                modeText.setText(getString(R.string.bingo_corners));
+                                modeSelection = BingoGame.BINGO_CORNERS_KEY;
+                                break;
+                            case R.id.blackoutBtn:
+                                modeText.setText(getString(R.string.bingo_blackout));
+                                modeSelection = BingoGame.BINGO_BLACKOUT_KEY;
+                                break;
+                        }
+//                        if(!game.canChangeMode(modeSelection)) {
+////                            Snackbar.make(view, "Cannot c")
+//                        } 
+                    }
+                });
+                modeDialog.setNegativeButton("Cancel", null);
+                modeDialog.show();
+            }
+        });
+        ImageView bingoButton = view.findViewById(R.id.bingoCardButton);
+        bingoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO: randomise card on click
+            }
+        });
+        RecyclerView recyclerView = view.findViewById(R.id.bingoRecycler);
         recyclerView.setAdapter(new BingoRecyclerViewAdapter(getContext(), game, this));
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 5));
         //TODO: if the game has been won, just do: game = new BingoGame() with the new selection and list of villagers??? (probably not, probably need a method for this)

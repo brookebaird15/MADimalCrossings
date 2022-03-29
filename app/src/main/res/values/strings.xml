@@ -21,4 +21,11 @@
 
 <!--    TODO: test placeholder for catchphrase -->
     <string name="catchphrase">"%1$s!"</string>
+
+    <string name="bingo_selector">Select Mode: </string>
+    <string name="bingo_row">5-in-a-Row</string>
+    <string name="bingo_corners">4 Corners</string>
+    <string name="bingo_x">X Combo</string>
+    <string name="bingo_blackout">Blackout</string>
+    <string name="bingo_ring">Ring</string>
 </resources>
