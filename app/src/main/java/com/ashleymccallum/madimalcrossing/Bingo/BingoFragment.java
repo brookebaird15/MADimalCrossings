@@ -124,7 +124,7 @@ public class BingoFragment extends Fragment implements OnTileClickListener{
                         }
 //                        if(!game.canChangeMode(modeSelection)) {
 ////                            Snackbar.make(view, "Cannot c")
-//                        } 
+//                        }
                     }
                 });
                 modeDialog.setNegativeButton("Cancel", null);
@@ -135,13 +135,14 @@ public class BingoFragment extends Fragment implements OnTileClickListener{
         bingoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO: randomise card on click
+//                game.startNew();
+                //TODO: randomise bingo card on click
             }
         });
         RecyclerView recyclerView = view.findViewById(R.id.bingoRecycler);
         recyclerView.setAdapter(new BingoRecyclerViewAdapter(getContext(), game, this));
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 5));
-        //TODO: if the game has been won, just do: game = new BingoGame() with the new selection and list of villagers??? (probably not, probably need a method for this)
+        //TODO: handle game win
         return view;
     }
 
