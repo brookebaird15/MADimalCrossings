@@ -19,6 +19,14 @@
     <string name="gender_f">Female</string>
     <string name="gender_m">Male</string>
 
+    <string name="collected_switch">Filter by collected</string>
+    <string name="song_buy">Buy Price: </string>
+    <string name="song_sell">Sell Price: </string>
+    <string name="song_orderable">Can be ordered: </string>
+    <string name="song_collected">Collected: </string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
 <!--    TODO: test placeholder for catchphrase -->
     <string name="catchphrase">"%1$s!"</string>
 </resources>
