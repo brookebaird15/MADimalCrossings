@@ -20,6 +20,7 @@ public class VillagerDetailHostActivity extends AppCompatActivity {
         ActivityVillagerDetailBinding binding = ActivityVillagerDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.nav_host_fragment_villager_detail);
         NavController navController = navHostFragment.getNavController();
