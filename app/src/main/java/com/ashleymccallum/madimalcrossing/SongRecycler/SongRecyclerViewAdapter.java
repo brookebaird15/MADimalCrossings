@@ -37,7 +37,7 @@ public class SongRecyclerViewAdapter extends RecyclerView.Adapter<SongViewHolder
     }
 
     /**
-     * Updates the image of a checklist item based on its completion
+     * Updates the checkbox image of a song based on its collection status
      * @param imageView imageview being updated
      * @param collectionStatus the collection status of the item
      * @author Ashley McCallum

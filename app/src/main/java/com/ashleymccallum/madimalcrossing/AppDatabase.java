@@ -187,7 +187,7 @@ public class AppDatabase extends SQLiteOpenHelper {
                         values.put(TITLE_COLUMN, nameObject.getString("name-USen"));
                         String buyPrice = response.getString("buy-price");
                         if(buyPrice.equals("null")) {
-                            buyPrice = "Cannot be bought";
+                            buyPrice = "N/A";
                         }
                         values.put(BUY_COLUMN, buyPrice);
                         values.put(SELL_COLUMN, response.getString("sell-price"));
