@@ -22,11 +22,14 @@
 
         <TextView
             android:id="@+id/songTitle"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="TextView"
-            app:layout_constraintStart_toEndOf="@+id/songImg"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="@+id/musicControlBtn"
+            app:layout_constraintEnd_toStartOf="@+id/songMoreBtn"
+            app:layout_constraintStart_toEndOf="@+id/musicControlBtn"
+            app:layout_constraintTop_toTopOf="@+id/musicControlBtn" />
 
         <ImageView
             android:id="@+id/songMoreBtn"
@@ -36,6 +39,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/songImg"
             app:srcCompat="@drawable/ic_baseline_more_vert_24" />
+
+        <ImageView
+            android:id="@+id/musicControlBtn"
+            android:layout_width="25dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/med_margin"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/songImg"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_launch_24" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

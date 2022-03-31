@@ -1,8 +1,11 @@
 package com.ashleymccallum.madimalcrossing.SongRecycler;
 
 import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.ashleymccallum.madimalcrossing.AppDatabase;
 import com.ashleymccallum.madimalcrossing.R;
 import com.ashleymccallum.madimalcrossing.pojos.Song;
+import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -57,6 +61,18 @@ public class SongRecyclerViewAdapter extends RecyclerView.Adapter<SongViewHolder
         Song song = songs.get(position);
         holder.songTitle.setText(song.getTitle());
         Picasso.get().load(song.getImgURI()).into(holder.songImg);
+        holder.musicControl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(song.getSongURI()));
+                try {
+                    context.startActivity(i);
+                }catch (ActivityNotFoundException e) {
+                    Snackbar.make(view, "Cannot play song", Snackbar.LENGTH_LONG).show();
+                }
+            }
+        });
         holder.songMoreBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -118,11 +134,13 @@ class SongViewHolder extends RecyclerView.ViewHolder {
     TextView songTitle;
     ImageView songImg;
     ImageView songMoreBtn;
+    ImageView musicControl;
 
     public SongViewHolder(@NonNull View itemView) {
         super(itemView);
         this.songImg = itemView.findViewById(R.id.songImg);
         this.songTitle = itemView.findViewById(R.id.songTitle);
         this.songMoreBtn = itemView.findViewById(R.id.songMoreBtn);
+        this.musicControl = itemView.findViewById(R.id.musicControlBtn);
     }
 }

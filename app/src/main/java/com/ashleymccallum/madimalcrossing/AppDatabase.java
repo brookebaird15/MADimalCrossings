@@ -66,13 +66,15 @@ public class AppDatabase extends SQLiteOpenHelper {
     public static final String SELL_COLUMN = "sell_price";
     public static final String ORDERABLE_COLUMN = "orderable";  //an int (0/1) if the track can be ordered
     public static final String COLLECTED_COLUMN = "collected";  //an int (0/1) if the track has been collected
+    public static final String SONG_COLUMN = "song_uri";
 
-    //song table columns: id, title, buy_price, sell_price, orderable, collected, img_uri
+    //song table columns: id, title, buy_price, sell_price, orderable, collected, img_uri, song_uri
     public static final String CREATE_SONG_TABLE = "CREATE TABLE " +
             SONG_TABLE + "(" + ID_COLUMN + " INTEGER PRIMARY KEY," +
             TITLE_COLUMN + " TEXT," + BUY_COLUMN + " TEXT," +
             SELL_COLUMN + " TEXT," + ORDERABLE_COLUMN + " INTEGER," +
-            COLLECTED_COLUMN + " INTEGER," + IMG_COLUMN + " TEXT)";
+            COLLECTED_COLUMN + " INTEGER," + IMG_COLUMN + " TEXT," +
+            SONG_COLUMN + " TEXT)";
 
     //List Table
     public static final String LIST_TABLE = "lists";
@@ -199,6 +201,7 @@ public class AppDatabase extends SQLiteOpenHelper {
                         values.put(ORDERABLE_COLUMN, orderableFlag);
                         values.put(COLLECTED_COLUMN, 0);
                         values.put(IMG_COLUMN, response.getString("image_uri"));
+                        values.put(SONG_COLUMN, response.getString("music_uri"));
                         db.insert(SONG_TABLE, null, values);
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -231,7 +234,8 @@ public class AppDatabase extends SQLiteOpenHelper {
                     cursor.getString(3),
                     cursor.getInt(4),
                     cursor.getInt(5),
-                    cursor.getString(6)));
+                    cursor.getString(6),
+                    cursor.getString(7)));
         }
         db.close();
         return songs;
@@ -249,7 +253,8 @@ public class AppDatabase extends SQLiteOpenHelper {
                     cursor.getString(3),
                     cursor.getInt(4),
                     cursor.getInt(5),
-                    cursor.getString(6)));
+                    cursor.getString(6),
+                    cursor.getString(7)));
         }
         db.close();
         return songs;

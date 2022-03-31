@@ -13,9 +13,10 @@ public class Song {
     private int orderable;
     private int collected = 0;
     private String imgURI;
+    private String songURI;
     //TODO: add property to hold Spotify search URL? could just be a search query + title...
 
-    public Song(int id, String title, String buyPrice, String sellPrice, int orderable, int collected, String imgURI) {
+    public Song(int id, String title, String buyPrice, String sellPrice, int orderable, int collected, String imgURI, String songURI) {
         this.id = id;
         this.title = title;
         this.buyPrice = buyPrice;
@@ -23,9 +24,8 @@ public class Song {
         this.orderable = orderable;
         this.collected = collected;
         this.imgURI = imgURI;
+        this.songURI = songURI;
     }
-
-
 
     public int getId() {
         return id;
@@ -53,6 +53,10 @@ public class Song {
 
     public String getImgURI() {
         return imgURI;
+    }
+
+    public String getSongURI() {
+        return songURI;
     }
 
     public void changeCollectionStatus() {
