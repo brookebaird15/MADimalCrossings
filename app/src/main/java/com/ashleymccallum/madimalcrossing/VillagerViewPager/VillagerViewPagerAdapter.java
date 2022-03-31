@@ -7,6 +7,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 public class VillagerViewPagerAdapter extends FragmentStateAdapter {
 
+    //TODO: populate view pager with lists from db + all villager list
     public VillagerViewPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
     }

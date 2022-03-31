@@ -34,7 +34,7 @@ import java.util.List;
  * item details. On larger screens, the Navigation controller presents the list of items and
  * item details side-by-side using two vertical panes.
  */
-public class VillagerListFragment extends Fragment {
+public class VillagerRecyclerFragment extends Fragment {
 
     /**
      * Method to intercept global key events in the

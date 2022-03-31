@@ -12,7 +12,7 @@
         android:title="@string/title_news" />
 
     <item
-        android:id="@+id/nav_music"
+        android:id="@+id/nav_song"
         android:icon="@drawable/ic_dashboard_black_24dp"
         android:title="@string/title_music" />
 
