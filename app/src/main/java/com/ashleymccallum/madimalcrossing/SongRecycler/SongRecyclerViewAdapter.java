@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.ashleymccallum.madimalcrossing.AppDatabase;
 import com.ashleymccallum.madimalcrossing.R;
 import com.ashleymccallum.madimalcrossing.pojos.Song;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -55,7 +56,7 @@ public class SongRecyclerViewAdapter extends RecyclerView.Adapter<SongViewHolder
     public void onBindViewHolder(@NonNull SongViewHolder holder, int position) {
         Song song = songs.get(position);
         holder.songTitle.setText(song.getTitle());
-//        holder.songImg.setImageResource();    SET IMAGE
+        Picasso.get().load(song.getImgURI()).into(holder.songImg);
         holder.songMoreBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,7 +72,7 @@ public class SongRecyclerViewAdapter extends RecyclerView.Adapter<SongViewHolder
                 TextView orderableText = alertView.findViewById(R.id.songOrderText);
                 ImageView collectedImg = alertView.findViewById(R.id.songCollectionImg);
 
-//                songImg.setImageResource();   TODO: SET IMAGE FOR COVER ART
+                Picasso.get().load(song.getImgURI()).into(songImg);
                 title.setText(song.getTitle());
                 buyPrice.setText(song.getBuyPrice());
                 sellPrice.setText(song.getSellPrice());

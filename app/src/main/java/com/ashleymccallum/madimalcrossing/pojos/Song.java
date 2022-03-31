@@ -51,6 +51,10 @@ public class Song {
         return collected;
     }
 
+    public String getImgURI() {
+        return imgURI;
+    }
+
     public void changeCollectionStatus() {
         if(collected == 0) {
             collected = 1;
