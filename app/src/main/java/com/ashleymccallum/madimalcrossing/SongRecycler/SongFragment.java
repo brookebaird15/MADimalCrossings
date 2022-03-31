@@ -77,8 +77,7 @@ public class SongFragment extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(b) {
-                    //TODO: if true, get collected songs only
-//                    recyclerView.setAdapter(new SongRecyclerViewAdapter(getContext(), ));
+                    recyclerView.setAdapter(new SongRecyclerViewAdapter(getContext(), db.getCollectedSongs()));
                 } else {
                     recyclerView.setAdapter(new SongRecyclerViewAdapter(getContext(), db.getAllSongs()));
                 }

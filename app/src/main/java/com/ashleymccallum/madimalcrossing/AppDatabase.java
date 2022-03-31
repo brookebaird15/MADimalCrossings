@@ -9,11 +9,18 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.ashleymccallum.madimalcrossing.api.RequestSingleton;
 import com.ashleymccallum.madimalcrossing.pojos.Song;
 import com.ashleymccallum.madimalcrossing.pojos.Villager;
 import com.ashleymccallum.madimalcrossing.pojos.VillagerList;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -59,13 +66,15 @@ public class AppDatabase extends SQLiteOpenHelper {
     public static final String SELL_COLUMN = "sell_price";
     public static final String ORDERABLE_COLUMN = "orderable";  //an int (0/1) if the track can be ordered
     public static final String COLLECTED_COLUMN = "collected";  //an int (0/1) if the track has been collected
+    public static final String SONG_COLUMN = "song_uri";
 
-    //song table columns: id, title, buy_price, sell_price, orderable, collected
+    //song table columns: id, title, buy_price, sell_price, orderable, collected, img_uri, song_uri
     public static final String CREATE_SONG_TABLE = "CREATE TABLE " +
             SONG_TABLE + "(" + ID_COLUMN + " INTEGER PRIMARY KEY," +
             TITLE_COLUMN + " TEXT," + BUY_COLUMN + " TEXT," +
             SELL_COLUMN + " TEXT," + ORDERABLE_COLUMN + " INTEGER," +
-            COLLECTED_COLUMN + " INTEGER)";
+            COLLECTED_COLUMN + " INTEGER," + IMG_COLUMN + " TEXT," +
+            SONG_COLUMN + " TEXT)";
 
     //List Table
     public static final String LIST_TABLE = "lists";
@@ -160,14 +169,52 @@ public class AppDatabase extends SQLiteOpenHelper {
     }
 
     /**
-     * TODO: update comment
-     * to be used in adding all songs to the db
-     * @param songs
+     * Adds all the songs from the API into the database
+     * @param response a JSON Object containing all the songs in the database
+     * @param context application Context
+     * @author Ashley McCallum
      */
-    public void addAllSongs(JSONArray songs) {
+    public void addAllSongs(JSONObject response, Context context) {
         SQLiteDatabase db = this.getWritableDatabase();
-        //TODO: parse data from array
-        db.close();
+        ContentValues values = new ContentValues();
+        for(int i = 1; i <= response.length(); i++) {
+            //for each item in the original response, create a new url and get the song at that url
+            String url = "https://acnhapi.com/v1/songs/" + i;
+            JsonObjectRequest songRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    try {
+                        values.put(ID_COLUMN, response.getInt("id"));
+                        JSONObject nameObject = response.getJSONObject("name");
+                        values.put(TITLE_COLUMN, nameObject.getString("name-USen"));
+                        String buyPrice = response.getString("buy-price");
+                        if(buyPrice.equals("null")) {
+                            buyPrice = "N/A";
+                        }
+                        values.put(BUY_COLUMN, buyPrice);
+                        values.put(SELL_COLUMN, response.getString("sell-price"));
+                        boolean orderable = response.getBoolean("isOrderable");
+                        int orderableFlag = 0;
+                        if(orderable) {
+                            orderableFlag = 1;
+                        }
+                        values.put(ORDERABLE_COLUMN, orderableFlag);
+                        values.put(COLLECTED_COLUMN, 0);
+                        values.put(IMG_COLUMN, response.getString("image_uri"));
+                        values.put(SONG_COLUMN, response.getString("music_uri"));
+                        db.insert(SONG_TABLE, null, values);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.d("SONG_VOLLEY_ERROR",  error.getLocalizedMessage());
+                }
+            });
+            RequestSingleton.getInstance(context).getRequestQueue().add(songRequest);
+        }
     }
 
     /**
@@ -186,7 +233,28 @@ public class AppDatabase extends SQLiteOpenHelper {
                     cursor.getString(2),
                     cursor.getString(3),
                     cursor.getInt(4),
-                    cursor.getInt(5)));
+                    cursor.getInt(5),
+                    cursor.getString(6),
+                    cursor.getString(7)));
+        }
+        db.close();
+        return songs;
+    }
+
+    public ArrayList<Song> getCollectedSongs() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<Song> songs = new ArrayList<>();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + SONG_TABLE + " WHERE " + COLLECTED_COLUMN + "=?", new String[]{String.valueOf(1)});
+        while (cursor.moveToNext()) {
+            songs.add(new Song(
+                    cursor.getInt(0),
+                    cursor.getString(1),
+                    cursor.getString(2),
+                    cursor.getString(3),
+                    cursor.getInt(4),
+                    cursor.getInt(5),
+                    cursor.getString(6),
+                    cursor.getString(7)));
         }
         db.close();
         return songs;

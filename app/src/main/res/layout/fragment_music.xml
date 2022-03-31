@@ -10,6 +10,7 @@
         android:id="@+id/collectedSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/med_margin"
         android:text="@string/collected_switch"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
