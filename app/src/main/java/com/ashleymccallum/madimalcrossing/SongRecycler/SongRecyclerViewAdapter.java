@@ -13,14 +13,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.ashleymccallum.madimalcrossing.AppDatabase;
 import com.ashleymccallum.madimalcrossing.R;
 import com.ashleymccallum.madimalcrossing.pojos.Song;
 
 import java.util.ArrayList;
 
 public class SongRecyclerViewAdapter extends RecyclerView.Adapter<SongViewHolder> {
-    private ArrayList<Song> songs;
-    private Context context;
+    private final ArrayList<Song> songs;
+    private final Context context;
 
     public SongRecyclerViewAdapter(Context context, ArrayList<Song> songs) {
         this.songs = songs;
@@ -64,7 +65,7 @@ public class SongRecyclerViewAdapter extends RecyclerView.Adapter<SongViewHolder
                 songDialog.setView(alertView);
 
                 ImageView songImg = alertView.findViewById(R.id.songDetailImg);
-                TextView title = alertView.findViewById(R.id.songTitle);
+                TextView title = alertView.findViewById(R.id.songDetailTitle);
                 TextView buyPrice = alertView.findViewById(R.id.songBuyText);
                 TextView sellPrice = alertView.findViewById(R.id.songSellText);
                 TextView orderableText = alertView.findViewById(R.id.songOrderText);
@@ -90,10 +91,14 @@ public class SongRecyclerViewAdapter extends RecyclerView.Adapter<SongViewHolder
                     }
                 });
 
-                songDialog.setNeutralButton("Close", new DialogInterface.OnClickListener() {
+                songDialog.setNeutralButton("Close", null);
+
+                //when the dialog box is dismissed from the close or by clicking off it, update the song
+                songDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        //TODO: save song changes on close
+                    public void onDismiss(DialogInterface dialogInterface) {
+                        AppDatabase db = new AppDatabase(context);
+                        db.updateSong(song);
                     }
                 });
                 songDialog.show();

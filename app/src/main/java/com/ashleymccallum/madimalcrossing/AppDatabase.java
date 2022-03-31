@@ -237,6 +237,24 @@ public class AppDatabase extends SQLiteOpenHelper {
         return songs;
     }
 
+    public ArrayList<Song> getCollectedSongs() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<Song> songs = new ArrayList<>();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + SONG_TABLE + " WHERE " + COLLECTED_COLUMN + "=?", new String[]{String.valueOf(1)});
+        while (cursor.moveToNext()) {
+            songs.add(new Song(
+                    cursor.getInt(0),
+                    cursor.getString(1),
+                    cursor.getString(2),
+                    cursor.getString(3),
+                    cursor.getInt(4),
+                    cursor.getInt(5),
+                    cursor.getString(6)));
+        }
+        db.close();
+        return songs;
+    }
+
     /**
      * Updates a song's information in the table
      * Users can only update the collection status of a song
