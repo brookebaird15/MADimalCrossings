@@ -8,15 +8,27 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.ashleymccallum.madimalcrossing.AppDatabase;
 import com.ashleymccallum.madimalcrossing.R;
+import com.ashleymccallum.madimalcrossing.api.RequestSingleton;
+import com.ashleymccallum.madimalcrossing.pojos.Song;
 import com.google.android.material.switchmaterial.SwitchMaterial;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * A simple {@link Fragment} subclass.

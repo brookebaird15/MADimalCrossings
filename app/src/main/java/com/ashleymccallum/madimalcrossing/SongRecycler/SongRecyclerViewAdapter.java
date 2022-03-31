@@ -75,9 +75,9 @@ public class SongRecyclerViewAdapter extends RecyclerView.Adapter<SongViewHolder
                 buyPrice.setText(song.getBuyPrice());
                 sellPrice.setText(song.getSellPrice());
                 setImage(collectedImg, song.getCollected());
-                if(song.getOrderable == 0) {
+                if(song.getOrderable() == 0) {
                     orderableText.setText(R.string.no);
-                } else if (song.getOrderable == 1) {
+                } else if (song.getOrderable() == 1) {
                     orderableText.setText(R.string.yes);
                 }
 
