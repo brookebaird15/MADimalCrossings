@@ -14,7 +14,6 @@ public class Song {
     private int collected = 0;
     private String imgURI;
     private String songURI;
-    //TODO: add property to hold Spotify search URL? could just be a search query + title...
 
     public Song(int id, String title, String buyPrice, String sellPrice, int orderable, int collected, String imgURI, String songURI) {
         this.id = id;
