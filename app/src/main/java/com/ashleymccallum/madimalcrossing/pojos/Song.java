@@ -11,7 +11,7 @@ public class Song {
     private String buyPrice;
     private String sellPrice;
     private int orderable;
-    private int collected = 0;
+    private int collected;
     private String imgURI;
     private String songURI;
 
