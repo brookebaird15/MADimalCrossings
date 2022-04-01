@@ -36,4 +36,7 @@
     <string name="bingo_x">X Combo</string>
     <string name="bingo_blackout">Blackout</string>
     <string name="bingo_ring">Ring</string>
+    <string name="game_over">You Won!</string>
+    <string name="continue_btn">Continue</string>
+    <string name="new_game_btn">New Game</string>
 </resources>

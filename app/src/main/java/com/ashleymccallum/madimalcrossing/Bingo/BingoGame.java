@@ -118,7 +118,6 @@ public class BingoGame {
         return false;
     }
 
-    //TODO: to be called after user selects a tile to check game state, if the game is over call changeGameMode() with a prompt
     /**
      * Checks if the game has been won
      * @return true if there is a winning combo, false if not
@@ -136,7 +135,6 @@ public class BingoGame {
         return false;
     }
 
-    //TODO: to be called once a game is over, use a prompt to allow user to select
     /**
      * Changes the mode of the game so the user can continue to play with the same board
      * @param mode the mode the user wants to select
@@ -144,7 +142,7 @@ public class BingoGame {
      * @author Ashley McCallum
      */
     public boolean canChangeMode(String mode) {
-        if(Arrays.equals(winCombos, allWinningCombos.get(BINGO_BLACKOUT_KEY)) && boardScore == 33554431) {
+        if(currentMode.equals(BINGO_BLACKOUT_KEY) && boardScore == 33554431) {
             return false;
         }
         selectMode(mode);

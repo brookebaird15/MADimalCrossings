@@ -8,10 +8,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -79,22 +81,28 @@ public class BingoFragment extends Fragment implements OnGameWinListener {
     private TextView modeText;
     private KonfettiView konfettiView;
     private Party party;
+    private RecyclerView recyclerView;
+    private BingoRecyclerViewAdapter adapter;
+    private AppDatabase db;
+
+    //TODO: game starts new every time bingo screen is entered/exited -> is there a way to NOT do this?
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_bingo, container, false);
-        AppDatabase db = new AppDatabase(getContext());
+        db = new AppDatabase(getContext());
         game = BingoGame.getInstance();
         game.startNew(db.getBingoVillagers());
-        RecyclerView recyclerView = view.findViewById(R.id.bingoRecycler);
-        recyclerView.setAdapter(new BingoRecyclerViewAdapter(game, this));
+        recyclerView = view.findViewById(R.id.bingoRecycler);
+        adapter = new BingoRecyclerViewAdapter(game, this);
+        recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 5));
 
         //configure confetti effect
         konfettiView = view.findViewById(R.id.konfettiView);
-        EmitterConfig emitterConfig = new Emitter(5, TimeUnit.SECONDS).perSecond(50);
+        EmitterConfig emitterConfig = new Emitter(3, TimeUnit.SECONDS).perSecond(50);
         party = new PartyFactory(emitterConfig) .spread(360)
                 .shapes(Arrays.asList(Shape.Square.INSTANCE, Shape.Circle.INSTANCE))
                 .colors(Arrays.asList(0xfce18a, 0xff726d, 0xf4306d, 0xb48def))
@@ -117,31 +125,62 @@ public class BingoFragment extends Fragment implements OnGameWinListener {
         bingoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                game.startNew(db.getBingoVillagers());
-                recyclerView.setAdapter(new BingoRecyclerViewAdapter(game, BingoFragment.this));
+                startNewGame();
             }
         });
-
-        //TODO: handle game win
         return view;
     }
 
     @Override
     public void onGameWin(BingoGame game) {
-        Log.d("----------------", "tile click listener");
-//
-//        if(game.canChangeMode(game.currentMode)) {
-//            game.startNew();
-//        }
 
-        //TODO: stop confetti animation in settings
+        //TODO: stop confetti animation & delay in settings
         konfettiView.start(party);
-        presentModeSelectDialog(game, modeText);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                presentGameOver(game);
+            }
+        }, 3000);
+
+
+        //TODO: restart game or change mode
 
     }
 
+    private void startNewGame() {
+        game.startNew(db.getBingoVillagers());
+        recyclerView.setAdapter(adapter);
+    }
+
+    private void presentGameOver(BingoGame game) {
+        AlertDialog.Builder gameOverDialog = new AlertDialog.Builder(getContext());
+        gameOverDialog.setTitle(getString(R.string.game_over));
+//        LayoutInflater inflater = gameOverDialog.create().getLayoutInflater();
+//        View dialogView = inflater.inflate(R.layout.game_over_dialog, null);
+//        gameOverDialog.setView(dialogView);
+
+        if(game.canChangeMode(game.currentMode)) {
+            gameOverDialog.setPositiveButton(getString(R.string.continue_btn), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    presentModeSelectDialog(game, modeText);
+                }
+            });
+        }
+
+        gameOverDialog.setNeutralButton(getString(R.string.new_game_btn), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                startNewGame();
+            }
+        });
+        gameOverDialog.show();
+    }
+
     /**
-     *
+     * Creates and presents the dialog box to allow user to change the game mode
      * @param game the BingoGame
      * @param modeText the TextView displaying the current mode on screen
      * @author Ashley McCallum
@@ -180,29 +219,24 @@ public class BingoFragment extends Fragment implements OnGameWinListener {
                 //set the text of the display and the mode selection accordingly
                 switch (selectedID) {
                     case R.id.rowBtn:
-                        modeText.setText(getString(R.string.bingo_row));
-                        modeSelection = BingoGame.BINGO_ROW_KEY;
+                        modeSelection = getString(R.string.bingo_row);
                         break;
                     case R.id.xBtn:
-                        modeText.setText(getString(R.string.bingo_x));
-                        modeSelection = BingoGame.BINGO_X_KEY;
+                        modeSelection = getString(R.string.bingo_x);
                         break;
                     case R.id.ringBtn:
-                        modeText.setText(getString(R.string.bingo_ring));
-                        modeSelection = BingoGame.BINGO_RING_KEY;
+                        modeSelection = getString(R.string.bingo_ring);
                         break;
                     case R.id.cornerBtn:
-                        modeText.setText(getString(R.string.bingo_corners));
-                        modeSelection = BingoGame.BINGO_CORNERS_KEY;
+                        modeSelection = getString(R.string.bingo_corners);
                         break;
                     case R.id.blackoutBtn:
-                        modeText.setText(getString(R.string.bingo_blackout));
-                        modeSelection = BingoGame.BINGO_BLACKOUT_KEY;
+                        modeSelection = getString(R.string.bingo_blackout);
                         break;
                 }
-//                        if(!game.canChangeMode(modeSelection)) {
-////                            Snackbar.make(view, "Cannot c")
-//                        }
+                if(game.canChangeMode(modeSelection.toLowerCase())) {
+                    modeText.setText(modeSelection);
+                }
             }
         });
         modeDialog.setNegativeButton("Cancel", null);
@@ -219,7 +253,7 @@ public class BingoFragment extends Fragment implements OnGameWinListener {
      */
     public void selectDefault(RadioButton[] buttons, String mode, boolean gameWon) {
         for (RadioButton button : buttons) {
-            if (button.getTag().toString().toLowerCase().equals(mode.toLowerCase())) {
+            if (button.getTag().toString().equalsIgnoreCase(mode)) {
                 if(gameWon) {
                     button.setEnabled(false);
                 } else {
