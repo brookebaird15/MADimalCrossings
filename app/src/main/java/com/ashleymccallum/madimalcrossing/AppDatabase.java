@@ -41,7 +41,6 @@ public class AppDatabase extends SQLiteOpenHelper {
     public static final String ID_COLUMN = "id";
     public static final String NAME_COLUMN = "name";
     public static final String PERSONALITY_COLUMN = "personality";
-    public static final String BIRTHDAY_COLUMN = "birthday";
     public static final String SPECIES_COLUMN = "species";
     public static final String GENDER_COLUMN = "gender";
     public static final String HOBBY_COLUMN = "hobby";
@@ -49,15 +48,25 @@ public class AppDatabase extends SQLiteOpenHelper {
     public static final String ICON_COLUMN = "icon_uri";
     public static final String IMG_COLUMN = "img_uri";
     public static final String SPOTTED_COLUMN = "spotted";  //an int (0/1) if the player has seen the villager
+    public static final String URL_COLUMN = "url";
+    public static final String BIRTH_MONTH_COLUMN = "birth_month";
+    public static final String BIRTH_DAY_COLUMN = "birth_day";
+    public static final String SIGN_COLUMN = "star_sign";
+    public static final String HOUSE_EXT_COLUMN = "house_ext_uri";
+    public static final String HOUSE_INT_COLUMN = "house_int_uri";
 
-    //villager table columns: id, name, personality, birthday, species, gender, hobby, catchphrase, icon_uri, img_uri, spotted
+    //villager table columns: id, spotted, name, personality, species, url, gender, hobby, catchphrase, icon_uri, img_uri,
+    //birth_month, birth_day, star_sign, house_ext_uri, house_int_uri
     public static final String CREATE_VILLAGER_TABLE = "CREATE TABLE " +
             VILLAGER_TABLE + "(" + ID_COLUMN + " INTEGER PRIMARY KEY," +
-            NAME_COLUMN + " TEXT," + PERSONALITY_COLUMN + " TEXT," +
-            BIRTHDAY_COLUMN + " TEXT," + SPECIES_COLUMN + " TEXT," +
-            GENDER_COLUMN + " TEXT," + HOBBY_COLUMN + " TEXT," +
-            CATCHPHRASE_COLUMN + " TEXT," + ICON_COLUMN + " TEXT," +
-            IMG_COLUMN + " TEXT," + SPOTTED_COLUMN + " INTEGER)";
+            SPOTTED_COLUMN + " INTEGER," + NAME_COLUMN + " TEXT," +
+            PERSONALITY_COLUMN + " TEXT," + SPECIES_COLUMN + " TEXT," +
+            URL_COLUMN + " TEXT," + GENDER_COLUMN + " TEXT," +
+            HOBBY_COLUMN + " TEXT," + CATCHPHRASE_COLUMN + " TEXT," +
+            ICON_COLUMN + " TEXT," + IMG_COLUMN + " TEXT," +
+            BIRTH_MONTH_COLUMN + " TEXT," + BIRTH_DAY_COLUMN + " TEXT," +
+            SIGN_COLUMN + " TEXT," + HOUSE_EXT_COLUMN + " TEXT," +
+            HOUSE_INT_COLUMN + " TEXT)";
 
     //KK Slider Song Table
     public static final String SONG_TABLE = "kk_songs";
@@ -116,14 +125,40 @@ public class AppDatabase extends SQLiteOpenHelper {
     }
 
     /**
-     * TODO: update comment
+     * Adds all the villagers from the API to the database
      * to be used in adding all villagers to the db
-     * @param villagers
+     * @param response the JSONArray retrieved from the Volley request
+     * @param context application context
+     * @author Ashley McCallum
      */
-    public void addAllVillagers(JSONArray villagers) {
+    public void addAllVillagers(JSONArray response, Context context) {
         SQLiteDatabase db = this.getWritableDatabase();
-        //TODO: parse data from jsonArray
-        db.close();
+        ContentValues values = new ContentValues();
+        for(int i = 0; i < response.length(); i++) {
+            try {
+                JSONObject main = response.getJSONObject(i);
+                values.put(ID_COLUMN, i + 1);
+                values.put(SPOTTED_COLUMN, 0);
+                values.put(URL_COLUMN, main.getString("url"));
+                values.put(NAME_COLUMN, main.getString("name"));
+                values.put(SPECIES_COLUMN, main.getString("species"));
+                values.put(PERSONALITY_COLUMN, main.getString("personality"));
+                values.put(GENDER_COLUMN, main.getString("gender").toLowerCase());
+                values.put(BIRTH_MONTH_COLUMN, main.getString("birthday_month"));
+                values.put(BIRTH_DAY_COLUMN, main.getString("birthday_day"));
+                values.put(SIGN_COLUMN, main.getString("sign"));
+                values.put(CATCHPHRASE_COLUMN, main.getString("phrase"));
+                JSONObject details = main.getJSONObject("nh_details");
+                values.put(IMG_COLUMN, details.getString("image_url"));
+                values.put(ICON_COLUMN, details.getString("icon_url"));
+                values.put(HOBBY_COLUMN, details.getString("hobby"));
+                values.put(HOUSE_EXT_COLUMN, details.getString("house_exterior_url"));
+                values.put(HOUSE_INT_COLUMN, details.getString("house_interior_url"));
+                db.insert(VILLAGER_TABLE, null, values);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     /**
@@ -138,7 +173,7 @@ public class AppDatabase extends SQLiteOpenHelper {
         while (cursor.moveToNext()) {
             villagers.add(new Villager(
                     cursor.getInt(0),
-                    cursor.getString(1),
+                    cursor.getInt(1),
                     cursor.getString(2),
                     cursor.getString(3),
                     cursor.getString(4),
@@ -147,7 +182,12 @@ public class AppDatabase extends SQLiteOpenHelper {
                     cursor.getString(7),
                     cursor.getString(8),
                     cursor.getString(9),
-                    cursor.getInt(10)));
+                    cursor.getString(10),
+                    cursor.getString(11),
+                    cursor.getString(12),
+                    cursor.getString(13),
+                    cursor.getString(14),
+                    cursor.getString(15)));
         }
         db.close();
         return villagers;
@@ -170,7 +210,7 @@ public class AppDatabase extends SQLiteOpenHelper {
 
     /**
      * Adds all the songs from the API into the database
-     * @param response a JSON Object containing all the songs in the database
+     * @param response a JSON Object containing all the songs from the Volley request
      * @param context application Context
      * @author Ashley McCallum
      */
@@ -210,7 +250,7 @@ public class AppDatabase extends SQLiteOpenHelper {
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Log.d("SONG_VOLLEY_ERROR",  error.getLocalizedMessage());
+                    Log.d("addAllSongs_VOLLEY",  error.getLocalizedMessage());
                 }
             });
             RequestSingleton.getInstance(context).getRequestQueue().add(songRequest);
@@ -367,7 +407,7 @@ public class AppDatabase extends SQLiteOpenHelper {
         while (cursor.moveToNext()) {
             villagers.add(new Villager(
                     cursor.getInt(0),
-                    cursor.getString(1),
+                    cursor.getInt(1),
                     cursor.getString(2),
                     cursor.getString(3),
                     cursor.getString(4),
@@ -376,7 +416,12 @@ public class AppDatabase extends SQLiteOpenHelper {
                     cursor.getString(7),
                     cursor.getString(8),
                     cursor.getString(9),
-                    cursor.getInt(10)));
+                    cursor.getString(10),
+                    cursor.getString(11),
+                    cursor.getString(12),
+                    cursor.getString(13),
+                    cursor.getString(14),
+                    cursor.getString(15)));
         }
         db.close();
         return villagers;
