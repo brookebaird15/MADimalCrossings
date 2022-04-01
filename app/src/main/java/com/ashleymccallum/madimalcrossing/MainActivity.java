@@ -2,8 +2,10 @@ package com.ashleymccallum.madimalcrossing;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -23,6 +25,9 @@ import com.ashleymccallum.madimalcrossing.databinding.ActivityMainBinding;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -52,6 +57,40 @@ public class MainActivity extends AppCompatActivity {
             loadSongs(this);
         }
 
+        if(db.getAllVillagers().isEmpty()) {
+            loadVillagers(this);
+        }
+
+    }
+
+    /**
+     * Loads the villagers from the API on launch
+     * @param context application context
+     * @author Ashley McCallum
+     */
+    private void loadVillagers(Context context) {
+        String url = "https://api.nookipedia.com/villagers?nhdetails=true&game=nh";
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray array) {
+                db.addAllVillagers(array, context);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("loadVillagers_VOLLEY",  error.getLocalizedMessage());
+                error.printStackTrace();
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("X-API-KEY", "1aa13d13-125c-4eb1-884d-d315dc280ca0");
+                params.put("Accept-Version", "1.0.0");
+                return params;
+            }
+        };
+        RequestSingleton.getInstance(context).getRequestQueue().add(request);
     }
 
     /**
@@ -69,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("ALL_SONG_VOLLEY_ERROR",  error.getLocalizedMessage());
+                Log.d("loadSongs_VOLLEY",  error.getLocalizedMessage());
                 error.printStackTrace();
             }
         });
