@@ -8,29 +8,39 @@ package com.ashleymccallum.madimalcrossing.pojos;
 public class Villager {
 
     private int id;
+    private int spotted;
     private String name;
     private String personality;
-    private String birthday;
     private String species;
+    private String url;
     private String gender;
     private String hobby;
     private String catchphrase;
     private String iconURI;
     private String imgURI;
-    private int spotted = 0;
+    private String birthMonth;
+    private String birthDay;
+    private String sign;
+    private String houseExtURI;
+    private String houseIntURI;
 
-    public Villager(int id, String name, String personality, String birthday, String species, String gender, String hobby, String catchphrase, String iconURI, String imgURI, int spotted) {
+    public Villager(int id, int spotted, String name, String personality, String species, String url, String gender, String hobby, String catchphrase, String iconURI, String imgURI, String birthMonth, String birthDay, String sign, String houseExtURI, String houseIntURI) {
         this.id = id;
+        this.spotted = spotted;
         this.name = name;
         this.personality = personality;
-        this.birthday = birthday;
         this.species = species;
+        this.url = url;
         this.gender = gender;
         this.hobby = hobby;
         this.catchphrase = catchphrase;
         this.iconURI = iconURI;
         this.imgURI = imgURI;
-        this.spotted = spotted;
+        this.birthMonth = birthMonth;
+        this.birthDay = birthDay;
+        this.sign = sign;
+        this.houseExtURI = houseExtURI;
+        this.houseIntURI = houseIntURI;
     }
 
     public int getId() {
@@ -45,8 +55,28 @@ public class Villager {
         return personality;
     }
 
-    public String getBirthday() {
-        return birthday;
+    public String getUrl() {
+        return url;
+    }
+
+    public String getBirthMonth() {
+        return birthMonth;
+    }
+
+    public String getBirthDay() {
+        return birthDay;
+    }
+
+    public String getSign() {
+        return sign;
+    }
+
+    public String getHouseExtURI() {
+        return houseExtURI;
+    }
+
+    public String getHouseIntURI() {
+        return houseIntURI;
     }
 
     public String getSpecies() {

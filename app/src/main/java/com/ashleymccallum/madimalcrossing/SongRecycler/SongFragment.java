@@ -2,16 +2,21 @@ package com.ashleymccallum.madimalcrossing.SongRecycler;
 
 import android.os.Bundle;
 
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 
 import com.ashleymccallum.madimalcrossing.AppDatabase;
 import com.ashleymccallum.madimalcrossing.R;
+import com.google.android.material.switchmaterial.SwitchMaterial;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -62,10 +67,23 @@ public class SongFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_music, container, false);
+        SwitchMaterial collectionSwitch = view.findViewById(R.id.collectedSwitch);
         AppDatabase db = new AppDatabase(getContext());
         RecyclerView recyclerView = view.findViewById(R.id.songRecycler);
         recyclerView.setAdapter(new SongRecyclerViewAdapter(getContext(), db.getAllSongs()));
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        collectionSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b) {
+                    recyclerView.setAdapter(new SongRecyclerViewAdapter(getContext(), db.getCollectedSongs()));
+                } else {
+                    recyclerView.setAdapter(new SongRecyclerViewAdapter(getContext(), db.getAllSongs()));
+                }
+            }
+        });
+
         return view;
     }
 }
