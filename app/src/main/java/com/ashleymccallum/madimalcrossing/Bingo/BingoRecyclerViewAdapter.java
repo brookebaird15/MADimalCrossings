@@ -1,6 +1,7 @@
 package com.ashleymccallum.madimalcrossing.Bingo;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,15 +12,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ashleymccallum.madimalcrossing.R;
+import com.squareup.picasso.Picasso;
 
 public class BingoRecyclerViewAdapter extends RecyclerView.Adapter<BingoRecyclerViewAdapter.BingoViewHolder>{
     private BingoGame game;
-    private Context context;
-    private OnTileClickListener listener;
+    private OnGameWinListener listener;
 
-    public BingoRecyclerViewAdapter(Context context, BingoGame game, OnTileClickListener listener) {
+    public BingoRecyclerViewAdapter(BingoGame game, OnGameWinListener listener) {
         this.game = game;
-        this.context = context;
         this.listener = listener;
     }
 
@@ -34,8 +34,7 @@ public class BingoRecyclerViewAdapter extends RecyclerView.Adapter<BingoRecycler
     public void onBindViewHolder(@NonNull BingoViewHolder holder, int position) {
         BingoTile tile = game.tiles[position];
         holder.bingoText.setText(tile.getName());
-//        holder.bingoImg.setImageResource();     SET IMAGE TO TILE IMG
-        //TODO: check if itemview having onClickListener works as intended
+        Picasso.get().load(tile.getIconURL()).into(holder.bingoImg);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -43,8 +42,7 @@ public class BingoRecyclerViewAdapter extends RecyclerView.Adapter<BingoRecycler
                     holder.bingoStamp.setVisibility(View.VISIBLE);
                 }
                 if(game.isWon()) {
-                    //TODO: check that this passes the game back to the fragment
-                    listener.onTileClick(game);
+                    listener.onGameWin(game);
                 }
             }
         });

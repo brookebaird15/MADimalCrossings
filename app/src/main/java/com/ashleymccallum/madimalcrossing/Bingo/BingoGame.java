@@ -16,11 +16,11 @@ import java.util.HashMap;
 public class BingoGame {
 
     //String keys for the possible winning combinations
-    public static final String BINGO_ROW_KEY = "5 in a row";
+    public static final String BINGO_ROW_KEY = "5-in-a-row";
     public static final String BINGO_X_KEY = "x combo";
     public static final String BINGO_CORNERS_KEY = "4 corners";
     public static final String BINGO_BLACKOUT_KEY = "blackout";
-    public static final String BINGO_RING_KEY = "ring combo";
+    public static final String BINGO_RING_KEY = "ring";
     //TODO: set strings to be hidden values of buttons user uses to select game mode
 
     /**
@@ -71,7 +71,6 @@ public class BingoGame {
      * @param villagers ArrayList of Villager objects to be used in generating tiles
      * @author Ashley McCallum
      */
-    //TODO: is it a good idea to set mode to 5 in a row by default?
     public void startNew(ArrayList<Villager> villagers) {
         generateTiles(villagers);
         selectMode(BINGO_ROW_KEY);
@@ -83,6 +82,7 @@ public class BingoGame {
      * @author Ashley McCallum
      */
     private void generateTiles(ArrayList<Villager> villagers) {
+        villagers.add(12, new Villager("Free Space", "https://upload.wikimedia.org/wikipedia/commons/5/58/Animal_Crossing_Leaf.png"));
         for (int i = 0; i < villagers.size(); i++) {
             Villager villager = villagers.get(i);
             tiles[i] = new BingoTile(villager.getName(), villager.getIconURI(), (int) Math.pow(2, i));
@@ -99,7 +99,6 @@ public class BingoGame {
         winCombos = allWinningCombos.get(gameMode);
     }
 
-    //TODO: select tile to be called when user clicks a tile
     /**
      * Selects the tile the user chooses
      * @param position the position of the selected tile
@@ -114,6 +113,7 @@ public class BingoGame {
             //set the tile as no longer available, increase the board score
             tile.setUnavailable();
             boardScore += tile.getValue();
+            return true;
         }
         return false;
     }

@@ -11,16 +11,6 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/bingoStamp"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="@+id/bingoName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/bingoImage"
-            app:srcCompat="@drawable/ic_baseline_circle_24" />
-
-        <ImageView
             android:id="@+id/bingoImage"
             android:layout_width="75dp"
             android:layout_height="75dp"
@@ -39,5 +29,15 @@
             app:layout_constraintEnd_toEndOf="@+id/bingoImage"
             app:layout_constraintStart_toStartOf="@+id/bingoImage"
             app:layout_constraintTop_toBottomOf="@+id/bingoImage" />
+
+        <ImageView
+            android:id="@+id/bingoStamp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/bingoName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/bingoImage"
+            app:srcCompat="@drawable/ic_baseline_circle_24" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

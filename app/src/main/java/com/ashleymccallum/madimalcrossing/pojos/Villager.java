@@ -43,6 +43,12 @@ public class Villager {
         this.houseIntURI = houseIntURI;
     }
 
+    //constructor used for BINGO tiles
+    public Villager(String name, String iconURI) {
+        this.name = name;
+        this.iconURI = iconURI;
+    }
+
     public int getId() {
         return id;
     }

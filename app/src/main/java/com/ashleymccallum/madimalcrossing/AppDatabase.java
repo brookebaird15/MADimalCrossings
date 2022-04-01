@@ -209,6 +209,24 @@ public class AppDatabase extends SQLiteOpenHelper {
     }
 
     /**
+     * Retrieves 24 Villagers from the database
+     * @return ArrayList of villagers
+     * @author Ashley McCallum
+     */
+    public ArrayList<Villager> getBingoVillagers() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<Villager> villagers = new ArrayList<Villager>();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + VILLAGER_TABLE + " ORDER BY RANDOM() LIMIT 24", null);
+        while(cursor.moveToNext()) {
+            villagers.add(new Villager(
+                    cursor.getString(2),        //villager name - row index 2
+                    cursor.getString(9)));      //villager icon uri - row index 9
+        }
+        db.close();
+        return villagers;
+    }
+
+    /**
      * Adds all the songs from the API into the database
      * @param response a JSON Object containing all the songs from the Volley request
      * @param context application Context
