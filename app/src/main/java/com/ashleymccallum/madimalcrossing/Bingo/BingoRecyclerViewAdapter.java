@@ -1,6 +1,7 @@
 package com.ashleymccallum.madimalcrossing.Bingo;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,18 +11,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.ashleymccallum.madimalcrossing.AppDatabase;
 import com.ashleymccallum.madimalcrossing.R;
-import com.ashleymccallum.madimalcrossing.pojos.Villager;
+import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
+public class BingoRecyclerViewAdapter extends RecyclerView.Adapter<BingoRecyclerViewAdapter.BingoViewHolder>{
+    private BingoGame game;
+    private OnGameWinListener listener;
+    private AppDatabase db;
 
-public class BingoRecyclerViewAdapter extends RecyclerView.Adapter<BingoViewHolder>{
-    private ArrayList<Villager> villagers;
-    private Context context;
-
-    public BingoRecyclerViewAdapter(Context context, ArrayList<Villager> villagers) {
-        this.villagers = villagers;
-        this.context = context;
+    public BingoRecyclerViewAdapter(BingoGame game, OnGameWinListener listener, AppDatabase db) {
+        this.game = game;
+        this.listener = listener;
+        this.db = db;
     }
 
     @NonNull
@@ -33,29 +35,43 @@ public class BingoRecyclerViewAdapter extends RecyclerView.Adapter<BingoViewHold
 
     @Override
     public void onBindViewHolder(@NonNull BingoViewHolder holder, int position) {
-        Villager villager = villagers.get(position);
-//        holder.bingoImg.setImageResource();
-        holder.bingoText.setText(villager.getName());
+        BingoTile tile = game.tiles[position];
+        holder.bingoText.setText(tile.getName());
+        Picasso.get().load(tile.getIconURL()).into(holder.bingoImg);
+        if(tile.getAvailable() == 0) {
+            holder.bingoStamp.setVisibility(View.VISIBLE);
+        }
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(game.canSelectTile(holder.getAbsoluteAdapterPosition())) {
+                    holder.bingoStamp.setVisibility(View.VISIBLE);
+                    db.updateTile(tile);
+                }
+                if(game.isWon()) {
+                    listener.onGameWin(game);
+                }
+            }
+        });
+
     }
 
     @Override
     public int getItemCount() {
-        return villagers.size();
+        return game.tiles.length;
+    }
+
+    static class BingoViewHolder extends RecyclerView.ViewHolder {
+        protected ImageView bingoImg;
+        protected TextView bingoText;
+        protected ImageView bingoStamp;
+
+        public BingoViewHolder(@NonNull View itemView) {
+            super(itemView);
+            this.bingoImg = itemView.findViewById(R.id.bingoImage);
+            this.bingoText = itemView.findViewById(R.id.bingoName);
+            this.bingoStamp = itemView.findViewById(R.id.bingoStamp);
+            bingoStamp.setVisibility(View.INVISIBLE);
+        }
     }
 }
- class BingoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-    protected ImageView bingoImg;
-    protected TextView bingoText;
-
-     public BingoViewHolder(@NonNull View itemView) {
-         super(itemView);
-         this.bingoImg = itemView.findViewById(R.id.bingoImage);
-         this.bingoText = itemView.findViewById(R.id.bingoName);
-         itemView.setOnClickListener(this);
-     }
-
-     @Override
-     public void onClick(View view) {
-         //TODO: on click, update game
-     }
- }

@@ -1,6 +1,5 @@
 package com.ashleymccallum.madimalcrossing.pojos;
 
-import android.os.Parcelable;
 
 /**
  * Villager Class
@@ -23,9 +22,8 @@ public class Villager {
     private String birthDay;
     private String sign;
     private String houseExtURI;
-    private String houseIntURI;
 
-    public Villager(int id, int spotted, String name, String personality, String species, String url, String gender, String hobby, String catchphrase, String iconURI, String imgURI, String birthMonth, String birthDay, String sign, String houseExtURI, String houseIntURI) {
+    public Villager(int id, int spotted, String name, String personality, String species, String url, String gender, String hobby, String catchphrase, String iconURI, String imgURI, String birthMonth, String birthDay, String sign, String houseExtURI) {
         this.id = id;
         this.spotted = spotted;
         this.name = name;
@@ -41,7 +39,12 @@ public class Villager {
         this.birthDay = birthDay;
         this.sign = sign;
         this.houseExtURI = houseExtURI;
-        this.houseIntURI = houseIntURI;
+    }
+
+    //constructor used for BINGO tiles
+    public Villager(String name, String iconURI) {
+        this.name = name;
+        this.iconURI = iconURI;
     }
 
     public int getId() {
@@ -74,10 +77,6 @@ public class Villager {
 
     public String getHouseExtURI() {
         return houseExtURI;
-    }
-
-    public String getHouseIntURI() {
-        return houseIntURI;
     }
 
     public String getSpecies() {

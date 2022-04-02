@@ -20,10 +20,14 @@
                                   <option name="values">
                                     <map>
 <<<<<<< HEAD
+                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/circle/baseline_circle_24.xml" />
+=======
+<<<<<<< HEAD
                                       <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/music_note/baseline_music_note_24.xml" />
 =======
                                       <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/launch/baseline_launch_24.xml" />
 >>>>>>> 72e0d5d62f21f3d6cc18f0784edce5a4bf6f0bee
+>>>>>>> layout
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -34,10 +38,14 @@
                         <option name="values">
                           <map>
 <<<<<<< HEAD
+                            <entry key="outputName" value="ic_baseline_circle_24" />
+=======
+<<<<<<< HEAD
                             <entry key="outputName" value="ic_baseline_music_note_24" />
 =======
                             <entry key="outputName" value="ic_baseline_launch_24" />
 >>>>>>> 72e0d5d62f21f3d6cc18f0784edce5a4bf6f0bee
+>>>>>>> layout
                             <entry key="sourceFile" value="E:\AndroidStudioProjects\MADimalCrossing" />
                           </map>
                         </option>

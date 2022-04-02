@@ -13,6 +13,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.ashleymccallum.madimalcrossing.Bingo.BingoTile;
 import com.ashleymccallum.madimalcrossing.api.RequestSingleton;
 import com.ashleymccallum.madimalcrossing.pojos.Song;
 import com.ashleymccallum.madimalcrossing.pojos.Villager;
@@ -53,10 +54,9 @@ public class AppDatabase extends SQLiteOpenHelper {
     public static final String BIRTH_DAY_COLUMN = "birth_day";
     public static final String SIGN_COLUMN = "star_sign";
     public static final String HOUSE_EXT_COLUMN = "house_ext_uri";
-    public static final String HOUSE_INT_COLUMN = "house_int_uri";
 
     //villager table columns: id, spotted, name, personality, species, url, gender, hobby, catchphrase, icon_uri, img_uri,
-    //birth_month, birth_day, star_sign, house_ext_uri, house_int_uri
+    //birth_month, birth_day, star_sign, house_ext_uri
     public static final String CREATE_VILLAGER_TABLE = "CREATE TABLE " +
             VILLAGER_TABLE + "(" + ID_COLUMN + " INTEGER PRIMARY KEY," +
             SPOTTED_COLUMN + " INTEGER," + NAME_COLUMN + " TEXT," +
@@ -65,8 +65,7 @@ public class AppDatabase extends SQLiteOpenHelper {
             HOBBY_COLUMN + " TEXT," + CATCHPHRASE_COLUMN + " TEXT," +
             ICON_COLUMN + " TEXT," + IMG_COLUMN + " TEXT," +
             BIRTH_MONTH_COLUMN + " TEXT," + BIRTH_DAY_COLUMN + " TEXT," +
-            SIGN_COLUMN + " TEXT," + HOUSE_EXT_COLUMN + " TEXT," +
-            HOUSE_INT_COLUMN + " TEXT)";
+            SIGN_COLUMN + " TEXT," + HOUSE_EXT_COLUMN + " TEXT)";
 
     //KK Slider Song Table
     public static final String SONG_TABLE = "kk_songs";
@@ -106,6 +105,18 @@ public class AppDatabase extends SQLiteOpenHelper {
             "FOREIGN KEY (" + VILLAGER_FK_COLUMN + ") REFERENCES " + VILLAGER_TABLE + "(" + ID_COLUMN + ")," +
             "PRIMARY KEY (" + LIST_FK_COLUMN + ", " + VILLAGER_FK_COLUMN + "))";
 
+    //bingo table
+    public static final String BINGO_TABLE = "bingo";
+    public static final String VALUE_COLUMN = "tile_value";
+    public static final String AVAILABLE_COLUMN = "available";  //an int (0/1) if the tile has been played
+
+    //TODO: use villager FK instead of name + icon url
+    //bingo table columns: id, name, tile_value, available
+    public static final String CREATE_BINGO_TABLE = "CREATE TABLE " +
+            BINGO_TABLE + "(" + ID_COLUMN + " INTEGER PRIMARY KEY," +
+            NAME_COLUMN + " TEXT," + ICON_COLUMN + " TEXT," +
+            VALUE_COLUMN + " INTEGER," + AVAILABLE_COLUMN + " INTEGER)";
+
     public AppDatabase(@Nullable Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
@@ -116,6 +127,7 @@ public class AppDatabase extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(CREATE_SONG_TABLE);
         sqLiteDatabase.execSQL(CREATE_LIST_TABLE);
         sqLiteDatabase.execSQL(CREATE_LIST_VILLAGER_TABLE);
+        sqLiteDatabase.execSQL(CREATE_BINGO_TABLE);
         Log.d("AppDB-------", "Tables created");
     }
 
@@ -153,7 +165,6 @@ public class AppDatabase extends SQLiteOpenHelper {
                 values.put(ICON_COLUMN, details.getString("icon_url"));
                 values.put(HOBBY_COLUMN, details.getString("hobby"));
                 values.put(HOUSE_EXT_COLUMN, details.getString("house_exterior_url"));
-                values.put(HOUSE_INT_COLUMN, details.getString("house_interior_url"));
                 db.insert(VILLAGER_TABLE, null, values);
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -186,8 +197,7 @@ public class AppDatabase extends SQLiteOpenHelper {
                     cursor.getString(11),
                     cursor.getString(12),
                     cursor.getString(13),
-                    cursor.getString(14),
-                    cursor.getString(15)));
+                    cursor.getString(14)));
         }
         db.close();
         return villagers;
@@ -206,6 +216,24 @@ public class AppDatabase extends SQLiteOpenHelper {
         values.put(SPOTTED_COLUMN, villager.getSpotted());
         db.update(VILLAGER_TABLE, values, ID_COLUMN + "=?", new String[]{String.valueOf(villager.getId())});
         db.close();
+    }
+
+    /**
+     * Retrieves 24 Villagers from the database
+     * @return ArrayList of villagers
+     * @author Ashley McCallum
+     */
+    public ArrayList<Villager> getBingoVillagers() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<Villager> villagers = new ArrayList<Villager>();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + VILLAGER_TABLE + " ORDER BY RANDOM() LIMIT 24", null);
+        while(cursor.moveToNext()) {
+            villagers.add(new Villager(
+                    cursor.getString(2),        //villager name - row index 2
+                    cursor.getString(9)));      //villager icon uri - row index 9
+        }
+        db.close();
+        return villagers;
     }
 
     /**
@@ -420,8 +448,7 @@ public class AppDatabase extends SQLiteOpenHelper {
                     cursor.getString(11),
                     cursor.getString(12),
                     cursor.getString(13),
-                    cursor.getString(14),
-                    cursor.getString(15)));
+                    cursor.getString(14)));
         }
         db.close();
         return villagers;
@@ -450,6 +477,68 @@ public class AppDatabase extends SQLiteOpenHelper {
         //TODO: check placeholders in where clause function correctly
         db.delete(LIST_VILLAGER_TABLE, LIST_FK_COLUMN + "=? AND "
                 + VILLAGER_FK_COLUMN + "=?", new String[]{String.valueOf(listID), String.valueOf(villagerID)});
+        db.close();
+    }
+
+    /**
+     * Adds tiles to the Bingo Table
+     * @param tiles an Array of BingoTile objects
+     * @author Ashley McCallum
+     */
+    public void insertTiles(BingoTile[] tiles) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        for(BingoTile tile : tiles) {
+            values.put(NAME_COLUMN, tile.getName());
+            values.put(ICON_COLUMN, tile.getIconURL());
+            values.put(VALUE_COLUMN, tile.getValue());
+            values.put(AVAILABLE_COLUMN, tile.getAvailable());
+            db.insert(BINGO_TABLE, null, values);
+        }
+        db.close();
+    }
+
+    /**
+     * Updates a tile's available column in the bingo table
+     * @param tile the tile being updated
+     * @author Ashley McCallum
+     */
+    public void updateTile(BingoTile tile) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(AVAILABLE_COLUMN, tile.getAvailable());
+        db.update(BINGO_TABLE, values, ID_COLUMN + "=?", new String[]{String.valueOf(tile.getId())});
+        db.close();
+    }
+
+    /**
+     * Gets all the tiles from the bingo table
+     * @return an ArrayList of BingoTiles
+     * @author Ashley McCallum
+     */
+    public ArrayList<BingoTile> getTiles() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<BingoTile> tiles = new ArrayList<>();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + BINGO_TABLE, null);
+        while (cursor.moveToNext()) {
+            tiles.add(new BingoTile(
+                    cursor.getInt(0),
+                    cursor.getString(1),
+                    cursor.getString(2),
+                    cursor.getInt(3),
+                    cursor.getInt(4)));
+        }
+        db.close();
+        return tiles;
+    }
+
+    /**
+     * Removes all tiles from the bingo table
+     * @author Ashley McCallum
+     */
+    public void removeAllTiles() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(BINGO_TABLE, null, null);
         db.close();
     }
 

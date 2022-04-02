@@ -5,11 +5,13 @@
     <string name="title_news">News</string>
     <string name="title_music">KK Tunes</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_villager_detail_host">VillagerDetailHostActivity</string>
     <string name="title_villager_list">Villagers</string>
     <string name="title_villager_detail">Villager Detail</string>
+
+    <string name="save_label">Save</string>
+    <string name="cancel_label">Cancel</string>
 
     <string name="hobby_label">Hobby: </string>
     <string name="personality_label">Personality: </string>
@@ -29,4 +31,14 @@
 
 <!--    TODO: test placeholder for catchphrase -->
     <string name="catchphrase">"%1$s!"</string>
+
+    <string name="bingo_selector">Select Mode: </string>
+    <string name="bingo_row">5-in-a-Row</string>
+    <string name="bingo_corners">4 Corners</string>
+    <string name="bingo_x">X Combo</string>
+    <string name="bingo_blackout">Blackout</string>
+    <string name="bingo_ring">Ring</string>
+    <string name="game_over">You Won!</string>
+    <string name="continue_btn">Continue</string>
+    <string name="new_game_btn">New Game</string>
 </resources>
