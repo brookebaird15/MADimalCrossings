@@ -94,11 +94,17 @@ public class BingoFragment extends Fragment implements OnGameWinListener {
         View view = inflater.inflate(R.layout.fragment_bingo, container, false);
         db = new AppDatabase(getContext());
         game = BingoGame.getInstance();
-        game.startNew(db.getBingoVillagers());
         recyclerView = view.findViewById(R.id.bingoRecycler);
-        adapter = new BingoRecyclerViewAdapter(game, this);
-        recyclerView.setAdapter(adapter);
+        adapter = new BingoRecyclerViewAdapter(game, this, db);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 5));
+
+        //if there are no tiles in the database start a new game, otherwise load the tiles
+        if(db.getTiles().isEmpty()) {
+            startNewGame();
+        } else {
+            game.continueGame(db.getTiles());
+            recyclerView.setAdapter(adapter);
+        }
 
         //configure confetti effect
         konfettiView = view.findViewById(R.id.konfettiView);
@@ -125,6 +131,7 @@ public class BingoFragment extends Fragment implements OnGameWinListener {
         bingoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                db.removeAllTiles();
                 startNewGame();
             }
         });
@@ -143,23 +150,28 @@ public class BingoFragment extends Fragment implements OnGameWinListener {
                 presentGameOver(game);
             }
         }, 3000);
-
-
-        //TODO: restart game or change mode
-
     }
 
+    /**
+     * Starts a new game
+     * Gets 24 new villagers from the db and generates new tiles
+     * Resets the adapter
+     * Inserts the new tiles into the db
+     */
     private void startNewGame() {
         game.startNew(db.getBingoVillagers());
         recyclerView.setAdapter(adapter);
+        db.insertTiles(game.tiles);
     }
 
+    /**
+     * Creates and presents the game over dialog box
+     * @param game the BingoGame
+     * @author Ashley McCallum
+     */
     private void presentGameOver(BingoGame game) {
         AlertDialog.Builder gameOverDialog = new AlertDialog.Builder(getContext());
         gameOverDialog.setTitle(getString(R.string.game_over));
-//        LayoutInflater inflater = gameOverDialog.create().getLayoutInflater();
-//        View dialogView = inflater.inflate(R.layout.game_over_dialog, null);
-//        gameOverDialog.setView(dialogView);
 
         if(game.canChangeMode(game.currentMode)) {
             gameOverDialog.setPositiveButton(getString(R.string.continue_btn), new DialogInterface.OnClickListener() {
@@ -209,7 +221,7 @@ public class BingoFragment extends Fragment implements OnGameWinListener {
                 RadioButton radioButton = radioGroup.findViewById(i);
             }
         });
-        modeDialog.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+        modeDialog.setPositiveButton(getString(R.string.save_label), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 //get the ID of the selected button
@@ -234,12 +246,12 @@ public class BingoFragment extends Fragment implements OnGameWinListener {
                         modeSelection = getString(R.string.bingo_blackout);
                         break;
                 }
-                if(game.canChangeMode(modeSelection.toLowerCase())) {
+                if(game.canChangeMode(modeSelection)) {
                     modeText.setText(modeSelection);
                 }
             }
         });
-        modeDialog.setNegativeButton("Cancel", null);
+        modeDialog.setNegativeButton(getString(R.string.cancel_label), null);
         modeDialog.show();
     }
 

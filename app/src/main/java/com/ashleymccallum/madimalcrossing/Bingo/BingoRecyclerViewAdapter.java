@@ -11,16 +11,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.ashleymccallum.madimalcrossing.AppDatabase;
 import com.ashleymccallum.madimalcrossing.R;
 import com.squareup.picasso.Picasso;
 
 public class BingoRecyclerViewAdapter extends RecyclerView.Adapter<BingoRecyclerViewAdapter.BingoViewHolder>{
     private BingoGame game;
     private OnGameWinListener listener;
+    private AppDatabase db;
 
-    public BingoRecyclerViewAdapter(BingoGame game, OnGameWinListener listener) {
+    public BingoRecyclerViewAdapter(BingoGame game, OnGameWinListener listener, AppDatabase db) {
         this.game = game;
         this.listener = listener;
+        this.db = db;
     }
 
     @NonNull
@@ -35,11 +38,15 @@ public class BingoRecyclerViewAdapter extends RecyclerView.Adapter<BingoRecycler
         BingoTile tile = game.tiles[position];
         holder.bingoText.setText(tile.getName());
         Picasso.get().load(tile.getIconURL()).into(holder.bingoImg);
+        if(tile.getAvailable() == 0) {
+            holder.bingoStamp.setVisibility(View.VISIBLE);
+        }
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(game.canSelectTile(holder.getAbsoluteAdapterPosition())) {
                     holder.bingoStamp.setVisibility(View.VISIBLE);
+                    db.updateTile(tile);
                 }
                 if(game.isWon()) {
                     listener.onGameWin(game);

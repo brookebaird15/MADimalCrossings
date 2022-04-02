@@ -16,12 +16,11 @@ import java.util.HashMap;
 public class BingoGame {
 
     //String keys for the possible winning combinations
-    public static final String BINGO_ROW_KEY = "5-in-a-row";
-    public static final String BINGO_X_KEY = "x combo";
-    public static final String BINGO_CORNERS_KEY = "4 corners";
-    public static final String BINGO_BLACKOUT_KEY = "blackout";
-    public static final String BINGO_RING_KEY = "ring";
-    //TODO: set strings to be hidden values of buttons user uses to select game mode
+    public static final String BINGO_ROW_KEY = "5-in-a-Row";
+    public static final String BINGO_X_KEY = "X Combo";
+    public static final String BINGO_CORNERS_KEY = "4 Corners";
+    public static final String BINGO_BLACKOUT_KEY = "Blackout";
+    public static final String BINGO_RING_KEY = "Ring";
 
     /**
      * BingoTile[] tiles -> an array of 25 BingoTile objects representing the board positions
@@ -34,6 +33,7 @@ public class BingoGame {
      * int boardScore -> the score of all marked pieces currently on the board
      * int[] winCombos -> an int array of the winning combos for the specific game mode the user has selected
      */
+    //TODO: check math on winning values
     public final BingoTile[] tiles = new BingoTile[25];
     private final int[] rowCombo = new int[] {31, 992, 31744, 1015808, 32505856, 1082401, 2164802, 4329604, 8659208, 17318416, 1118480, 17043521};
     private final int[] xCombo = new int[] {18162001};
@@ -77,6 +77,21 @@ public class BingoGame {
     }
 
     /**
+     * Retrieves the tiles from the bingo table in the db
+     * @param tiles ArrayList of BingoTiles from the database
+     * @author Ashley McCallum
+     */
+    public void continueGame(ArrayList<BingoTile> tiles) {
+        for (int i = 0; i < tiles.size(); i++) {
+            BingoTile tile = tiles.get(i);
+            this.tiles[i] = new BingoTile(tile.getId(), tile.getName(), tile.getIconURL(), tile.getValue(), tile.getAvailable());
+        }
+        if(winCombos == null) {
+            selectMode(BINGO_ROW_KEY);
+        }
+    }
+
+    /**
      * Generates the BingoTiles for the game
      * @param villagers the ArrayList of Villager objects being used to generate the board
      * @author Ashley McCallum
@@ -85,7 +100,7 @@ public class BingoGame {
         villagers.add(12, new Villager("Free Space", "https://upload.wikimedia.org/wikipedia/commons/5/58/Animal_Crossing_Leaf.png"));
         for (int i = 0; i < villagers.size(); i++) {
             Villager villager = villagers.get(i);
-            tiles[i] = new BingoTile(villager.getName(), villager.getIconURI(), (int) Math.pow(2, i));
+            tiles[i] = new BingoTile(i + 1, villager.getName(), villager.getIconURI(), (int) Math.pow(2, i));
         }
     }
 
@@ -109,7 +124,7 @@ public class BingoGame {
         //get the tile at the position
         BingoTile tile = tiles[position];
         //if the tile is available
-        if(tile.isAvailable()) {
+        if(tile.getAvailable() == 1) {
             //set the tile as no longer available, increase the board score
             tile.setUnavailable();
             boardScore += tile.getValue();
@@ -150,42 +165,3 @@ public class BingoGame {
     }
 }
 
-/**
- * BingoTile class
- * Represents one tile on the bingo board
- * @author Ashley McCallum
- */
-class BingoTile {
-
-    private final String name;
-    private final String iconURL;
-    private final int value;
-    private boolean available;
-
-    protected BingoTile(String name, String iconURL, int value) {
-        this.name = name;
-        this.iconURL = iconURL;
-        this.value = value;
-        this.available = true;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getIconURL() {
-        return iconURL;
-    }
-
-    protected int getValue() {
-        return value;
-    }
-
-    protected boolean isAvailable() {
-        return available;
-    }
-
-    protected void setUnavailable() {
-        this.available = false;
-    }
-}

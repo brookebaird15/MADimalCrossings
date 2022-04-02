@@ -13,6 +13,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.ashleymccallum.madimalcrossing.Bingo.BingoTile;
 import com.ashleymccallum.madimalcrossing.api.RequestSingleton;
 import com.ashleymccallum.madimalcrossing.pojos.Song;
 import com.ashleymccallum.madimalcrossing.pojos.Villager;
@@ -106,6 +107,18 @@ public class AppDatabase extends SQLiteOpenHelper {
             "FOREIGN KEY (" + VILLAGER_FK_COLUMN + ") REFERENCES " + VILLAGER_TABLE + "(" + ID_COLUMN + ")," +
             "PRIMARY KEY (" + LIST_FK_COLUMN + ", " + VILLAGER_FK_COLUMN + "))";
 
+    //bingo table
+    public static final String BINGO_TABLE = "bingo";
+    public static final String VALUE_COLUMN = "tile_value";
+    public static final String AVAILABLE_COLUMN = "available";  //an int (0/1) if the tile has been played
+
+    //TODO: use villager FK instead of name + icon url
+    //bingo table columns: id, name, tile_value, available
+    public static final String CREATE_BINGO_TABLE = "CREATE TABLE " +
+            BINGO_TABLE + "(" + ID_COLUMN + " INTEGER PRIMARY KEY," +
+            NAME_COLUMN + " TEXT," + ICON_COLUMN + " TEXT," +
+            VALUE_COLUMN + " INTEGER," + AVAILABLE_COLUMN + " INTEGER)";
+
     public AppDatabase(@Nullable Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
@@ -116,6 +129,7 @@ public class AppDatabase extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(CREATE_SONG_TABLE);
         sqLiteDatabase.execSQL(CREATE_LIST_TABLE);
         sqLiteDatabase.execSQL(CREATE_LIST_VILLAGER_TABLE);
+        sqLiteDatabase.execSQL(CREATE_BINGO_TABLE);
         Log.d("AppDB-------", "Tables created");
     }
 
@@ -468,6 +482,68 @@ public class AppDatabase extends SQLiteOpenHelper {
         //TODO: check placeholders in where clause function correctly
         db.delete(LIST_VILLAGER_TABLE, LIST_FK_COLUMN + "=? AND "
                 + VILLAGER_FK_COLUMN + "=?", new String[]{String.valueOf(listID), String.valueOf(villagerID)});
+        db.close();
+    }
+
+    /**
+     * Adds tiles to the Bingo Table
+     * @param tiles an Array of BingoTile objects
+     * @author Ashley McCallum
+     */
+    public void insertTiles(BingoTile[] tiles) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        for(BingoTile tile : tiles) {
+            values.put(NAME_COLUMN, tile.getName());
+            values.put(ICON_COLUMN, tile.getIconURL());
+            values.put(VALUE_COLUMN, tile.getValue());
+            values.put(AVAILABLE_COLUMN, tile.getAvailable());
+            db.insert(BINGO_TABLE, null, values);
+        }
+        db.close();
+    }
+
+    /**
+     * Updates a tile's available column in the bingo table
+     * @param tile the tile being updated
+     * @author Ashley McCallum
+     */
+    public void updateTile(BingoTile tile) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(AVAILABLE_COLUMN, tile.getAvailable());
+        db.update(BINGO_TABLE, values, ID_COLUMN + "=?", new String[]{String.valueOf(tile.getId())});
+        db.close();
+    }
+
+    /**
+     * Gets all the tiles from the bingo table
+     * @return an ArrayList of BingoTiles
+     * @author Ashley McCallum
+     */
+    public ArrayList<BingoTile> getTiles() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<BingoTile> tiles = new ArrayList<>();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + BINGO_TABLE, null);
+        while (cursor.moveToNext()) {
+            tiles.add(new BingoTile(
+                    cursor.getInt(0),
+                    cursor.getString(1),
+                    cursor.getString(2),
+                    cursor.getInt(3),
+                    cursor.getInt(4)));
+        }
+        db.close();
+        return tiles;
+    }
+
+    /**
+     * Removes all tiles from the bingo table
+     * @author Ashley McCallum
+     */
+    public void removeAllTiles() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(BINGO_TABLE, null, null);
         db.close();
     }
 
