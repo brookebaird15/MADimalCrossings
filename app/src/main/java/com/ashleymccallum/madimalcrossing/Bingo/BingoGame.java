@@ -75,6 +75,7 @@ public class BingoGame {
     public void startNew(ArrayList<Villager> villagers) {
         generateTiles(villagers);
         selectMode(BINGO_ROW_KEY);
+        boardScore = 0;
     }
 
     /**
