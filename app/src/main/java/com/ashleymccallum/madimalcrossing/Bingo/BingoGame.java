@@ -54,6 +54,7 @@ public class BingoGame {
     private int[] winCombos;
     public String currentMode;
     private static BingoGame instance = null;
+    //TODO: current mode resets on reload (not stored in db) - can we live with that? -> will this cause problems
 
     public static BingoGame getInstance() {
         if (instance == null) {

@@ -54,10 +54,9 @@ public class AppDatabase extends SQLiteOpenHelper {
     public static final String BIRTH_DAY_COLUMN = "birth_day";
     public static final String SIGN_COLUMN = "star_sign";
     public static final String HOUSE_EXT_COLUMN = "house_ext_uri";
-    public static final String HOUSE_INT_COLUMN = "house_int_uri";
 
     //villager table columns: id, spotted, name, personality, species, url, gender, hobby, catchphrase, icon_uri, img_uri,
-    //birth_month, birth_day, star_sign, house_ext_uri, house_int_uri
+    //birth_month, birth_day, star_sign, house_ext_uri
     public static final String CREATE_VILLAGER_TABLE = "CREATE TABLE " +
             VILLAGER_TABLE + "(" + ID_COLUMN + " INTEGER PRIMARY KEY," +
             SPOTTED_COLUMN + " INTEGER," + NAME_COLUMN + " TEXT," +
@@ -66,8 +65,7 @@ public class AppDatabase extends SQLiteOpenHelper {
             HOBBY_COLUMN + " TEXT," + CATCHPHRASE_COLUMN + " TEXT," +
             ICON_COLUMN + " TEXT," + IMG_COLUMN + " TEXT," +
             BIRTH_MONTH_COLUMN + " TEXT," + BIRTH_DAY_COLUMN + " TEXT," +
-            SIGN_COLUMN + " TEXT," + HOUSE_EXT_COLUMN + " TEXT," +
-            HOUSE_INT_COLUMN + " TEXT)";
+            SIGN_COLUMN + " TEXT," + HOUSE_EXT_COLUMN + " TEXT)";
 
     //KK Slider Song Table
     public static final String SONG_TABLE = "kk_songs";
@@ -167,7 +165,6 @@ public class AppDatabase extends SQLiteOpenHelper {
                 values.put(ICON_COLUMN, details.getString("icon_url"));
                 values.put(HOBBY_COLUMN, details.getString("hobby"));
                 values.put(HOUSE_EXT_COLUMN, details.getString("house_exterior_url"));
-                values.put(HOUSE_INT_COLUMN, details.getString("house_interior_url"));
                 db.insert(VILLAGER_TABLE, null, values);
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -200,8 +197,7 @@ public class AppDatabase extends SQLiteOpenHelper {
                     cursor.getString(11),
                     cursor.getString(12),
                     cursor.getString(13),
-                    cursor.getString(14),
-                    cursor.getString(15)));
+                    cursor.getString(14)));
         }
         db.close();
         return villagers;
@@ -452,8 +448,7 @@ public class AppDatabase extends SQLiteOpenHelper {
                     cursor.getString(11),
                     cursor.getString(12),
                     cursor.getString(13),
-                    cursor.getString(14),
-                    cursor.getString(15)));
+                    cursor.getString(14)));
         }
         db.close();
         return villagers;
