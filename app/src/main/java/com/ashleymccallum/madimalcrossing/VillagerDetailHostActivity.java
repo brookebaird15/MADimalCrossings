@@ -10,8 +10,14 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.ashleymccallum.madimalcrossing.databinding.ActivityVillagerDetailBinding;
+import com.ashleymccallum.madimalcrossing.pojos.Villager;
+
+import java.util.ArrayList;
 
 public class VillagerDetailHostActivity extends AppCompatActivity {
+
+    private AppDatabase db;
+    private ArrayList<Villager> villagers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +26,8 @@ public class VillagerDetailHostActivity extends AppCompatActivity {
         ActivityVillagerDetailBinding binding = ActivityVillagerDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        //TODO: attach villager list to villagerViewModel and use to populate recyclers
+        //TODO: something like: if ARG = 'all' -> db.getAllVillagers, otherwise db.getVillagersForList(ARG value)
 
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.nav_host_fragment_villager_detail);
