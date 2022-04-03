@@ -16,9 +16,9 @@ import com.ashleymccallum.madimalcrossing.R;
 import com.squareup.picasso.Picasso;
 
 public class BingoRecyclerViewAdapter extends RecyclerView.Adapter<BingoRecyclerViewAdapter.BingoViewHolder>{
-    private BingoGame game;
-    private OnGameWinListener listener;
-    private AppDatabase db;
+    private final BingoGame game;
+    private final OnGameWinListener listener;
+    private final AppDatabase db;
 
     public BingoRecyclerViewAdapter(BingoGame game, OnGameWinListener listener, AppDatabase db) {
         this.game = game;

@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/villagerDetailImg"
             android:layout_width="300dp"
             android:layout_height="500dp"
             app:layout_constraintEnd_toEndOf="parent"
