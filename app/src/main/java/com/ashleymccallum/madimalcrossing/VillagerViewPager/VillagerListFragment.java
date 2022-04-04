@@ -1,6 +1,6 @@
 package com.ashleymccallum.madimalcrossing.VillagerViewPager;
 
-import static com.ashleymccallum.madimalcrossing.VillagerDetailHostActivity.LIST_ID;
+import static com.ashleymccallum.madimalcrossing.VillagerListRecycler.VillagerDetailHostActivity.LIST_ID;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
@@ -8,7 +8,6 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +15,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.ashleymccallum.madimalcrossing.R;
-import com.ashleymccallum.madimalcrossing.VillagerDetailHostActivity;
+import com.ashleymccallum.madimalcrossing.VillagerListRecycler.VillagerDetailHostActivity;
 import com.google.android.material.snackbar.Snackbar;
 
 /**

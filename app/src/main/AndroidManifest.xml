@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MADimalCrossing">
         <activity
-            android:name=".VillagerDetailHostActivity"
+            android:name=".VillagerListRecycler.VillagerDetailHostActivity"
             android:exported="true"
             android:label="@string/title_activity_villager_detail_host"
             android:resizeableActivity="true"

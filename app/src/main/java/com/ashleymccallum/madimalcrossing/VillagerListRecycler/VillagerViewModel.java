@@ -1,4 +1,4 @@
-package com.ashleymccallum.madimalcrossing;
+package com.ashleymccallum.madimalcrossing.VillagerListRecycler;
 
 import androidx.lifecycle.ViewModel;
 

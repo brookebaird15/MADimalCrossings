@@ -1,6 +1,6 @@
-package com.ashleymccallum.madimalcrossing;
+package com.ashleymccallum.madimalcrossing.VillagerListRecycler;
 
-import static com.ashleymccallum.madimalcrossing.VillagerDetailHostActivity.viewModel;
+import static com.ashleymccallum.madimalcrossing.VillagerListRecycler.VillagerDetailHostActivity.viewModel;
 
 import android.os.Bundle;
 
@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.ashleymccallum.madimalcrossing.R;
+import com.ashleymccallum.madimalcrossing.VillagerListRecycler.VillagerRecyclerFragment;
 import com.ashleymccallum.madimalcrossing.pojos.Villager;
 import com.ashleymccallum.madimalcrossing.databinding.FragmentVillagerDetailBinding;
 import com.squareup.picasso.Picasso;

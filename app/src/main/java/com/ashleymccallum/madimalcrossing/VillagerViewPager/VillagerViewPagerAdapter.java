@@ -1,9 +1,8 @@
 package com.ashleymccallum.madimalcrossing.VillagerViewPager;
 
-import static com.ashleymccallum.madimalcrossing.VillagerDetailHostActivity.ALL_VILLAGER_KEY;
+import static com.ashleymccallum.madimalcrossing.VillagerListRecycler.VillagerDetailHostActivity.ALL_VILLAGER_KEY;
 
 import android.content.Context;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

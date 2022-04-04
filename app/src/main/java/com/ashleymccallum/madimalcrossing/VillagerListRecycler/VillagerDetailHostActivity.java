@@ -1,8 +1,7 @@
-package com.ashleymccallum.madimalcrossing;
+package com.ashleymccallum.madimalcrossing.VillagerListRecycler;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.fragment.NavHostFragment;
@@ -11,10 +10,10 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.ashleymccallum.madimalcrossing.AppDatabase;
+import com.ashleymccallum.madimalcrossing.R;
+import com.ashleymccallum.madimalcrossing.VillagerListRecycler.VillagerViewModel;
 import com.ashleymccallum.madimalcrossing.databinding.ActivityVillagerDetailBinding;
-import com.ashleymccallum.madimalcrossing.pojos.Villager;
-
-import java.util.ArrayList;
 
 public class VillagerDetailHostActivity extends AppCompatActivity {
 

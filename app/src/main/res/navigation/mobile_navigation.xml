@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/nav_villager"
-        android:name="com.ashleymccallum.madimalcrossing.VillagerFragment"
+        android:name="com.ashleymccallum.madimalcrossing.VillagerViewPager.VillagerFragment"
         android:label="fragment_villager"
         tools:layout="@layout/fragment_villager" />
     <fragment
