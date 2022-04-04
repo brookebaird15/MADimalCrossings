@@ -11,7 +11,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.ashleymccallum.madimalcrossing.NewsRecycler.NewsViewModel;
 import com.ashleymccallum.madimalcrossing.api.RequestSingleton;
+import com.ashleymccallum.madimalcrossing.pojos.NewsItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,6 +28,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
     AppDatabase db;
     private ActivityMainBinding binding;
+    public static NewsViewModel newsModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +64,59 @@ public class MainActivity extends AppCompatActivity {
             loadVillagers(this);
         }
 
+        newsModel = new NewsViewModel(loadArticles(this));
+    }
+
+    /**
+     * Loads articles from the API
+     * @param context application context
+     * @return ArrayList of NewsItem objects
+     * @author Ashley McCallum
+     */
+    private ArrayList<NewsItem> loadArticles(Context context) {
+        ArrayList<NewsItem> newsItems = new ArrayList<>();
+        String url = "https://newsapi.org/v2/everything?q=animal%20crossing&language=en&pageSize=15";
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                try {
+                    JSONArray array = response.getJSONArray("articles");
+                    for(int i = 0; i < array.length(); i++) {
+                        NewsItem item = new NewsItem();
+                        JSONObject article = array.getJSONObject(i);
+                        JSONObject source = article.getJSONObject("source");
+                        item.setPublisherName(source.getString("name"));
+                        item.setAuthorName(article.getString("author"));
+                        item.setTitle(article.getString("title"));
+                        item.setDescription(article.getString("description"));
+                        item.setArticleURL(article.getString("url"));
+                        item.setImgURL(article.getString("urlToImage"));
+                        item.setTimestamp(article.getString("publishedAt"));
+                        newsItems.add(item);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                Log.d("news_VOLLEY", error.getLocalizedMessage());
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("Content-Type", "application/json; charset=UTF-8");
+                params.put("User-Agent", "Mozilla/5.0");
+                params.put("Authorization", "ee0ac4d79099430d8f0b2bf7ef3e9cdf");
+                return params;
+            }
+        };
+        RequestSingleton.getInstance(context).getRequestQueue().add(request);
+        return newsItems;
     }
 
     /**
