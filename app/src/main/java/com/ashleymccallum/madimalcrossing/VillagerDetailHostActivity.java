@@ -1,6 +1,8 @@
 package com.ashleymccallum.madimalcrossing;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.fragment.NavHostFragment;
@@ -16,8 +18,9 @@ import java.util.ArrayList;
 
 public class VillagerDetailHostActivity extends AppCompatActivity {
 
-    private AppDatabase db;
-    private ArrayList<Villager> villagers;
+    public static final String LIST_ID = "list_id";
+    public static final String ALL_VILLAGER_KEY = "all";
+    public static VillagerViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +29,17 @@ public class VillagerDetailHostActivity extends AppCompatActivity {
         ActivityVillagerDetailBinding binding = ActivityVillagerDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        //TODO: attach villager list to villagerViewModel and use to populate recyclers
-        //TODO: something like: if ARG = 'all' -> db.getAllVillagers, otherwise db.getVillagersForList(ARG value)
+        AppDatabase db = new AppDatabase(this);
+        Intent intent = getIntent();
+        String listID = intent.getStringExtra(LIST_ID);
+
+        //if the key is "all" get all the villagers from the db
+        if(listID.equals(ALL_VILLAGER_KEY)) {
+            viewModel = new VillagerViewModel(db.getAllVillagers());
+        } else {
+            //otherwise, get the villagers for the list ID passed
+            viewModel = new VillagerViewModel(db.getAllVillagersForList(Integer.parseInt(listID)));
+        }
 
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.nav_host_fragment_villager_detail);

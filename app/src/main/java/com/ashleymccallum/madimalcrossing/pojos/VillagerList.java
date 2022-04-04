@@ -8,7 +8,7 @@ import java.util.ArrayList;
  */
 public class VillagerList {
 
-    private int id;
+    private final int id;
     private String name;
 
     public VillagerList(int id, String name) {

@@ -9,6 +9,7 @@
     <string name="title_activity_villager_detail_host">VillagerDetailHostActivity</string>
     <string name="title_villager_list">Villagers</string>
     <string name="title_villager_detail">Villager Detail</string>
+    <string name="all_villagers">All Villagers</string>
 
     <string name="save_label">Save</string>
     <string name="cancel_label">Cancel</string>

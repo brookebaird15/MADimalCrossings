@@ -1,5 +1,7 @@
 package com.ashleymccallum.madimalcrossing;
 
+import static com.ashleymccallum.madimalcrossing.VillagerDetailHostActivity.viewModel;
+
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -33,13 +35,10 @@ import java.util.ArrayList;
 public class VillagerRecyclerFragment extends Fragment {
 
     private FragmentVillagerListBinding binding;
-    public static ArrayList<Villager> villagers;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentVillagerListBinding.inflate(inflater, container, false);
-        AppDatabase db = new AppDatabase(getContext());
-        villagers = db.getAllVillagers();
         return binding.getRoot();
     }
 
@@ -64,7 +63,7 @@ public class VillagerRecyclerFragment extends Fragment {
             }
         };
 
-        recyclerView.setAdapter(new VillagerListRecyclerAdapter(villagers, onClickListener));
+        recyclerView.setAdapter(new VillagerListRecyclerAdapter(viewModel.getVillagers(), onClickListener));
     }
 
     @Override

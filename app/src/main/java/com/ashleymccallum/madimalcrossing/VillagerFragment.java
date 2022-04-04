@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,7 +63,7 @@ public class VillagerFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_villager, container, false);
         AppDatabase db = new AppDatabase(getContext());
         ViewPager2 viewPager2 = view.findViewById(R.id.villagerViewPager);
-        viewPager2.setAdapter(new VillagerViewPagerAdapter(getActivity(), db.getAllLists()));
+        viewPager2.setAdapter(new VillagerViewPagerAdapter(getActivity(), db.getAllLists(), getContext()));
         return view;
     }
 }
