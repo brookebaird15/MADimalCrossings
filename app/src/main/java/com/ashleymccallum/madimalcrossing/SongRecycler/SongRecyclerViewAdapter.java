@@ -69,7 +69,7 @@ public class SongRecyclerViewAdapter extends RecyclerView.Adapter<SongViewHolder
                 try {
                     context.startActivity(i);
                 }catch (ActivityNotFoundException e) {
-                    Snackbar.make(view, "Cannot play song", Snackbar.LENGTH_LONG).show();
+                    Snackbar.make(view, context.getString(R.string.ext_app_error), Snackbar.LENGTH_LONG).show();
                 }
             }
         });

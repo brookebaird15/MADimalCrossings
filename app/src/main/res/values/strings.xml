@@ -14,9 +14,15 @@
     <string name="edit_name">Edit List Name</string>
     <string name="delete_title">Delete List</string>
     <string name="delete_message">Are you sure you want to delete %1$s? This cannot be undone.</string>
+    <string name="empty_list_title">This list is empty!</string>
+    <string name="empty_list_message">Add a villager to this list to view it</string>
 
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
     <string name="save_label">Save</string>
     <string name="cancel_label">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="ext_app_error">Could not launch application</string>
 
     <string name="hobby_label">Hobby: </string>
     <string name="personality_label">Personality: </string>
@@ -35,8 +41,6 @@
     <string name="song_sell">Sell Price: </string>
     <string name="song_orderable">Can be ordered: </string>
     <string name="song_collected">Collected: </string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
 
     <string name="bingo_selector">Select Mode: </string>
     <string name="bingo_row">5-in-a-Row</string>

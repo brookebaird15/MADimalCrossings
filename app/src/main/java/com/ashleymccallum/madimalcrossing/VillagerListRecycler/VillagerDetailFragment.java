@@ -22,6 +22,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.ashleymccallum.madimalcrossing.AppDatabase;
+import com.ashleymccallum.madimalcrossing.MainActivity;
 import com.ashleymccallum.madimalcrossing.R;
 import com.ashleymccallum.madimalcrossing.VillagerListRecycler.VillagerRecyclerFragment;
 import com.ashleymccallum.madimalcrossing.pojos.Villager;
@@ -54,12 +55,33 @@ public class VillagerDetailFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //TODO: this loads the first villager in the list by default, crashes in tablet if the list is empty
         if (getArguments().containsKey(ARG_ITEM_ID)) {
+            //if there is no selected item
             if(getArguments().getString(ARG_ITEM_ID).equals("")) {
-                villager = viewModel.getVillagers().get(0);
-                //todo: if villager == null open a dialog box notifying them and force them back to the main activity?
+                //if there are items that can be selected
+                if(viewModel.getVillagers().size() > 0) {
+                    //select the first item by default
+                    villager = viewModel.getVillagers().get(0);
+                } else {
+                    //otherwise, notify user list is empty and navigate back to main activity
+                    new AlertDialog.Builder(getContext())
+                            .setTitle(getString(R.string.empty_list_title))
+                            .setMessage(getString(R.string.empty_list_message))
+                            .setNeutralButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    Intent intent = new Intent(getActivity(), MainActivity.class);
+                                    try {
+                                        startActivity(intent);
+                                    } catch (ActivityNotFoundException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            })
+                            .show();
+                }
             } else {
+                //otherwise, display the selected item
                 villager = viewModel.getVillagers().get(Integer.parseInt(getArguments().getString(ARG_ITEM_ID)));
             }
         }
@@ -77,62 +99,66 @@ public class VillagerDetailFragment extends Fragment {
 
         binding = FragmentVillagerDetailBinding.inflate(inflater, container, false);
         View rootView = binding.getRoot();
-        //TODO: use int spotted property
-        TextView name = rootView.findViewById(R.id.villagerName);
-        TextView personality = rootView.findViewById(R.id.villagerPersonality);
-        TextView species = rootView.findViewById(R.id.villagerSpecies);
-        TextView hobby = rootView.findViewById(R.id.villagerHobby);
-        TextView catchphrase = rootView.findViewById(R.id.villagerCatchphrase);
-        TextView day = rootView.findViewById(R.id.villagerDay);
-        TextView month = rootView.findViewById(R.id.villagerMonth);
-        TextView sign = rootView.findViewById(R.id.villagerSign);
 
-        name.setText(villager.getName());
-        personality.setText(villager.getPersonality());
-        species.setText(villager.getSpecies());
-        hobby.setText(villager.getHobby());
-        catchphrase.setText(getString(R.string.catchphrase, villager.getCatchphrase()));
-        day.setText(villager.getBirthDay());
-        month.setText(villager.getBirthMonth());
-        sign.setText(villager.getSign());
+        if(villager != null) {
+            //TODO: use int spotted property
+            TextView name = rootView.findViewById(R.id.villagerName);
+            TextView personality = rootView.findViewById(R.id.villagerPersonality);
+            TextView species = rootView.findViewById(R.id.villagerSpecies);
+            TextView hobby = rootView.findViewById(R.id.villagerHobby);
+            TextView catchphrase = rootView.findViewById(R.id.villagerCatchphrase);
+            TextView day = rootView.findViewById(R.id.villagerDay);
+            TextView month = rootView.findViewById(R.id.villagerMonth);
+            TextView sign = rootView.findViewById(R.id.villagerSign);
 
-        ImageView gender = rootView.findViewById(R.id.villagerGender);
-        if(villager.getGender().equals(MALE)) {
-            gender.setImageResource(R.drawable.ic_baseline_male_24);
-            gender.setContentDescription(getString(R.string.gender_m));
-        } else if(villager.getGender().equals(FEMALE)) {
-            gender.setImageResource(R.drawable.ic_baseline_female_24);
-            gender.setContentDescription(getString(R.string.gender_f));
-        }
+            name.setText(villager.getName());
+            personality.setText(villager.getPersonality());
+            species.setText(villager.getSpecies());
+            hobby.setText(villager.getHobby());
+            catchphrase.setText(getString(R.string.catchphrase, villager.getCatchphrase()));
+            day.setText(villager.getBirthDay());
+            month.setText(villager.getBirthMonth());
+            sign.setText(villager.getSign());
 
-        ImageView villagerImg = rootView.findViewById(R.id.villagerDetailImg);
-        Picasso.get().load(villager.getImgURI()).into(villagerImg);
-        ImageView houseExt = rootView.findViewById(R.id.villagerHouse);
-        Picasso.get().load(villager.getHouseExtURI()).into(houseExt);
+            ImageView gender = rootView.findViewById(R.id.villagerGender);
+            if (villager.getGender().equals(MALE)) {
+                gender.setImageResource(R.drawable.ic_baseline_male_24);
+                gender.setContentDescription(getString(R.string.gender_m));
+            } else if (villager.getGender().equals(FEMALE)) {
+                gender.setImageResource(R.drawable.ic_baseline_female_24);
+                gender.setContentDescription(getString(R.string.gender_f));
+            }
 
-        ImageView siteBtn = rootView.findViewById(R.id.villagerSiteBtn);
-        siteBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse(villager.getUrl()));
-                try {
-                    startActivity(i);
-                } catch (ActivityNotFoundException e) {
-                    Snackbar.make(rootView, "Could not open site", Snackbar.LENGTH_LONG).show();
+            ImageView villagerImg = rootView.findViewById(R.id.villagerDetailImg);
+            Picasso.get().load(villager.getImgURI()).into(villagerImg);
+            ImageView houseExt = rootView.findViewById(R.id.villagerHouse);
+            Picasso.get().load(villager.getHouseExtURI()).into(houseExt);
+
+            ImageView siteBtn = rootView.findViewById(R.id.villagerSiteBtn);
+            siteBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(villager.getUrl()));
+                    try {
+                        startActivity(i);
+                    } catch (ActivityNotFoundException e) {
+                        Snackbar.make(rootView, getString(R.string.ext_app_error), Snackbar.LENGTH_LONG).show();
+                    }
                 }
-            }
-        });
+            });
 
-        FloatingActionButton fab = rootView.findViewById(R.id.villagerFAB);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                addToList();
-            }
-        });
-
-        return rootView;
+            FloatingActionButton fab = rootView.findViewById(R.id.villagerFAB);
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    addToList();
+                }
+            });
+            return rootView;
+        } else {
+            return null;
+        }
     }
 
     /**

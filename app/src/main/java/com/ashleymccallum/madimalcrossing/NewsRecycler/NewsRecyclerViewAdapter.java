@@ -54,7 +54,7 @@ public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<NewsRecyclerVi
                 try {
                     context.startActivity(i);
                 } catch (ActivityNotFoundException e) {
-                    Snackbar.make(holder.itemView, "Could not open article", Snackbar.LENGTH_LONG).show();
+                    Snackbar.make(holder.itemView, context.getString(R.string.ext_app_error), Snackbar.LENGTH_LONG).show();
                 }
             }
         });
