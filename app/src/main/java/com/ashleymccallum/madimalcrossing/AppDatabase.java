@@ -17,6 +17,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.ashleymccallum.madimalcrossing.Bingo.BingoTile;
 import com.ashleymccallum.madimalcrossing.api.RequestSingleton;
+import com.ashleymccallum.madimalcrossing.pojos.NewsItem;
 import com.ashleymccallum.madimalcrossing.pojos.Song;
 import com.ashleymccallum.madimalcrossing.pojos.Villager;
 import com.ashleymccallum.madimalcrossing.pojos.VillagerList;
@@ -119,6 +120,20 @@ public class AppDatabase extends SQLiteOpenHelper {
             NAME_COLUMN + " TEXT," + ICON_COLUMN + " TEXT," +
             VALUE_COLUMN + " INTEGER," + AVAILABLE_COLUMN + " INTEGER)";
 
+    public static final String NEWS_TABLE = "news";
+    public static final String PUBLISHER_COLUMN = "publisher";
+    public static final String TIMESTAMP_COLUMN = "timestamp";
+    public static final String LAST_UPDATE_COLUMN = "last_updated";
+    public static final String AUTHOR_COLUMN = "author";
+    public static final String DESCRIPTION_COLUMN = "description";
+
+    public static final String CREATE_NEWS_TABLE = "CREATE TABLE " +
+            NEWS_TABLE + "(" + ID_COLUMN + " INTEGER PRIMARY KEY," +
+            TITLE_COLUMN + " TEXT," + AUTHOR_COLUMN + " TEXT," +
+            PUBLISHER_COLUMN + " TEXT," + DESCRIPTION_COLUMN + " TEXT," +
+            URL_COLUMN + " TEXT," + IMG_COLUMN + " TEXT," +
+            TIMESTAMP_COLUMN + " TEXT," + LAST_UPDATE_COLUMN + " INTEGER)";
+
     public AppDatabase(@Nullable Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
@@ -130,6 +145,7 @@ public class AppDatabase extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(CREATE_LIST_TABLE);
         sqLiteDatabase.execSQL(CREATE_LIST_VILLAGER_TABLE);
         sqLiteDatabase.execSQL(CREATE_BINGO_TABLE);
+        sqLiteDatabase.execSQL(CREATE_NEWS_TABLE);
         Log.d("AppDB-------", "Tables created");
     }
 
@@ -139,13 +155,73 @@ public class AppDatabase extends SQLiteOpenHelper {
     }
 
     /**
+     * Adds articles to the database
+     * @param response the JSONObject retrieved from the API
+     * @author Ashley McCallum
+     */
+    public void addArticles(JSONObject response) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        try {
+            JSONArray array = response.getJSONArray("articles");
+            for(int i = 0; i < array.length(); i++) {
+                JSONObject article = array.getJSONObject(i);
+                JSONObject source = article.getJSONObject("source");
+                values.put(ID_COLUMN, i + 1);
+                values.put(PUBLISHER_COLUMN, source.getString("name"));
+                values.put(AUTHOR_COLUMN, article.getString("author"));
+                values.put(TITLE_COLUMN, article.getString("title"));
+                values.put(DESCRIPTION_COLUMN, article.getString("description"));
+                values.put(URL_COLUMN, article.getString("url"));
+                values.put(IMG_COLUMN, article.getString("urlToImage"));
+                values.put(TIMESTAMP_COLUMN, article.getString("publishedAt"));
+                values.put(LAST_UPDATE_COLUMN, System.currentTimeMillis());
+                db.insert(NEWS_TABLE, null, values);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Retrieves all articles stored in the db
+     * @return ArrayList of NewsItem objects
+     * @author Ashley McCallum
+     */
+    public ArrayList<NewsItem> getArticles() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<NewsItem> items = new ArrayList<>();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + NEWS_TABLE, null);
+        while (cursor.moveToNext()) {
+            items.add(new NewsItem(
+                    cursor.getString(1),
+                    cursor.getString(2),
+                    cursor.getString(3),
+                    cursor.getString(4),
+                    cursor.getString(5),
+                    cursor.getString(6),
+                    cursor.getString(7),
+                    cursor.getInt(8)));
+        }
+        return items;
+    }
+
+    /**
+     * Removes all articles from the news table
+     * @author Ashley McCallum
+     */
+    public void clearArticles() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(NEWS_TABLE, null, null);
+    }
+
+    /**
      * Adds all the villagers from the API to the database
      * to be used in adding all villagers to the db
      * @param response the JSONArray retrieved from the Volley request
-     * @param context application context
      * @author Ashley McCallum
      */
-    public void addAllVillagers(JSONArray response, Context context) {
+    public void addAllVillagers(JSONArray response) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         for(int i = 0; i < response.length(); i++) {

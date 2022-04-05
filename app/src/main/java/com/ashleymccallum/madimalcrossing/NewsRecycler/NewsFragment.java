@@ -1,6 +1,6 @@
 package com.ashleymccallum.madimalcrossing.NewsRecycler;
 
-import static com.ashleymccallum.madimalcrossing.MainActivity.newsModel;
+//import static com.ashleymccallum.madimalcrossing.MainActivity.newsModel;
 
 import android.os.Bundle;
 
@@ -19,6 +19,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.ashleymccallum.madimalcrossing.AppDatabase;
 import com.ashleymccallum.madimalcrossing.R;
 import com.ashleymccallum.madimalcrossing.api.RequestSingleton;
 import com.ashleymccallum.madimalcrossing.pojos.NewsItem;
@@ -80,9 +81,9 @@ public class NewsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_news, container, false);
-
+        AppDatabase db = new AppDatabase(getContext());
         RecyclerView recyclerView = view.findViewById(R.id.newsRecycler);
-        recyclerView.setAdapter(new NewsRecyclerViewAdapter(newsModel.getItems(), getContext()));
+        recyclerView.setAdapter(new NewsRecyclerViewAdapter(db.getArticles(), getContext()));
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
 
