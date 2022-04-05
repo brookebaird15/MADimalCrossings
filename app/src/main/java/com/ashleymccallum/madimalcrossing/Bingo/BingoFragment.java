@@ -85,8 +85,6 @@ public class BingoFragment extends Fragment implements OnGameWinListener {
     private BingoRecyclerViewAdapter adapter;
     private AppDatabase db;
 
-    //TODO: game starts new every time bingo screen is entered/exited -> is there a way to NOT do this?
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
