@@ -12,9 +12,9 @@ public class NewsItem {
     private String articleURL;
     private String imgURL;
     private String timestamp;
-    private int lastUpdated;
+    private long lastUpdated;
 
-    public NewsItem(String publisherName, String authorName, String title, String description, String articleURL, String imgURL, String timestamp, int lastUpdated) {
+    public NewsItem(String publisherName, String authorName, String title, String description, String articleURL, String imgURL, String timestamp, long lastUpdated) {
         this.publisherName = publisherName;
         this.authorName = authorName;
         this.title = title;
@@ -56,7 +56,7 @@ public class NewsItem {
         return timestamp;
     }
 
-    public int getLastUpdated() {
+    public long getLastUpdated() {
         return lastUpdated;
     }
 }
