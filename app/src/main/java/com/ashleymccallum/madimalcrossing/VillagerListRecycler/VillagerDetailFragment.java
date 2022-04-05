@@ -18,6 +18,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -182,7 +183,6 @@ public class VillagerDetailFragment extends Fragment {
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
-
                 }
             });
 
@@ -190,8 +190,27 @@ public class VillagerDetailFragment extends Fragment {
             editPhraseBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    
+                    AlertDialog.Builder phraseDialog = new AlertDialog.Builder(getContext());
+                    LayoutInflater inflater = phraseDialog.create().getLayoutInflater();
+                    View phraseView = inflater.inflate(R.layout.add_edit_list, null);
+                    phraseDialog.setView(phraseView);
 
+                    phraseDialog.setTitle(getString(R.string.edit_phrase, villager.getName()));
+                    EditText input = phraseView.findViewById(R.id.listNameInput);
+                    input.setText(villager.getCatchphrase());
+
+                    phraseDialog.setPositiveButton(getString(R.string.save_label), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            villager.setCatchphrase(input.getText().toString());
+                            AppDatabase db = new AppDatabase(getContext());
+                            db.updateVillager(villager);
+                            catchphrase.setText(villager.getCatchphrase());
+                        }
+                    });
+
+                    phraseDialog.setNegativeButton(getString(R.string.cancel_label), null);
+                    phraseDialog.show();
                 }
             });
 
