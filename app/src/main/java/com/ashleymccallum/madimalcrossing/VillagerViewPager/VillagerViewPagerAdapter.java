@@ -46,4 +46,9 @@ public class VillagerViewPagerAdapter extends FragmentStateAdapter {
         //if db empty return 1 for "all villagers" list
         return 1;
     }
+
+    public void updateData(ArrayList<VillagerList> lists) {
+        this.lists = lists;
+        this.notifyDataSetChanged();
+    }
 }

@@ -199,7 +199,7 @@ public class AppDatabase extends SQLiteOpenHelper {
                     cursor.getString(13),
                     cursor.getString(14)));
         }
-        db.close();
+
         return villagers;
     }
 
@@ -215,7 +215,7 @@ public class AppDatabase extends SQLiteOpenHelper {
         values.put(CATCHPHRASE_COLUMN, villager.getCatchphrase());
         values.put(SPOTTED_COLUMN, villager.getSpotted());
         db.update(VILLAGER_TABLE, values, ID_COLUMN + "=?", new String[]{String.valueOf(villager.getId())});
-        db.close();
+
     }
 
     /**
@@ -232,7 +232,7 @@ public class AppDatabase extends SQLiteOpenHelper {
                     cursor.getString(2),        //villager name - row index 2
                     cursor.getString(9)));      //villager icon uri - row index 9
         }
-        db.close();
+
         return villagers;
     }
 
@@ -305,7 +305,7 @@ public class AppDatabase extends SQLiteOpenHelper {
                     cursor.getString(6),
                     cursor.getString(7)));
         }
-        db.close();
+
         return songs;
     }
 
@@ -324,7 +324,7 @@ public class AppDatabase extends SQLiteOpenHelper {
                     cursor.getString(6),
                     cursor.getString(7)));
         }
-        db.close();
+
         return songs;
     }
 
@@ -339,7 +339,7 @@ public class AppDatabase extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(COLLECTED_COLUMN, song.getCollected());
         db.update(SONG_TABLE, values, ID_COLUMN + "=?", new String[]{String.valueOf(song.getId())});
-        db.close();
+
     }
 
     /**
@@ -352,7 +352,7 @@ public class AppDatabase extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(NAME_COLUMN, name);
         db.insert(LIST_TABLE, null, values);
-        db.close();
+
     }
 
     /**
@@ -364,12 +364,13 @@ public class AppDatabase extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         emptyList(listID);  //first remove all relationships to the list being deleted
         db.delete(LIST_TABLE, ID_COLUMN + "=?", new String[]{String.valueOf(listID)});
-        db.close();
+
     }
 
     /**
      * Retrieves all lists in the list table
      * @return ArrayList of VillagerList objects
+     * @author Ashley McCallum
      */
     public ArrayList<VillagerList> getAllLists() {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -380,7 +381,38 @@ public class AppDatabase extends SQLiteOpenHelper {
                     cursor.getInt(0),
                     cursor.getString(1)));
         }
-        db.close();
+
+        return list;
+    }
+
+    /**
+     * Updates a villager list in the table
+     * Users can only update the list name
+     * @param list the list being updated
+     * @author Ashley McCallum
+     */
+    public void updateList(VillagerList list) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(NAME_COLUMN, list.getName());
+        db.update(LIST_TABLE, values, ID_COLUMN + "=?", new String[]{String.valueOf(list.getId())});
+
+    }
+
+    /**
+     * Retrieves one list from the database
+     * @param listName the name of the list being retrieved
+     * @return a VillagerList object
+     * @author Ashley McCallum
+     */
+    public VillagerList getList(String listName) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        VillagerList list = null;
+        Cursor cursor = db.query(LIST_TABLE, new String[]{ID_COLUMN, NAME_COLUMN}, NAME_COLUMN + "=?", new String[]{listName}, null, null, null);
+        if(cursor.moveToFirst()) {
+            list = new VillagerList(cursor.getInt(0), cursor.getString(1));
+        }
+
         return list;
     }
 
@@ -397,7 +429,7 @@ public class AppDatabase extends SQLiteOpenHelper {
         values.put(LIST_FK_COLUMN, list.getId());
         values.put(VILLAGER_FK_COLUMN, villager.getId());
         db.insert(LIST_VILLAGER_TABLE, null, values);
-        db.close();
+
     }
 
     /**
@@ -414,7 +446,7 @@ public class AppDatabase extends SQLiteOpenHelper {
             values.put(VILLAGER_FK_COLUMN, villager.getId());
             db.insert(LIST_VILLAGER_TABLE, null, values);
         }
-        db.close();
+
     }
 
     /**
@@ -450,7 +482,7 @@ public class AppDatabase extends SQLiteOpenHelper {
                     cursor.getString(13),
                     cursor.getString(14)));
         }
-        db.close();
+
         return villagers;
     }
 
@@ -463,7 +495,7 @@ public class AppDatabase extends SQLiteOpenHelper {
     public void emptyList(int listID) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(LIST_VILLAGER_TABLE, LIST_FK_COLUMN + "=?", new String[]{String.valueOf(listID)});
-        db.close();
+
     }
 
     /**
@@ -477,7 +509,7 @@ public class AppDatabase extends SQLiteOpenHelper {
         //TODO: check placeholders in where clause function correctly
         db.delete(LIST_VILLAGER_TABLE, LIST_FK_COLUMN + "=? AND "
                 + VILLAGER_FK_COLUMN + "=?", new String[]{String.valueOf(listID), String.valueOf(villagerID)});
-        db.close();
+
     }
 
     /**
@@ -495,7 +527,7 @@ public class AppDatabase extends SQLiteOpenHelper {
             values.put(AVAILABLE_COLUMN, tile.getAvailable());
             db.insert(BINGO_TABLE, null, values);
         }
-        db.close();
+
     }
 
     /**
@@ -508,7 +540,7 @@ public class AppDatabase extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(AVAILABLE_COLUMN, tile.getAvailable());
         db.update(BINGO_TABLE, values, ID_COLUMN + "=?", new String[]{String.valueOf(tile.getId())});
-        db.close();
+
     }
 
     /**
@@ -528,7 +560,7 @@ public class AppDatabase extends SQLiteOpenHelper {
                     cursor.getInt(3),
                     cursor.getInt(4)));
         }
-        db.close();
+
         return tiles;
     }
 
@@ -539,7 +571,7 @@ public class AppDatabase extends SQLiteOpenHelper {
     public void removeAllTiles() {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(BINGO_TABLE, null, null);
-        db.close();
+
     }
 
 }

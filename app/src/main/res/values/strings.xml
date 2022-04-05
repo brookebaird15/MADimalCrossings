@@ -10,6 +10,10 @@
     <string name="title_villager_list">Villagers</string>
     <string name="title_villager_detail">Villager Detail</string>
     <string name="all_villagers">All Villagers</string>
+    <string name="add_list">Add New List</string>
+    <string name="edit_name">Edit List Name</string>
+    <string name="delete_title">Delete List</string>
+    <string name="delete_message">Are you sure you want to delete %1$s? This cannot be undone.</string>
 
     <string name="save_label">Save</string>
     <string name="cancel_label">Cancel</string>
@@ -31,7 +35,7 @@
     <string name="no">No</string>
 
 <!--    TODO: test placeholder for catchphrase -->
-    <string name="catchphrase">"%1$s!"</string>
+    <string name="catchphrase">"%1$s"</string>
 
     <string name="bingo_selector">Select Mode: </string>
     <string name="bingo_row">5-in-a-Row</string>

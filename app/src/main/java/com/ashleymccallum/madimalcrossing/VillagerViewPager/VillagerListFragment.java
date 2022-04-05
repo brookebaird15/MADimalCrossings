@@ -1,21 +1,27 @@
 package com.ashleymccallum.madimalcrossing.VillagerViewPager;
 
+import static com.ashleymccallum.madimalcrossing.VillagerListRecycler.VillagerDetailHostActivity.ALL_VILLAGER_KEY;
 import static com.ashleymccallum.madimalcrossing.VillagerListRecycler.VillagerDetailHostActivity.LIST_ID;
+import static com.ashleymccallum.madimalcrossing.pojos.VillagerList.EDIT_KEY;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.ashleymccallum.madimalcrossing.AppDatabase;
 import com.ashleymccallum.madimalcrossing.R;
 import com.ashleymccallum.madimalcrossing.VillagerListRecycler.VillagerDetailHostActivity;
+import com.ashleymccallum.madimalcrossing.pojos.VillagerList;
 import com.google.android.material.snackbar.Snackbar;
 
 /**
