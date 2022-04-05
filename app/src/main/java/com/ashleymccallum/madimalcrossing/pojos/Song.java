@@ -6,6 +6,9 @@ package com.ashleymccallum.madimalcrossing.pojos;
  */
 public class Song {
 
+    public static final int UNCOLLECTED = 0;
+    public static final int COLLECTED = 1;
+
     private int id;
     private String title;
     private String buyPrice;
@@ -59,10 +62,10 @@ public class Song {
     }
 
     public void changeCollectionStatus() {
-        if(collected == 0) {
-            collected = 1;
+        if(collected == UNCOLLECTED) {
+            collected = COLLECTED;
         } else {
-            collected = 0;
+            collected = UNCOLLECTED;
         }
     }
 }

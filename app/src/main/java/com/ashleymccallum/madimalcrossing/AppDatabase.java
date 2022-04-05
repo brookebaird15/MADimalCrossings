@@ -1,5 +1,7 @@
 package com.ashleymccallum.madimalcrossing;
 
+import static com.ashleymccallum.madimalcrossing.pojos.Song.COLLECTED;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -309,10 +311,15 @@ public class AppDatabase extends SQLiteOpenHelper {
         return songs;
     }
 
+    /**
+     * Retrieves only collected songs in the database
+     * @return ArrayList of Song objects
+     * @author Ashley McCallum
+     */
     public ArrayList<Song> getCollectedSongs() {
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<Song> songs = new ArrayList<>();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + SONG_TABLE + " WHERE " + COLLECTED_COLUMN + "=?", new String[]{String.valueOf(1)});
+        Cursor cursor = db.rawQuery("SELECT * FROM " + SONG_TABLE + " WHERE " + COLLECTED_COLUMN + "=?", new String[]{String.valueOf(COLLECTED)});
         while (cursor.moveToNext()) {
             songs.add(new Song(
                     cursor.getInt(0),

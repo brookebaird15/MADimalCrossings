@@ -88,7 +88,6 @@ public class BingoGame {
     public void continueGame(ArrayList<BingoTile> tiles) {
         for (int i = 0; i < tiles.size(); i++) {
             BingoTile tile = tiles.get(i);
-            Log.d("bingo-----------", String.valueOf(i));
             this.tiles[i] = new BingoTile(tile.getId(), tile.getName(), tile.getIconURL(), tile.getValue(), tile.getAvailable());
         }
         if(winCombos == null) {

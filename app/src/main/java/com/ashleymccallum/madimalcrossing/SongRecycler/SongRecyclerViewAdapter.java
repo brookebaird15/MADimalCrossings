@@ -1,5 +1,8 @@
 package com.ashleymccallum.madimalcrossing.SongRecycler;
 
+import static com.ashleymccallum.madimalcrossing.pojos.Song.COLLECTED;
+import static com.ashleymccallum.madimalcrossing.pojos.Song.UNCOLLECTED;
+
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -47,10 +50,10 @@ public class SongRecyclerViewAdapter extends RecyclerView.Adapter<SongViewHolder
      * @author Ashley McCallum
      */
     private void setImage(ImageView imageView, int collectionStatus) {
-        if(collectionStatus == 0) {
+        if(collectionStatus == UNCOLLECTED) {
             //if item uncollected, set image to blank checkbox
             imageView.setImageResource(R.drawable.ic_outline_check_box_outline_blank_24);
-        } else if(collectionStatus == 1) {
+        } else if(collectionStatus == COLLECTED) {
             //if item collected, set image to checked checkbox
             imageView.setImageResource(R.drawable.ic_outline_check_box_24);
         }
