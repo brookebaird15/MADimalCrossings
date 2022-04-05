@@ -22,11 +22,11 @@ public class Villager {
     private String iconURI;
     private String imgURI;
     private String birthMonth;
-    private String birthDay;
+    private int birthDay;
     private String sign;
     private String houseExtURI;
 
-    public Villager(int id, int spotted, String name, String personality, String species, String url, String gender, String hobby, String catchphrase, String iconURI, String imgURI, String birthMonth, String birthDay, String sign, String houseExtURI) {
+    public Villager(int id, int spotted, String name, String personality, String species, String url, String gender, String hobby, String catchphrase, String iconURI, String imgURI, String birthMonth, int birthDay, String sign, String houseExtURI) {
         this.id = id;
         this.spotted = spotted;
         this.name = name;
@@ -70,7 +70,7 @@ public class Villager {
         return birthMonth;
     }
 
-    public String getBirthDay() {
+    public int getBirthDay() {
         return birthDay;
     }
 
