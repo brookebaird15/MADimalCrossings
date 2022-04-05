@@ -4,6 +4,7 @@ import static com.ashleymccallum.madimalcrossing.VillagerListRecycler.VillagerDe
 import static com.ashleymccallum.madimalcrossing.pojos.Villager.FEMALE;
 import static com.ashleymccallum.madimalcrossing.pojos.Villager.MALE;
 
+import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
@@ -22,6 +23,7 @@ import com.ashleymccallum.madimalcrossing.R;
 import com.ashleymccallum.madimalcrossing.VillagerListRecycler.VillagerRecyclerFragment;
 import com.ashleymccallum.madimalcrossing.pojos.Villager;
 import com.ashleymccallum.madimalcrossing.databinding.FragmentVillagerDetailBinding;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 
@@ -48,7 +50,7 @@ public class VillagerDetailFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //TODO: this loads the first villager in the list by default, but what if the list is empty? -> will likely crash in tablet mode
+        //TODO: this loads the first villager in the list by default, crashes in tablet if the list is empty
         if (getArguments().containsKey(ARG_ITEM_ID)) {
             if(getArguments().getString(ARG_ITEM_ID).equals("")) {
                 villager = viewModel.getVillagers().get(0);
@@ -59,14 +61,18 @@ public class VillagerDetailFragment extends Fragment {
     }
 
     @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        //private int id;
-        //    private int spotted;
-
         binding = FragmentVillagerDetailBinding.inflate(inflater, container, false);
         View rootView = binding.getRoot();
+        //TODO: use int spotted property
         TextView name = rootView.findViewById(R.id.villagerName);
         TextView personality = rootView.findViewById(R.id.villagerPersonality);
         TextView species = rootView.findViewById(R.id.villagerSpecies);
@@ -85,7 +91,6 @@ public class VillagerDetailFragment extends Fragment {
         month.setText(villager.getBirthMonth());
         sign.setText(villager.getSign());
 
-        Log.d("----------------", villager.getGender());
         ImageView gender = rootView.findViewById(R.id.villagerGender);
         if(villager.getGender().equals(MALE)) {
             gender.setImageResource(R.drawable.ic_baseline_male_24);
@@ -114,12 +119,21 @@ public class VillagerDetailFragment extends Fragment {
             }
         });
 
+        FloatingActionButton fab = rootView.findViewById(R.id.villagerFAB);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
         return rootView;
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
+    private void addToList() {
+        AlertDialog.Builder addDialog = new AlertDialog.Builder(getContext());
+        LayoutInflater inflater = addDialog.create().getLayoutInflater();
+        View view = inflater.inflate(R.layout.add_edit_list, null);
+        addDialog.setView(view);
     }
 }

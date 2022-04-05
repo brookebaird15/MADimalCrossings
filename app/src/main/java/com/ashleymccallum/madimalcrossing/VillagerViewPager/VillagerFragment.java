@@ -154,7 +154,7 @@ public class VillagerFragment extends Fragment {
      * @param list if editing, the list being edited
      * @author Ashley McCallum
      */
-    public void addEditListName(int key, Context context, VillagerList list) {
+    private void addEditListName(int key, Context context, VillagerList list) {
         AlertDialog.Builder nameDialog = new AlertDialog.Builder(context);
         LayoutInflater inflater = nameDialog.create().getLayoutInflater();
         View view = inflater.inflate(R.layout.add_edit_list, null);

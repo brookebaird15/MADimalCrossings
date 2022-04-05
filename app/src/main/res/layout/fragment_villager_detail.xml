@@ -21,7 +21,18 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/placeholderimage" />
+                app:srcCompat="@drawable/ic_baseline_casino_24" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/villagerFAB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                app:layout_constraintBottom_toBottomOf="@+id/villagerDetailImg"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/villagerDetailImg"
+                app:srcCompat="@drawable/ic_baseline_add_24"
+                android:contentDescription="@string/villager_fab" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView"
