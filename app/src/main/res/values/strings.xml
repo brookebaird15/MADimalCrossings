@@ -25,6 +25,7 @@
     <string name="birthday_label">Birthday: </string>
     <string name="gender_f">Female</string>
     <string name="gender_m">Male</string>
+    <string name="sign_label">Sign: </string>
 
     <string name="collected_switch">Filter by collected</string>
     <string name="song_buy">Buy Price: </string>
@@ -35,7 +36,7 @@
     <string name="no">No</string>
 
 <!--    TODO: test placeholder for catchphrase -->
-    <string name="catchphrase">"%1$s"</string>
+    <string name="catchphrase">\"%1$s\"</string>
 
     <string name="bingo_selector">Select Mode: </string>
     <string name="bingo_row">5-in-a-Row</string>

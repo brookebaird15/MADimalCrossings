@@ -7,6 +7,9 @@ package com.ashleymccallum.madimalcrossing.pojos;
  */
 public class Villager {
 
+    public static final String MALE = "male";
+    public static final String FEMALE = "female";
+
     private int id;
     private int spotted;
     private String name;

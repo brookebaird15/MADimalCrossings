@@ -1,20 +1,28 @@
 package com.ashleymccallum.madimalcrossing.VillagerListRecycler;
 
 import static com.ashleymccallum.madimalcrossing.VillagerListRecycler.VillagerDetailHostActivity.viewModel;
+import static com.ashleymccallum.madimalcrossing.pojos.Villager.FEMALE;
+import static com.ashleymccallum.madimalcrossing.pojos.Villager.MALE;
 
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.ashleymccallum.madimalcrossing.R;
 import com.ashleymccallum.madimalcrossing.VillagerListRecycler.VillagerRecyclerFragment;
 import com.ashleymccallum.madimalcrossing.pojos.Villager;
 import com.ashleymccallum.madimalcrossing.databinding.FragmentVillagerDetailBinding;
+import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -40,7 +48,7 @@ public class VillagerDetailFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //TODO: this loads the first villager in the list by default, but what if the list is empty?
+        //TODO: this loads the first villager in the list by default, but what if the list is empty? -> will likely crash in tablet mode
         if (getArguments().containsKey(ARG_ITEM_ID)) {
             if(getArguments().getString(ARG_ITEM_ID).equals("")) {
                 villager = viewModel.getVillagers().get(0);
@@ -54,10 +62,57 @@ public class VillagerDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        //private int id;
+        //    private int spotted;
+
         binding = FragmentVillagerDetailBinding.inflate(inflater, container, false);
         View rootView = binding.getRoot();
+        TextView name = rootView.findViewById(R.id.villagerName);
+        TextView personality = rootView.findViewById(R.id.villagerPersonality);
+        TextView species = rootView.findViewById(R.id.villagerSpecies);
+        TextView hobby = rootView.findViewById(R.id.villagerHobby);
+        TextView catchphrase = rootView.findViewById(R.id.villagerCatchphrase);
+        TextView day = rootView.findViewById(R.id.villagerDay);
+        TextView month = rootView.findViewById(R.id.villagerMonth);
+        TextView sign = rootView.findViewById(R.id.villagerSign);
+
+        name.setText(villager.getName());
+        personality.setText(villager.getPersonality());
+        species.setText(villager.getSpecies());
+        hobby.setText(villager.getHobby());
+        catchphrase.setText(getString(R.string.catchphrase, villager.getCatchphrase()));
+        day.setText(villager.getBirthDay());
+        month.setText(villager.getBirthMonth());
+        sign.setText(villager.getSign());
+
+        Log.d("----------------", villager.getGender());
+        ImageView gender = rootView.findViewById(R.id.villagerGender);
+        if(villager.getGender().equals(MALE)) {
+            gender.setImageResource(R.drawable.ic_baseline_male_24);
+            gender.setContentDescription(getString(R.string.gender_m));
+        } else if(villager.getGender().equals(FEMALE)) {
+            gender.setImageResource(R.drawable.ic_baseline_female_24);
+            gender.setContentDescription(getString(R.string.gender_f));
+        }
+
         ImageView villagerImg = rootView.findViewById(R.id.villagerDetailImg);
         Picasso.get().load(villager.getImgURI()).into(villagerImg);
+        ImageView houseExt = rootView.findViewById(R.id.villagerHouse);
+        Picasso.get().load(villager.getHouseExtURI()).into(houseExt);
+
+        ImageView siteBtn = rootView.findViewById(R.id.villagerSiteBtn);
+        siteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(villager.getUrl()));
+                try {
+                    startActivity(i);
+                } catch (ActivityNotFoundException e) {
+                    Snackbar.make(rootView, "Could not open site", Snackbar.LENGTH_LONG).show();
+                }
+            }
+        });
 
         return rootView;
     }
