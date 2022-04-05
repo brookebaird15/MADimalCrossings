@@ -131,7 +131,6 @@ public class BingoFragment extends Fragment implements OnGameWinListener {
         bingoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                db.removeAllTiles();
                 startNewGame();
             }
         });
@@ -159,6 +158,7 @@ public class BingoFragment extends Fragment implements OnGameWinListener {
      * Inserts the new tiles into the db
      */
     private void startNewGame() {
+        db.removeAllTiles();
         game.startNew(db.getBingoVillagers());
         recyclerView.setAdapter(adapter);
         db.insertTiles(game.tiles);
