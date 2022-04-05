@@ -46,7 +46,7 @@ public class SongRecyclerViewAdapter extends RecyclerView.Adapter<SongViewHolder
      * @param collectionStatus the collection status of the item
      * @author Ashley McCallum
      */
-    public void setImage(ImageView imageView, int collectionStatus) {
+    private void setImage(ImageView imageView, int collectionStatus) {
         if(collectionStatus == 0) {
             //if item uncollected, set image to blank checkbox
             imageView.setImageResource(R.drawable.ic_outline_check_box_outline_blank_24);

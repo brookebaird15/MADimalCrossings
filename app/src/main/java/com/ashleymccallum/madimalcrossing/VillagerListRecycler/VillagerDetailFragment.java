@@ -6,6 +6,7 @@ import static com.ashleymccallum.madimalcrossing.pojos.Villager.MALE;
 
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,12 +18,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import com.ashleymccallum.madimalcrossing.AppDatabase;
 import com.ashleymccallum.madimalcrossing.R;
 import com.ashleymccallum.madimalcrossing.VillagerListRecycler.VillagerRecyclerFragment;
 import com.ashleymccallum.madimalcrossing.pojos.Villager;
 import com.ashleymccallum.madimalcrossing.databinding.FragmentVillagerDetailBinding;
+import com.ashleymccallum.madimalcrossing.pojos.VillagerList;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
@@ -54,6 +58,7 @@ public class VillagerDetailFragment extends Fragment {
         if (getArguments().containsKey(ARG_ITEM_ID)) {
             if(getArguments().getString(ARG_ITEM_ID).equals("")) {
                 villager = viewModel.getVillagers().get(0);
+                //todo: if villager == null open a dialog box notifying them and force them back to the main activity?
             } else {
                 villager = viewModel.getVillagers().get(Integer.parseInt(getArguments().getString(ARG_ITEM_ID)));
             }
@@ -123,17 +128,39 @@ public class VillagerDetailFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                addToList();
             }
         });
 
         return rootView;
     }
 
+    /**
+     * Creates and displays the dialog box to allow a user to add a Villager to their lists
+     * @author Ashley McCallum
+     */
     private void addToList() {
+        AppDatabase db = new AppDatabase(getContext());
         AlertDialog.Builder addDialog = new AlertDialog.Builder(getContext());
         LayoutInflater inflater = addDialog.create().getLayoutInflater();
-        View view = inflater.inflate(R.layout.add_edit_list, null);
+        View view = inflater.inflate(R.layout.add_listview, null);
         addDialog.setView(view);
+
+        addDialog.setTitle(getString(R.string.select_list));
+        ListView listView = view.findViewById(R.id.listList);
+        AddingListViewAdapter adapter = new AddingListViewAdapter(getContext(), db.getAllLists());
+        listView.setAdapter(adapter);
+
+        addDialog.setPositiveButton(getString(R.string.save_label), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                for(VillagerList list : adapter.getAddingList()) {
+                    db.createOneVillagerListRelation(list, villager);
+                }
+            }
+        });
+
+        addDialog.setNegativeButton(getString(R.string.cancel_label), null);
+        addDialog.show();
     }
 }
