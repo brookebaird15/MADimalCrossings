@@ -32,57 +32,29 @@ public class NewsItem {
         return publisherName;
     }
 
-//    public void setPublisherName(String publisherName) {
-//        this.publisherName = publisherName;
-//    }
-
     public String getAuthorName() {
         return authorName;
     }
-
-//    public void setAuthorName(String authorName) {
-//        this.authorName = authorName;
-//    }
 
     public String getTitle() {
         return title;
     }
 
-//    public void setTitle(String title) {
-//        this.title = title;
-//    }
-
     public String getDescription() {
         return description;
     }
-
-//    public void setDescription(String description) {
-//        this.description = description;
-//    }
 
     public String getArticleURL() {
         return articleURL;
     }
 
-//    public void setArticleURL(String articleURL) {
-//        this.articleURL = articleURL;
-//    }
-
     public String getImgURL() {
         return imgURL;
     }
 
-//    public void setImgURL(String imgURL) {
-//        this.imgURL = imgURL;
-//    }
-
     public String getTimestamp() {
         return timestamp;
     }
-
-//    public void setTimestamp(String timestamp) {
-//        this.timestamp = timestamp;
-//    }
 
     public int getLastUpdated() {
         return lastUpdated;

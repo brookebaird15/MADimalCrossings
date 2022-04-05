@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
 
     AppDatabase db;
     private ActivityMainBinding binding;
-//    public static NewsViewModel newsModel;
     NavController navController;
 
     @Override
