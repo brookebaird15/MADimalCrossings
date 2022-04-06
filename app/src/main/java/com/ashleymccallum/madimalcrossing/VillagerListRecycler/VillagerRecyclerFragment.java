@@ -1,21 +1,32 @@
 package com.ashleymccallum.madimalcrossing.VillagerListRecycler;
 
+import static com.ashleymccallum.madimalcrossing.VillagerListRecycler.VillagerDetailHostActivity.ALL_VILLAGER_KEY;
+import static com.ashleymccallum.madimalcrossing.VillagerListRecycler.VillagerDetailHostActivity.listID;
 import static com.ashleymccallum.madimalcrossing.VillagerListRecycler.VillagerDetailHostActivity.viewModel;
 
+import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.ashleymccallum.madimalcrossing.AppDatabase;
+import com.ashleymccallum.madimalcrossing.MainActivity;
 import com.ashleymccallum.madimalcrossing.R;
 import com.ashleymccallum.madimalcrossing.databinding.FragmentVillagerListBinding;
 import com.ashleymccallum.madimalcrossing.databinding.VillagerListContentBinding;
@@ -64,7 +75,7 @@ public class VillagerRecyclerFragment extends Fragment {
             }
         };
 
-        recyclerView.setAdapter(new VillagerListRecyclerAdapter(viewModel.getVillagers(), onClickListener));
+        recyclerView.setAdapter(new VillagerListRecyclerAdapter(viewModel.getVillagers(), onClickListener, getContext()));
     }
 
     @Override
@@ -73,14 +84,16 @@ public class VillagerRecyclerFragment extends Fragment {
         binding = null;
     }
 
-    public static class VillagerListRecyclerAdapter extends RecyclerView.Adapter<VillagerListRecyclerAdapter.ViewHolder> {
+    public class VillagerListRecyclerAdapter extends RecyclerView.Adapter<VillagerListRecyclerAdapter.ViewHolder> {
 
         private final ArrayList<Villager> villagers;
         private final View.OnClickListener listener;
+        private final Context context;
 
-        VillagerListRecyclerAdapter(ArrayList<Villager> villagers, View.OnClickListener onClickListener) {
+        VillagerListRecyclerAdapter(ArrayList<Villager> villagers, View.OnClickListener onClickListener, Context context) {
             this.villagers = villagers;
             listener = onClickListener;
+            this.context = context;
         }
 
         @NonNull
@@ -97,6 +110,39 @@ public class VillagerRecyclerFragment extends Fragment {
             Picasso.get().load(villager.getIconURI()).into(holder.villagerImg);
             holder.itemView.setTag(position);
             holder.itemView.setOnClickListener(listener);
+            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    if(!listID.equals(ALL_VILLAGER_KEY)) {
+                        new AlertDialog.Builder(context)
+                                .setTitle(context.getString(R.string.remove_villager))
+                                .setMessage(context.getString(R.string.delete_villager, villager.getName()))
+                                .setPositiveButton(context.getString(R.string.yes), new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        AppDatabase db = new AppDatabase(context);
+                                        db.removeVillagerFromList(villager.getId(), Integer.parseInt(listID));
+                                        villagers.remove(holder.getAbsoluteAdapterPosition());
+                                        notifyItemRemoved(holder.getAbsoluteAdapterPosition());
+                                        db.close();
+                                        if(villagers.isEmpty()) {
+                                            //TODO: need some kind of message to tell user why theyre moving back?
+                                            Intent intent = new Intent(getActivity(), MainActivity.class);
+                                            try {
+                                                startActivity(intent);
+                                            } catch (ActivityNotFoundException e) {
+                                                e.printStackTrace();
+                                            }
+                                        }
+                                    }
+                                })
+                                .setNegativeButton(context.getString(R.string.cancel_label), null)
+                                .show();
+                    }
+                    Log.d("-----", "onLongClick: ");
+                    return true;
+                }
+            });
         }
 
         @Override
@@ -104,7 +150,7 @@ public class VillagerRecyclerFragment extends Fragment {
             return villagers.size();
         }
 
-        static class ViewHolder extends RecyclerView.ViewHolder {
+        class ViewHolder extends RecyclerView.ViewHolder {
             protected ImageView villagerImg;
             protected TextView villagerName;
 

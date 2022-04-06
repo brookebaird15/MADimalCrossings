@@ -20,6 +20,7 @@ public class VillagerDetailHostActivity extends AppCompatActivity {
     public static final String LIST_ID = "list_id";
     public static final String ALL_VILLAGER_KEY = "all";
     public static VillagerViewModel viewModel;
+    public static String listID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +31,7 @@ public class VillagerDetailHostActivity extends AppCompatActivity {
 
         AppDatabase db = new AppDatabase(this);
         Intent intent = getIntent();
-        String listID = intent.getStringExtra(LIST_ID);
+        listID = intent.getStringExtra(LIST_ID);
 
         //if the key is "all" get all the villagers from the db
         if(listID.equals(ALL_VILLAGER_KEY)) {
