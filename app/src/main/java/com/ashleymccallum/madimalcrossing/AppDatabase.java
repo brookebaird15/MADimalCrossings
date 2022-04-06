@@ -515,23 +515,6 @@ public class AppDatabase extends SQLiteOpenHelper {
     }
 
     /**
-     * Adds several villagers to a list
-     * @param list the list being added to
-     * @param villagers the villagers being added to the list
-     * @author Ashley McCallum
-     */
-    public void createManyVillagerListRelations(VillagerList list, ArrayList<Villager> villagers) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(LIST_FK_COLUMN, list.getId());
-        for (Villager villager : villagers) {
-            values.put(VILLAGER_FK_COLUMN, villager.getId());
-            db.insert(LIST_VILLAGER_TABLE, null, values);
-        }
-
-    }
-
-    /**
      * Retrieves all villagers from the database associated with a specific list
      * @param listID the int id of the list being queried
      * @return ArrayList of Villager objects associated with that list

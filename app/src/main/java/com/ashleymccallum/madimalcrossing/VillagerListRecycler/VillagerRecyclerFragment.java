@@ -22,6 +22,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -58,9 +59,45 @@ public class VillagerRecyclerFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
         RecyclerView recyclerView = binding.villagerList;
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        Button filterBtn = binding.filterBtn;
+        filterBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        Button emptyBtn = binding.emptyBtn;
+        if(listID.equals(ALL_VILLAGER_KEY)) {
+            emptyBtn.setVisibility(View.INVISIBLE);
+        }
+        emptyBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new AlertDialog.Builder(getContext())
+                        .setTitle(getString(R.string.empty_title))
+                        .setMessage(getString(R.string.empty_message))
+                        .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                AppDatabase db = new AppDatabase(getContext());
+                                db.emptyList(Integer.parseInt(listID));
+                                db.close();
+
+                                Intent intent = new Intent(getActivity(), MainActivity.class);
+                                try {
+                                    startActivity(intent);
+                                } catch (ActivityNotFoundException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        })
+                        .setNegativeButton(getString(R.string.cancel_label), null)
+                        .show();
+            }
+        });
 
         //find the view used for the tablet layout
         View itemDetailFragmentContainer = view.findViewById(R.id.villager_detail_nav_container);

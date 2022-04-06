@@ -26,7 +26,10 @@
     <string name="cancel_label">Cancel</string>
     <string name="ok">OK</string>
     <string name="ext_app_error">Could not launch application</string>
-
+    <string name="empty_btn">Clear List</string>
+    <string name="empty_title">Clear this list?</string>
+    <string name="empty_message">Are you sure you want to clear this list? This cannot be undone.</string>
+    <string name="filter_btn">Filter</string>
     <string name="hobby_label">Hobby: </string>
     <string name="personality_label">Personality: </string>
     <string name="species_label">Species: </string>
