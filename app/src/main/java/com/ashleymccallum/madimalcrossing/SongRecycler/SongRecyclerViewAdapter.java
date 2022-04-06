@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +40,7 @@ public class SongRecyclerViewAdapter extends RecyclerView.Adapter<SongViewHolder
     public SongRecyclerViewAdapter(Context context, ArrayList<Song> songs) {
         this.songs = songs;
         this.context = context;
+        this.currentSong = 0;
     }
 
     @NonNull
@@ -85,17 +87,30 @@ public class SongRecyclerViewAdapter extends RecyclerView.Adapter<SongViewHolder
         Song song = songs.get(position);
         holder.songTitle.setText(song.getTitle());
         Picasso.get().load(song.getImgURI()).into(holder.songImg);
+        holder.musicControl.setImageResource(R.drawable.ic_baseline_play_arrow_24);
 
         holder.musicControl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //if the media player is playing
                 if(mediaPlayer.isPlaying()) {
+                    //if the current song id != the selected song id, start the new song
                     if(currentSong != song.getId()) {
+                        //set image to pause
+                        holder.musicControl.setImageResource(R.drawable.ic_baseline_pause_24);
+                        //notify the adapter to change the previous song image back to play
+                        notifyItemChanged(currentSong - 1);
                         startNewSong(song);
                     } else {
+                        //otherwise user is selecting same song, pause the song
                         mediaPlayer.pause();
+                        //set image to play
+                        holder.musicControl.setImageResource(R.drawable.ic_baseline_play_arrow_24);
                     }
                 } else {
+                    //otherwise the player is not playing anything, start the new song
+                    //set image to pause
+                    holder.musicControl.setImageResource(R.drawable.ic_baseline_pause_24);
                     startNewSong(song);
                 }
 
