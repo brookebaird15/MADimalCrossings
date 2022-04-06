@@ -1,5 +1,6 @@
 package com.ashleymccallum.madimalcrossing.SongRecycler;
 
+import static com.ashleymccallum.madimalcrossing.MainActivity.mediaPlayer;
 import static com.ashleymccallum.madimalcrossing.pojos.Song.COLLECTED;
 import static com.ashleymccallum.madimalcrossing.pojos.Song.UNCOLLECTED;
 
@@ -8,12 +9,14 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.MediaController;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -25,11 +28,13 @@ import com.ashleymccallum.madimalcrossing.pojos.Song;
 import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class SongRecyclerViewAdapter extends RecyclerView.Adapter<SongViewHolder> {
     private final ArrayList<Song> songs;
     private final Context context;
+    public int currentSong;
 
     public SongRecyclerViewAdapter(Context context, ArrayList<Song> songs) {
         this.songs = songs;
@@ -59,23 +64,50 @@ public class SongRecyclerViewAdapter extends RecyclerView.Adapter<SongViewHolder
         }
     }
 
+    /**
+     * Resets the media player and starts a new song
+     * @param song the Song to be played
+     * @author Ashley McCallum
+     */
+    private void startNewSong(Song song) {
+        mediaPlayer.reset();
+        try {
+            mediaPlayer.setDataSource(song.getSongURI());
+            currentSong = song.getId();
+            mediaPlayer.prepareAsync();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void onBindViewHolder(@NonNull SongViewHolder holder, int position) {
         Song song = songs.get(position);
         holder.songTitle.setText(song.getTitle());
         Picasso.get().load(song.getImgURI()).into(holder.songImg);
+
         holder.musicControl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse(song.getSongURI()));
-                try {
-                    context.startActivity(i);
-                }catch (ActivityNotFoundException e) {
-                    Snackbar.make(view, context.getString(R.string.ext_app_error), Snackbar.LENGTH_LONG).show();
+                if(mediaPlayer.isPlaying()) {
+                    if(currentSong != song.getId()) {
+                        startNewSong(song);
+                    } else {
+                        mediaPlayer.pause();
+                    }
+                } else {
+                    startNewSong(song);
                 }
+
+                mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                    @Override
+                    public void onPrepared(MediaPlayer mediaPlayer) {
+                        mediaPlayer.start();
+                    }
+                });
             }
         });
+
         holder.songMoreBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -42,13 +42,13 @@
 
         <ImageView
             android:id="@+id/musicControlBtn"
-            android:layout_width="25dp"
+            android:layout_width="50dp"
             android:layout_height="0dp"
             android:layout_marginStart="@dimen/med_margin"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/songImg"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_baseline_launch_24" />
+            app:srcCompat="@drawable/ic_baseline_play_arrow_24" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

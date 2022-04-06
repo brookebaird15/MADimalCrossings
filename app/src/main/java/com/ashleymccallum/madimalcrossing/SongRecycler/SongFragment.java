@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
+import android.widget.MediaController;
 import android.widget.Switch;
 
 import com.ashleymccallum.madimalcrossing.AppDatabase;
@@ -69,6 +70,7 @@ public class SongFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_music, container, false);
         SwitchMaterial collectionSwitch = view.findViewById(R.id.collectedSwitch);
         AppDatabase db = new AppDatabase(getContext());
+
         RecyclerView recyclerView = view.findViewById(R.id.songRecycler);
         recyclerView.setAdapter(new SongRecyclerViewAdapter(getContext(), db.getAllSongs()));
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -83,6 +85,8 @@ public class SongFragment extends Fragment {
                 }
             }
         });
+
+
 
         return view;
     }
