@@ -1,6 +1,8 @@
 package com.ashleymccallum.madimalcrossing;
 
 import android.content.Context;
+import android.media.AudioAttributes;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
@@ -40,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
     AppDatabase db;
     private ActivityMainBinding binding;
     NavController navController;
+    public static MediaPlayer mediaPlayer;
+    public static int currentSong;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +61,14 @@ public class MainActivity extends AppCompatActivity {
         navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
+
+        mediaPlayer = new MediaPlayer();
+        mediaPlayer.setAudioAttributes(
+                new AudioAttributes.Builder()
+                .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                .setUsage(AudioAttributes.USAGE_MEDIA)
+                .build()
+        );
 
         db = new AppDatabase(this);
         if(db.getAllSongs().isEmpty()) {
