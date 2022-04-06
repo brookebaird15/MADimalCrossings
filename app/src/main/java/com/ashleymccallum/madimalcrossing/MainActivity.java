@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     NavController navController;
     public static MediaPlayer mediaPlayer;
+    public static int currentSong = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

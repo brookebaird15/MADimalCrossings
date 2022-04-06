@@ -1,5 +1,6 @@
 package com.ashleymccallum.madimalcrossing.SongRecycler;
 
+import static com.ashleymccallum.madimalcrossing.MainActivity.currentSong;
 import static com.ashleymccallum.madimalcrossing.MainActivity.mediaPlayer;
 import static com.ashleymccallum.madimalcrossing.pojos.Song.COLLECTED;
 import static com.ashleymccallum.madimalcrossing.pojos.Song.UNCOLLECTED;
@@ -24,6 +25,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ashleymccallum.madimalcrossing.AppDatabase;
+import com.ashleymccallum.madimalcrossing.MainActivity;
 import com.ashleymccallum.madimalcrossing.R;
 import com.ashleymccallum.madimalcrossing.pojos.Song;
 import com.google.android.material.snackbar.Snackbar;
@@ -35,12 +37,12 @@ import java.util.ArrayList;
 public class SongRecyclerViewAdapter extends RecyclerView.Adapter<SongViewHolder> {
     private final ArrayList<Song> songs;
     private final Context context;
-    public int currentSong;
+//    static int currentSong;
 
     public SongRecyclerViewAdapter(Context context, ArrayList<Song> songs) {
         this.songs = songs;
         this.context = context;
-        this.currentSong = 0;
+//        currentSong = 0;
     }
 
     @NonNull
@@ -87,7 +89,11 @@ public class SongRecyclerViewAdapter extends RecyclerView.Adapter<SongViewHolder
         Song song = songs.get(position);
         holder.songTitle.setText(song.getTitle());
         Picasso.get().load(song.getImgURI()).into(holder.songImg);
-        holder.musicControl.setImageResource(R.drawable.ic_baseline_play_arrow_24);
+        if(currentSong == song.getId() && mediaPlayer.isPlaying()) {
+            holder.musicControl.setImageResource(R.drawable.ic_baseline_pause_24);
+        } else {
+            holder.musicControl.setImageResource(R.drawable.ic_baseline_play_arrow_24);
+        }
 
         holder.musicControl.setOnClickListener(new View.OnClickListener() {
             @Override
