@@ -64,6 +64,8 @@ public class NewsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_news, container, false);
         AppDatabase db = new AppDatabase(getContext());
+
+
         RecyclerView recyclerView = view.findViewById(R.id.newsRecycler);
         recyclerView.setAdapter(new NewsRecyclerViewAdapter(db.getArticles(), getContext()));
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

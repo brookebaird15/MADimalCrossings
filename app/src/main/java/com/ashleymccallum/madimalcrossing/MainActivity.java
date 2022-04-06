@@ -81,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(!db.getArticles().isEmpty()) {
             if(System.currentTimeMillis() - db.getArticles().get(0).getLastUpdated() > 7200000) {
+                Log.d("----NEWS-----", "ARTICLES REFRESHED");
                 db.clearArticles();
                 loadArticles(this);
             }

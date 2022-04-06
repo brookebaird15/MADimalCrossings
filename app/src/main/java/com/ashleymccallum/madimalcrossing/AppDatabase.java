@@ -67,7 +67,7 @@ public class AppDatabase extends SQLiteOpenHelper {
             URL_COLUMN + " TEXT," + GENDER_COLUMN + " TEXT," +
             HOBBY_COLUMN + " TEXT," + CATCHPHRASE_COLUMN + " TEXT," +
             ICON_COLUMN + " TEXT," + IMG_COLUMN + " TEXT," +
-            BIRTH_MONTH_COLUMN + " TEXT," + BIRTH_DAY_COLUMN + " TEXT," +
+            BIRTH_MONTH_COLUMN + " TEXT," + BIRTH_DAY_COLUMN + " INTEGER," +
             SIGN_COLUMN + " TEXT," + HOUSE_EXT_COLUMN + " TEXT)";
 
     //KK Slider Song Table
@@ -113,7 +113,6 @@ public class AppDatabase extends SQLiteOpenHelper {
     public static final String VALUE_COLUMN = "tile_value";
     public static final String AVAILABLE_COLUMN = "available";  //an int (0/1) if the tile has been played
 
-    //TODO: use villager FK instead of name + icon url
     //bingo table columns: id, name, tile_value, available
     public static final String CREATE_BINGO_TABLE = "CREATE TABLE " +
             BINGO_TABLE + "(" + ID_COLUMN + " INTEGER PRIMARY KEY," +
@@ -201,7 +200,7 @@ public class AppDatabase extends SQLiteOpenHelper {
                     cursor.getString(5),
                     cursor.getString(6),
                     cursor.getString(7),
-                    cursor.getInt(8)));
+                    cursor.getLong(8)));
         }
         return items;
     }
@@ -235,7 +234,7 @@ public class AppDatabase extends SQLiteOpenHelper {
                 values.put(PERSONALITY_COLUMN, main.getString("personality"));
                 values.put(GENDER_COLUMN, main.getString("gender").toLowerCase());
                 values.put(BIRTH_MONTH_COLUMN, main.getString("birthday_month"));
-                values.put(BIRTH_DAY_COLUMN, main.getString("birthday_day"));
+                values.put(BIRTH_DAY_COLUMN, main.getInt("birthday_day"));
                 values.put(SIGN_COLUMN, main.getString("sign"));
                 values.put(CATCHPHRASE_COLUMN, main.getString("phrase"));
                 JSONObject details = main.getJSONObject("nh_details");
@@ -273,7 +272,7 @@ public class AppDatabase extends SQLiteOpenHelper {
                     cursor.getString(9),
                     cursor.getString(10),
                     cursor.getString(11),
-                    cursor.getString(12),
+                    cursor.getInt(12),
                     cursor.getString(13),
                     cursor.getString(14)));
         }
@@ -561,7 +560,7 @@ public class AppDatabase extends SQLiteOpenHelper {
                     cursor.getString(9),
                     cursor.getString(10),
                     cursor.getString(11),
-                    cursor.getString(12),
+                    cursor.getInt(12),
                     cursor.getString(13),
                     cursor.getString(14)));
         }

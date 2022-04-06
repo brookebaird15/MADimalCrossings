@@ -112,6 +112,15 @@
                         app:layout_constraintTop_toTopOf="@+id/textView9"
                         app:layout_constraintVertical_bias="0.0" />
 
+                    <ImageView
+                        android:id="@+id/editPhraseBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="@+id/villagerCatchphrase"
+                        app:layout_constraintEnd_toEndOf="@+id/villagerHobby"
+                        app:layout_constraintTop_toTopOf="@+id/villagerCatchphrase"
+                        app:srcCompat="@drawable/ic_baseline_edit_24" />
+
                     <TextView
                         android:id="@+id/villagerCatchphrase"
                         android:layout_width="wrap_content"
@@ -119,29 +128,29 @@
                         android:text="CATCHPHRASE"
                         android:textSize="20sp"
                         app:layout_constraintBottom_toBottomOf="@+id/textView11"
-                        app:layout_constraintEnd_toEndOf="@+id/villagerHobby"
+                        app:layout_constraintEnd_toStartOf="@+id/editPhraseBtn"
                         app:layout_constraintTop_toTopOf="@+id/textView11"
                         app:layout_constraintVertical_bias="0.0" />
 
                     <TextView
-                        android:id="@+id/villagerMonth"
+                        android:id="@+id/villagerBirthday"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="MONTH"
-                        app:layout_constraintBottom_toBottomOf="@+id/villagerDay"
-                        app:layout_constraintEnd_toStartOf="@+id/villagerDay"
-                        app:layout_constraintTop_toTopOf="@+id/villagerDay" />
-
-                    <TextView
-                        android:id="@+id/villagerDay"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="DAY"
-                        android:textSize="20sp"
+                        android:text="BIRTHDAY"
+                        android:textSize="14sp"
                         app:layout_constraintBottom_toBottomOf="@+id/textView10"
-                        app:layout_constraintEnd_toEndOf="@+id/villagerPersonality"
+                        app:layout_constraintEnd_toStartOf="@+id/calendarBtn"
                         app:layout_constraintTop_toTopOf="@+id/textView10"
                         app:layout_constraintVertical_bias="0.0" />
+
+                    <ImageView
+                        android:id="@+id/calendarBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="@+id/villagerBirthday"
+                        app:layout_constraintEnd_toEndOf="@+id/villagerPersonality"
+                        app:layout_constraintTop_toTopOf="@+id/villagerBirthday"
+                        app:srcCompat="@drawable/ic_baseline_calendar_month_24" />
 
                     <TextView
                         android:id="@+id/textView11"
@@ -170,7 +179,7 @@
                         android:text="HOBBY"
                         android:textSize="20sp"
                         app:layout_constraintBottom_toBottomOf="@+id/textView7"
-                        app:layout_constraintEnd_toEndOf="@+id/villagerDay"
+                        app:layout_constraintEnd_toEndOf="@+id/calendarBtn"
                         app:layout_constraintTop_toTopOf="@+id/textView7"
                         app:layout_constraintVertical_bias="0.0" />
 

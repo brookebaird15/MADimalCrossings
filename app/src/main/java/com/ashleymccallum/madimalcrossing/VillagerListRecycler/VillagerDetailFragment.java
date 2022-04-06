@@ -13,10 +13,12 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.provider.CalendarContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -24,13 +26,18 @@ import android.widget.TextView;
 import com.ashleymccallum.madimalcrossing.AppDatabase;
 import com.ashleymccallum.madimalcrossing.MainActivity;
 import com.ashleymccallum.madimalcrossing.R;
-import com.ashleymccallum.madimalcrossing.VillagerListRecycler.VillagerRecyclerFragment;
 import com.ashleymccallum.madimalcrossing.pojos.Villager;
 import com.ashleymccallum.madimalcrossing.databinding.FragmentVillagerDetailBinding;
 import com.ashleymccallum.madimalcrossing.pojos.VillagerList;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 /**
  * A fragment representing a single Villager detail screen.
@@ -107,8 +114,7 @@ public class VillagerDetailFragment extends Fragment {
             TextView species = rootView.findViewById(R.id.villagerSpecies);
             TextView hobby = rootView.findViewById(R.id.villagerHobby);
             TextView catchphrase = rootView.findViewById(R.id.villagerCatchphrase);
-            TextView day = rootView.findViewById(R.id.villagerDay);
-            TextView month = rootView.findViewById(R.id.villagerMonth);
+            TextView birthday = rootView.findViewById(R.id.villagerBirthday);
             TextView sign = rootView.findViewById(R.id.villagerSign);
 
             name.setText(villager.getName());
@@ -116,8 +122,7 @@ public class VillagerDetailFragment extends Fragment {
             species.setText(villager.getSpecies());
             hobby.setText(villager.getHobby());
             catchphrase.setText(getString(R.string.catchphrase, villager.getCatchphrase()));
-            day.setText(villager.getBirthDay());
-            month.setText(villager.getBirthMonth());
+            birthday.setText(getDateString(villager));
             sign.setText(villager.getSign());
 
             ImageView gender = rootView.findViewById(R.id.villagerGender);
@@ -148,6 +153,67 @@ public class VillagerDetailFragment extends Fragment {
                 }
             });
 
+            ImageView calendarBtn = rootView.findViewById(R.id.calendarBtn);
+            calendarBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    try {
+                        Calendar calendar = Calendar.getInstance();
+                        int year = calendar.get(Calendar.YEAR);
+                        Date date = new SimpleDateFormat("MMM", Locale.ENGLISH).parse(villager.getBirthMonth());
+                        calendar.setTime(date);
+                        int month = calendar.get(Calendar.MONTH);
+                        calendar.set(year, month, villager.getBirthDay());
+                        String title = villager.getName() + "'s Birthday!";
+                        long startMillis = calendar.getTimeInMillis();
+                        long endMillis = calendar.getTimeInMillis() + 3600000;
+
+                        Intent i = new Intent(Intent.ACTION_EDIT);
+                        i.setData(CalendarContract.Events.CONTENT_URI);
+                        i.putExtra(CalendarContract.Events.TITLE, title);
+                        i.putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, true);
+                        i.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, startMillis);
+                        i.putExtra(CalendarContract.EXTRA_EVENT_END_TIME,endMillis);
+
+                        try {
+                            startActivity(i);
+                        }catch (ActivityNotFoundException e) {
+                            Snackbar.make(rootView, getString(R.string.ext_app_error), Snackbar.LENGTH_LONG).show();
+                        }
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+
+            ImageView editPhraseBtn = rootView.findViewById(R.id.editPhraseBtn);
+            editPhraseBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    AlertDialog.Builder phraseDialog = new AlertDialog.Builder(getContext());
+                    LayoutInflater inflater = phraseDialog.create().getLayoutInflater();
+                    View phraseView = inflater.inflate(R.layout.add_edit_list, null);
+                    phraseDialog.setView(phraseView);
+
+                    phraseDialog.setTitle(getString(R.string.edit_phrase, villager.getName()));
+                    EditText input = phraseView.findViewById(R.id.listNameInput);
+                    input.setText(villager.getCatchphrase());
+
+                    phraseDialog.setPositiveButton(getString(R.string.save_label), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            villager.setCatchphrase(input.getText().toString());
+                            AppDatabase db = new AppDatabase(getContext());
+                            db.updateVillager(villager);
+                            catchphrase.setText(villager.getCatchphrase());
+                        }
+                    });
+
+                    phraseDialog.setNegativeButton(getString(R.string.cancel_label), null);
+                    phraseDialog.show();
+                }
+            });
+
             FloatingActionButton fab = rootView.findViewById(R.id.villagerFAB);
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -159,6 +225,30 @@ public class VillagerDetailFragment extends Fragment {
         } else {
             return null;
         }
+    }
+
+    /**
+     * Gets a formatted String from the villager's birth month and day
+     * @param villager the villager to generate the String for
+     * @return a String representing the date
+     * @author Ashley McCallum
+     */
+    private String getDateString(Villager villager) {
+        String date = villager.getBirthMonth();
+        String suffix;
+        int day = villager.getBirthDay();
+        if(day % 10 == 1 && day != 11) {
+            suffix = "st";
+        } else if (day % 10 == 2 && day != 12) {
+            suffix = "nd";
+        } else if (day % 10 == 3 && day != 13) {
+            suffix = "rd";
+        } else {
+            suffix = "th";
+        }
+
+        date = date + " " + villager.getBirthDay() + suffix;
+        return date;
     }
 
     /**
