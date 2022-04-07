@@ -35,19 +35,91 @@
     <string name="species_label">Species: </string>
     <string name="catchphrase_label">Catchphrase: </string>
     <string name="birthday_label">Birthday: </string>
-    <string name="gender_f">Female</string>
-    <string name="gender_m">Male</string>
     <string name="sign_label">Sign: </string>
     <string name="catchphrase">\"%1$s\"</string>
     <string name="villager_fab">Add villager to list</string>
     <string name="select_list">Select List:</string>
-
     <string name="collected_switch">Filter by collected</string>
+<!--    FILTER     -->
+    <string name="species">Species</string>
+    <string name="alligator">Alligator</string>
+    <string name="anteater">Anteater</string>
+    <string name="bear">Bear</string>
+    <string name="bird">Bird</string>
+    <string name="bull">Bull</string>
+    <string name="cat">Cat</string>
+    <string name="chicken">Chicken</string>
+    <string name="cow">Cow</string>
+    <string name="cub">Cub</string>
+    <string name="deer">Deer</string>
+    <string name="dog">Dog</string>
+    <string name="duck">Duck</string>
+    <string name="eagle">Eagle</string>
+    <string name="elephant">Elephant</string>
+    <string name="frog">Frog</string>
+    <string name="goat">Goat</string>
+    <string name="gorilla">Gorilla</string>
+    <string name="hamster">Hamster</string>
+    <string name="hippo">Hippo</string>
+    <string name="horse">Horse</string>
+    <string name="kangaroo">Kangaroo</string>
+    <string name="koala">Koala</string>
+    <string name="lion">Lion</string>
+    <string name="monkey">Monkey</string>
+    <string name="mouse">Mouse</string>
+    <string name="octopus">Octopus</string>
+    <string name="ostrich">Ostrich</string>
+    <string name="penguin">Penguin</string>
+    <string name="pig">Pig</string>
+    <string name="rabbit">Rabbit</string>
+    <string name="rhino">Rhino</string>
+    <string name="sheep">Sheep</string>
+    <string name="squirrel">Squirrel</string>
+    <string name="tiger">Tiger</string>
+    <string name="wolf">Wolf</string>
+
+    <string name="hobby">Hobby</string>
+    <string name="education">Education</string>
+    <string name="fashion">Fashion</string>
+    <string name="fitness">Fitness</string>
+    <string name="music">Music</string>
+    <string name="nature">Nature</string>
+    <string name="playing">Playing</string>
+
+    <string name="personality">Personality</string>
+    <string name="normal">Normal</string>
+    <string name="lazy">Lazy</string>
+    <string name="sisterly">Sisterly</string>
+    <string name="snooty">Snooty</string>
+    <string name="cranky">Cranky</string>
+    <string name="jock">Jock</string>
+    <string name="peppy">Peppy</string>
+    <string name="smug">Smug</string>
+
+    <string name="gender">Gender</string>
+    <string name="gender_f">Female</string>
+    <string name="gender_m">Male</string>
+
+    <string name="sign">Sign</string>
+    <string name="aries">Aries</string>
+    <string name="taurus">Taurus</string>
+    <string name="gemini">Gemini</string>
+    <string name="cancer">Cancer</string>
+    <string name="leo">Leo</string>
+    <string name="virgo">Virgo</string>
+    <string name="libra">Libra</string>
+    <string name="scorpio">Scorpio</string>
+    <string name="sagittarius">Sagittarius</string>
+    <string name="capricorn">Capricorn</string>
+    <string name="aquarius">Aquarius</string>
+    <string name="pisces">Pisces</string>
+
+<!--    KK TUNES    -->
     <string name="song_buy">Buy Price: </string>
     <string name="song_sell">Sell Price: </string>
     <string name="song_orderable">Can be ordered: </string>
     <string name="song_collected">Collected: </string>
-
+<!--    BINGO   -->
     <string name="bingo_selector">Select Mode: </string>
     <string name="bingo_row">5-in-a-Row</string>
     <string name="bingo_corners">4 Corners</string>
