@@ -35,10 +35,9 @@ public class BingoGame {
      * int boardScore -> the score of all marked pieces currently on the board
      * int[] winCombos -> an int array of the winning combos for the specific game mode the user has selected
      */
-    //TODO: check math on winning values
     public final BingoTile[] tiles = new BingoTile[25];
     private final int[] rowCombo = new int[] {31, 992, 31744, 1015808, 32505856, 1082401, 2164802, 4329604, 8659208, 17318416, 1118480, 17043521};
-    private final int[] xCombo = new int[] {18162001};
+    private final int[] xCombo = new int[] {18157905};
     private final int[] cornerCombo = new int[] {17825809};
     private final int[] blackoutCombo = new int[] {33554431};
     private final int[] ringCombo = new int[] {33080895};
@@ -56,7 +55,6 @@ public class BingoGame {
     private int[] winCombos;
     public String currentMode;
     private static BingoGame instance = null;
-    //TODO: current mode resets on reload (not stored in db) - can we live with that? -> will this cause problems
 
     public static BingoGame getInstance() {
         if (instance == null) {
@@ -76,7 +74,9 @@ public class BingoGame {
      */
     public void startNew(ArrayList<Villager> villagers) {
         generateTiles(villagers);
-        selectMode(BINGO_ROW_KEY);
+        if(currentMode == null) {
+            selectMode(BINGO_ROW_KEY);
+        }
         boardScore = 0;
     }
 
