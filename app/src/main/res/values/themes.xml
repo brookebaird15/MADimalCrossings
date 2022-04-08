@@ -22,7 +22,5 @@
     <style name="Theme.MADimalCrossing.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.MADimalCrossing.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-    <style name="BottomAppBar" parent="Widget.MaterialComponents.BottomAppBar.Colored">
-        <item name="color">@color/purple_200</item>
-    </style>
+
 </resources>
