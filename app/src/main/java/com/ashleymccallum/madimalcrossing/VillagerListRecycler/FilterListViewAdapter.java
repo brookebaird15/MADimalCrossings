@@ -1,6 +1,7 @@
 package com.ashleymccallum.madimalcrossing.VillagerListRecycler;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,17 +16,23 @@ import com.ashleymccallum.madimalcrossing.R;
 import com.ashleymccallum.madimalcrossing.pojos.VillagerList;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class FilterListViewAdapter extends ArrayAdapter<String> {
 
-    private final List<String> selection;
+    private final Set<String> selection;
     private boolean adding;
 
-    public FilterListViewAdapter(@NonNull Context context, List<String> filters) {
+    public FilterListViewAdapter(@NonNull Context context, List<String> filters, Set<String> previousSelection) {
         super(context, 0, filters);
-        selection = new ArrayList<>();
+
+        if(previousSelection != null) {
+            this.selection = new HashSet<>(previousSelection);
+        } else {
+            selection = new HashSet<>();
+        }
     }
 
     @NonNull
@@ -39,8 +46,10 @@ public class FilterListViewAdapter extends ArrayAdapter<String> {
 
         if(selection.contains(getItem(position))) {
             checkbox.setImageResource(R.drawable.ic_outline_check_box_24);
+            adding = true;
         } else {
             checkbox.setImageResource(R.drawable.ic_outline_check_box_outline_blank_24);
+            adding = false;
         }
 
         TextView name = convertView.findViewById(R.id.addListName);
@@ -49,12 +58,7 @@ public class FilterListViewAdapter extends ArrayAdapter<String> {
         checkbox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                adding = addRemove(checkbox, adding);
-                if(adding) {
-                    selection.add(getItem(position));
-                } else {
-                    selection.remove(getItem(position));
-                }
+                adding = addRemove(checkbox, getItem(position));
             }
         });
         return convertView;
@@ -63,22 +67,23 @@ public class FilterListViewAdapter extends ArrayAdapter<String> {
     /**
      * Flags if an item is being added or removed from the selection
      * @param imageView the ImageView to update
-     * @param adding a boolean flagging if the item is currently being added or not
      * @return an update boolean if the item is to be added or not
      * @author Ashley McCallum
      */
-    private boolean addRemove(ImageView imageView, boolean adding) {
+    private boolean addRemove(ImageView imageView, String item) {
         if(adding) {
             adding = false;
             imageView.setImageResource(R.drawable.ic_outline_check_box_outline_blank_24);
+            selection.remove(item);
         } else {
             adding = true;
             imageView.setImageResource(R.drawable.ic_outline_check_box_24);
+            selection.add(item);
         }
         return adding;
     }
 
-    public List<String> getSelection() {
+    public Set<String> getSelection() {
         return this.selection;
     }
 }

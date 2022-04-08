@@ -51,8 +51,11 @@ import java.util.Set;
  */
 public class VillagerRecyclerFragment extends Fragment {
 
+    private RecyclerView recyclerView;
+    private VillagerListRecyclerAdapter adapter;
+    private View.OnClickListener onClickListener;
     private FragmentVillagerListBinding binding;
-    private HashMap<String, List<String>> filters;
+    private HashMap<String, Set<String>> filters;
 
     private void presentFilters() {
         AlertDialog.Builder filterDialog = new AlertDialog.Builder(getContext());
@@ -85,6 +88,13 @@ public class VillagerRecyclerFragment extends Fragment {
             public void onClick(DialogInterface dialogInterface, int i) {
                 //TODO: apply filter and reload recyclerview
                 Log.d("---------------", "selected filters " + filters.toString());
+                AppDatabase db = new AppDatabase(getContext());
+                ArrayList<Villager> filteredVillagers = new ArrayList<>(db.getFilteredVillagers(filters));
+                Log.d("-------", "filtered villagers: " + filteredVillagers.size());
+                filteredVillagers.retainAll(viewModel.getVillagers());
+
+                adapter = new VillagerListRecyclerAdapter(filteredVillagers, onClickListener, getContext());
+                recyclerView.setAdapter(adapter);
             }
         });
         filterDialog.setNegativeButton(getString(R.string.cancel_label), null);
@@ -94,7 +104,6 @@ public class VillagerRecyclerFragment extends Fragment {
     private void presentFilterOptions(String filter) {
         AppDatabase db = new AppDatabase(getContext());
         List<String> options = new ArrayList<>(db.getVillagerProperty(filter));
-        Log.d("-------------", "presentFilterOptions: " + options.toString());
 
         AlertDialog.Builder optionDialog = new AlertDialog.Builder(getContext());
         optionDialog.setTitle(getString(R.string.selection_title, filter));
@@ -105,16 +114,14 @@ public class VillagerRecyclerFragment extends Fragment {
         optionDialog.setView(alertView);
 
         ListView optionList = alertView.findViewById(R.id.listList);
-        FilterListViewAdapter adapter = new FilterListViewAdapter(getContext(), options);
+        FilterListViewAdapter adapter = new FilterListViewAdapter(getContext(), options, filters.get(filter));
         optionList.setAdapter(adapter);
 
         optionDialog.setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+                Log.d("-----SELECTION", adapter.getSelection().toString());
                 filters.put(filter, adapter.getSelection());
-
-                //re-show previous dialog box
-//                presentFilters();
             }
         });
         optionDialog.setNegativeButton(getString(R.string.cancel_label), null);
@@ -131,13 +138,14 @@ public class VillagerRecyclerFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        RecyclerView recyclerView = binding.villagerList;
+        recyclerView = binding.villagerList;
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        filters = new HashMap<>();
+
         Button filterBtn = binding.filterBtn;
         filterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                filters = new HashMap<>();
                 presentFilters();
             }
         });
@@ -174,7 +182,7 @@ public class VillagerRecyclerFragment extends Fragment {
 
         //find the view used for the tablet layout
         View itemDetailFragmentContainer = view.findViewById(R.id.villager_detail_nav_container);
-        View.OnClickListener onClickListener = itemView -> {
+        onClickListener = itemView -> {
             Bundle arguments = new Bundle();
             arguments.putString(VillagerDetailFragment.ARG_ITEM_ID, itemView.getTag().toString());
             //if the tablet layout is not null, navigate to that, else navigate to the detail fragment for phones
@@ -185,7 +193,8 @@ public class VillagerRecyclerFragment extends Fragment {
             }
         };
 
-        recyclerView.setAdapter(new VillagerListRecyclerAdapter(viewModel.getVillagers(), onClickListener, getContext()));
+        adapter = new VillagerListRecyclerAdapter(viewModel.getVillagers(), onClickListener, getContext());
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
