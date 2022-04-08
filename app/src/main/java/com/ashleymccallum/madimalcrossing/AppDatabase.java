@@ -28,7 +28,9 @@ import org.json.JSONObject;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * AppDatabase Class
@@ -55,7 +57,7 @@ public class AppDatabase extends SQLiteOpenHelper {
     public static final String URL_COLUMN = "url";
     public static final String BIRTH_MONTH_COLUMN = "birth_month";
     public static final String BIRTH_DAY_COLUMN = "birth_day";
-    public static final String SIGN_COLUMN = "star_sign";
+    public static final String SIGN_COLUMN = "sign";
     public static final String HOUSE_EXT_COLUMN = "house_ext_uri";
 
     //villager table columns: id, spotted, name, personality, species, url, gender, hobby, catchphrase, icon_uri, img_uri,
@@ -293,6 +295,16 @@ public class AppDatabase extends SQLiteOpenHelper {
         values.put(SPOTTED_COLUMN, villager.getSpotted());
         db.update(VILLAGER_TABLE, values, ID_COLUMN + "=?", new String[]{String.valueOf(villager.getId())});
 
+    }
+
+    public Set<String> getVillagerProperty(String column) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Set<String> allProperties = new HashSet<>();
+        Cursor cursor = db.rawQuery("SELECT " + column + " FROM " + VILLAGER_TABLE, null);
+        while (cursor.moveToNext()) {
+            allProperties.add(cursor.getString(0));
+        }
+        return allProperties;
     }
 
     /**

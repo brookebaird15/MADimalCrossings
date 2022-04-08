@@ -24,6 +24,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.ashleymccallum.madimalcrossing.AppDatabase;
@@ -36,6 +37,9 @@ import com.ashleymccallum.madimalcrossing.pojos.Villager;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
 
 /**
  * A fragment representing a list of Villagers. This fragment
@@ -48,6 +52,74 @@ import java.util.ArrayList;
 public class VillagerRecyclerFragment extends Fragment {
 
     private FragmentVillagerListBinding binding;
+    private HashMap<String, List<String>> filters;
+
+    private void presentFilters() {
+        AlertDialog.Builder filterDialog = new AlertDialog.Builder(getContext());
+        filterDialog.setTitle(getString(R.string.filter_title));
+        filterDialog.setMessage(getString(R.string.filter_message));
+        //add custom layout
+        LayoutInflater alertInflater = filterDialog.create().getLayoutInflater();
+        View alertView = alertInflater.inflate(R.layout.filter_dialog, null);
+        filterDialog.setView(alertView);
+
+        TextView filterOp1 = alertView.findViewById(R.id.filterOp1);
+        TextView filterOp2 = alertView.findViewById(R.id.filterOp2);
+        TextView filterOp3 = alertView.findViewById(R.id.filterOp3);
+        TextView filterOp4 = alertView.findViewById(R.id.filterOp4);
+        TextView filterOp5 = alertView.findViewById(R.id.filterOp5);
+        TextView[] filterOptions = new TextView[] {filterOp1, filterOp2, filterOp3, filterOp4, filterOp5};
+
+        for(TextView filter : filterOptions) {
+            filter.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    presentFilterOptions(filter.getText().toString());
+                }
+            });
+        }
+        //TODO: add textview to list selected filters? -> get from hashmap
+
+        filterDialog.setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //TODO: apply filter and reload recyclerview
+                Log.d("---------------", "selected filters " + filters.toString());
+            }
+        });
+        filterDialog.setNegativeButton(getString(R.string.cancel_label), null);
+        filterDialog.show();
+    }
+
+    private void presentFilterOptions(String filter) {
+        AppDatabase db = new AppDatabase(getContext());
+        List<String> options = new ArrayList<>(db.getVillagerProperty(filter));
+        Log.d("-------------", "presentFilterOptions: " + options.toString());
+
+        AlertDialog.Builder optionDialog = new AlertDialog.Builder(getContext());
+        optionDialog.setTitle(getString(R.string.selection_title, filter));
+        optionDialog.setMessage(getString(R.string.selection_message, filter));
+        //add custom layout
+        LayoutInflater alertInflater = optionDialog.create().getLayoutInflater();
+        View alertView = alertInflater.inflate(R.layout.add_listview, null);
+        optionDialog.setView(alertView);
+
+        ListView optionList = alertView.findViewById(R.id.listList);
+        FilterListViewAdapter adapter = new FilterListViewAdapter(getContext(), options);
+        optionList.setAdapter(adapter);
+
+        optionDialog.setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                filters.put(filter, adapter.getSelection());
+
+                //re-show previous dialog box
+//                presentFilters();
+            }
+        });
+        optionDialog.setNegativeButton(getString(R.string.cancel_label), null);
+        optionDialog.show();
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -65,7 +137,8 @@ public class VillagerRecyclerFragment extends Fragment {
         filterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                filters = new HashMap<>();
+                presentFilters();
             }
         });
 
