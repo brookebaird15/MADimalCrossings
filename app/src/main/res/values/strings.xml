@@ -39,6 +39,7 @@
     <string name="catchphrase">\"%1$s\"</string>
     <string name="villager_fab">Add villager to list</string>
     <string name="select_list">Select List:</string>
+    <string name="goto_villagers">Go to Villager List</string>
 <!--    FILTER     -->
     <string name="collected_switch">Filter by collected</string>
     <string name="filter_title">Filter Villagers</string>
