@@ -86,11 +86,8 @@ public class VillagerRecyclerFragment extends Fragment {
         filterDialog.setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                //TODO: apply filter and reload recyclerview
-                Log.d("---------------", "selected filters " + filters.toString());
                 AppDatabase db = new AppDatabase(getContext());
                 ArrayList<Villager> filteredVillagers = new ArrayList<>(db.getFilteredVillagers(filters));
-                Log.d("-------", "filtered villagers: " + filteredVillagers.size());
                 filteredVillagers.retainAll(viewModel.getVillagers());
 
                 adapter = new VillagerListRecyclerAdapter(filteredVillagers, onClickListener, getContext());
