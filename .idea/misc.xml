@@ -12,6 +12,10 @@
         <entry key="..\:/Users/Matt/AndroidStudioProjects/MADimalCrossings/app/src/main/res/layout-sw600dp/fragment_villager_detail.xml" value="0.27049180327868855" />
         <entry key="..\:/Users/Matt/AndroidStudioProjects/MADimalCrossings/app/src/main/res/layout/fragment_villager_detail.xml" value="0.358695652173913" />
         <entry key="app/src/main/res/drawable/ic_baseline_circle_24.xml" value="0.2640625" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.20516304347826086" />
+        <entry key="app/src/main/res/layout/activity_villager_detail.xml" value="0.20516304347826086" />
+        <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.34739583333333335" />
+        <entry key="app/src/main/res/menu/main.xml" value="0.34739583333333335" />
       </map>
     </option>
   </component>
