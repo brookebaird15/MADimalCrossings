@@ -4,6 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/AndroidStudioProjects/MADimalCrossing/app/src/main/res/layout-sw600dp/fragment_villager_list.xml" value="0.67" />
+        <entry key="..\:/AndroidStudioProjects/MADimalCrossing/app/src/main/res/layout/add_listview.xml" value="0.3625" />
+        <entry key="..\:/AndroidStudioProjects/MADimalCrossing/app/src/main/res/layout/add_listview_item.xml" value="0.3625" />
+        <entry key="..\:/AndroidStudioProjects/MADimalCrossing/app/src/main/res/layout/filter_dialog.xml" value="0.3625" />
         <entry key="..\:/AndroidStudioProjects/MADimalCrossing/app/src/main/res/layout/fragment_villager_detail.xml" value="0.3625" />
         <entry key="..\:/AndroidStudioProjects/MADimalCrossing/app/src/main/res/layout/fragment_villager_list.xml" value="0.3625" />
         <entry key="..\:/Users/Matt/AndroidStudioProjects/MADimalCrossings/app/src/main/res/layout-sw600dp/fragment_villager_detail.xml" value="0.27049180327868855" />

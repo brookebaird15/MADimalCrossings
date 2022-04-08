@@ -37,12 +37,10 @@ import java.util.ArrayList;
 public class SongRecyclerViewAdapter extends RecyclerView.Adapter<SongViewHolder> {
     private final ArrayList<Song> songs;
     private final Context context;
-//    static int currentSong;
 
     public SongRecyclerViewAdapter(Context context, ArrayList<Song> songs) {
         this.songs = songs;
         this.context = context;
-//        currentSong = 0;
     }
 
     @NonNull

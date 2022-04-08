@@ -28,7 +28,11 @@ import org.json.JSONObject;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * AppDatabase Class
@@ -55,7 +59,7 @@ public class AppDatabase extends SQLiteOpenHelper {
     public static final String URL_COLUMN = "url";
     public static final String BIRTH_MONTH_COLUMN = "birth_month";
     public static final String BIRTH_DAY_COLUMN = "birth_day";
-    public static final String SIGN_COLUMN = "star_sign";
+    public static final String SIGN_COLUMN = "sign";
     public static final String HOUSE_EXT_COLUMN = "house_ext_uri";
 
     //villager table columns: id, spotted, name, personality, species, url, gender, hobby, catchphrase, icon_uri, img_uri,
@@ -232,7 +236,7 @@ public class AppDatabase extends SQLiteOpenHelper {
                 values.put(NAME_COLUMN, main.getString("name"));
                 values.put(SPECIES_COLUMN, main.getString("species"));
                 values.put(PERSONALITY_COLUMN, main.getString("personality"));
-                values.put(GENDER_COLUMN, main.getString("gender").toLowerCase());
+                values.put(GENDER_COLUMN, main.getString("gender"));
                 values.put(BIRTH_MONTH_COLUMN, main.getString("birthday_month"));
                 values.put(BIRTH_DAY_COLUMN, main.getInt("birthday_day"));
                 values.put(SIGN_COLUMN, main.getString("sign"));
@@ -281,6 +285,54 @@ public class AppDatabase extends SQLiteOpenHelper {
     }
 
     /**
+     * Searches the database for villagers that match the provided filters
+     * @param filters the filters to be applied
+     * @return an ArrayList of Villager objects
+     * @author Ashley McCallum
+     */
+    public ArrayList<Villager> getFilteredVillagers(HashMap<String, Set<String>> filters) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<Villager> villagers = new ArrayList<>();
+        StringBuilder clause = new StringBuilder();
+        //for each key in the hashmap
+        for (String key : filters.keySet()) {
+            //add opening ( to enclose column condition
+            clause.append("(");
+            //for each value for each key
+            for (String value : filters.get(key)) {
+                //append: key='value' OR
+                clause.append(key + "='" + value + "' OR ");
+            }
+            //remove the last OR and spaces surrounding it
+            clause.setLength(clause.length() - 4);
+            //add the closing ) AND to end column condition
+            clause.append(") AND ");
+        }
+        //remove last AND and space after it
+        clause.setLength(clause.length() - 4);
+        Cursor cursor = db.rawQuery("SELECT * FROM " + VILLAGER_TABLE + " WHERE " + clause, null);
+        while (cursor.moveToNext()) {
+            villagers.add(new Villager(
+                    cursor.getInt(0),
+                    cursor.getInt(1),
+                    cursor.getString(2),
+                    cursor.getString(3),
+                    cursor.getString(4),
+                    cursor.getString(5),
+                    cursor.getString(6),
+                    cursor.getString(7),
+                    cursor.getString(8),
+                    cursor.getString(9),
+                    cursor.getString(10),
+                    cursor.getString(11),
+                    cursor.getInt(12),
+                    cursor.getString(13),
+                    cursor.getString(14)));
+        }
+        return villagers;
+    }
+
+    /**
      * Updates a villager's information in the table
      * Users can only update a villager's catchphrase and spotted columns
      * @param villager the villager being updated
@@ -293,6 +345,22 @@ public class AppDatabase extends SQLiteOpenHelper {
         values.put(SPOTTED_COLUMN, villager.getSpotted());
         db.update(VILLAGER_TABLE, values, ID_COLUMN + "=?", new String[]{String.valueOf(villager.getId())});
 
+    }
+
+    /**
+     * Retrieves all the possible values a villager could have for a selected column
+     * @param column the name of the column being retrieved
+     * @return LinkedHashSet of strings representing the column's contents
+     * @author Ashley McCallum
+     */
+    public LinkedHashSet<String> getVillagerProperty(String column) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        LinkedHashSet<String> allProperties = new LinkedHashSet<>();
+        Cursor cursor = db.rawQuery("SELECT " + column + " FROM " + VILLAGER_TABLE + " ORDER BY " + column + " ASC", null);
+        while (cursor.moveToNext()) {
+            allProperties.add(cursor.getString(0));
+        }
+        return allProperties;
     }
 
     /**

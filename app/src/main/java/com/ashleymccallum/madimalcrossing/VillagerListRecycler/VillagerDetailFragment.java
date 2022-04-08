@@ -1,6 +1,7 @@
 package com.ashleymccallum.madimalcrossing.VillagerListRecycler;
 
 import static com.ashleymccallum.madimalcrossing.VillagerListRecycler.VillagerDetailHostActivity.viewModel;
+import static com.ashleymccallum.madimalcrossing.VillagerListRecycler.VillagerRecyclerFragment.getRecyclerVillagers;
 import static com.ashleymccallum.madimalcrossing.pojos.Villager.FEMALE;
 import static com.ashleymccallum.madimalcrossing.pojos.Villager.MALE;
 
@@ -35,6 +36,7 @@ import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -61,14 +63,18 @@ public class VillagerDetailFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ArrayList<Villager> villagers = getRecyclerVillagers();
+        if(villagers == null) {
+            villagers = viewModel.getVillagers();
+        }
 
         if (getArguments().containsKey(ARG_ITEM_ID)) {
             //if there is no selected item
             if(getArguments().getString(ARG_ITEM_ID).equals("")) {
                 //if there are items that can be selected
-                if(viewModel.getVillagers().size() > 0) {
+                if(villagers.size() > 0) {
                     //select the first item by default
-                    villager = viewModel.getVillagers().get(0);
+                    villager = villagers.get(0);
                 } else {
                     //otherwise, notify user list is empty and navigate back to main activity
                     new AlertDialog.Builder(getContext())
@@ -89,7 +95,7 @@ public class VillagerDetailFragment extends Fragment {
                 }
             } else {
                 //otherwise, display the selected item
-                villager = viewModel.getVillagers().get(Integer.parseInt(getArguments().getString(ARG_ITEM_ID)));
+                villager = villagers.get(Integer.parseInt(getArguments().getString(ARG_ITEM_ID)));
             }
         }
     }
@@ -123,7 +129,7 @@ public class VillagerDetailFragment extends Fragment {
             hobby.setText(villager.getHobby());
             catchphrase.setText(getString(R.string.catchphrase, villager.getCatchphrase()));
             birthday.setText(getDateString(villager));
-            sign.setText(villager.getSign());
+            sign.setText(getSignString(villager));
 
             ImageView gender = rootView.findViewById(R.id.villagerGender);
             if (villager.getGender().equals(MALE)) {
@@ -225,6 +231,44 @@ public class VillagerDetailFragment extends Fragment {
         } else {
             return null;
         }
+    }
+
+    /**
+     * Selects the string resource to use for the villager
+     * @param villager the villager to generate the String for
+     * @return the String representing their sign
+     * @author Ashley McCallum
+     */
+    private String getSignString(Villager villager) {
+        String sign = villager.getSign();
+        switch (sign) {
+            case "Aries":
+                return getString(R.string.aries);
+            case "Taurus":
+                return getString(R.string.taurus);
+            case "Gemini":
+                return getString(R.string.gemini);
+            case "Cancer":
+                return getString(R.string.cancer);
+            case "Leo":
+                return getString(R.string.leo);
+            case "Virgo":
+                return getString(R.string.virgo);
+            case "Libra":
+                return getString(R.string.libra);
+            case "Scorpio":
+                return getString(R.string.scorpio);
+            case "Sagittarius":
+                return getString(R.string.sagittarius);
+            case "Capricorn":
+                return getString(R.string.capricorn);
+            case "Aquarius":
+                return getString(R.string.aquarius);
+            case "Pisces":
+                return getString(R.string.pisces);
+        }
+
+        return sign;
     }
 
     /**

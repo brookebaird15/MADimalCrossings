@@ -1,14 +1,16 @@
 package com.ashleymccallum.madimalcrossing.pojos;
 
 
+import java.util.Objects;
+
 /**
  * Villager Class
  * @author Ashley McCallum
  */
 public class Villager {
 
-    public static final String MALE = "male";
-    public static final String FEMALE = "female";
+    public static final String MALE = "Male";
+    public static final String FEMALE = "Female";
 
     private int id;
     private int spotted;
@@ -120,5 +122,34 @@ public class Villager {
         } else {
             spotted = 0;
         }
+    }
+
+    /**
+     * Override for equality comparison
+     * Two villagers are considered equal if they have the same name, species, and personality
+     * @param obj the object for comparison
+     * @return boolean true if equal, false if not
+     * @author Ashley McCallum
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if(obj == null) {
+            return false;
+        }
+
+        if(obj.getClass() != this.getClass()) {
+            return false;
+        }
+
+        Villager other = (Villager) obj;
+        if(!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+
+        if(!Objects.equals(this.species, other.species)) {
+            return false;
+        }
+
+        return Objects.equals(this.personality, other.personality);
     }
 }

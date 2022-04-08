@@ -24,6 +24,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.ashleymccallum.madimalcrossing.AppDatabase;
@@ -35,7 +36,11 @@ import com.ashleymccallum.madimalcrossing.databinding.VillagerListContentBinding
 import com.ashleymccallum.madimalcrossing.pojos.Villager;
 import com.squareup.picasso.Picasso;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
 
 /**
  * A fragment representing a list of Villagers. This fragment
@@ -47,7 +52,120 @@ import java.util.ArrayList;
  */
 public class VillagerRecyclerFragment extends Fragment {
 
+    private RecyclerView recyclerView;
+    private VillagerListRecyclerAdapter adapter;
+    private View.OnClickListener onClickListener;
     private FragmentVillagerListBinding binding;
+    private HashMap<String, Set<String>> filters;
+    private static ArrayList<Villager> villagers;
+
+    /**
+     * Returns the villagers currently being used by the recycler
+     * Intended for use in the VillagerDetailFragment to ensure the correct villagers are loaded
+     * @return ArrayList of Villager objects
+     * @author Ashley McCallum
+     */
+    public static ArrayList<Villager> getRecyclerVillagers() {
+        return villagers;
+    }
+
+    /**
+     * Creates and presents the dialog box listing the filter options
+     * @author Ashley McCallum
+     */
+    private void presentFilters() {
+        AlertDialog.Builder filterDialog = new AlertDialog.Builder(getContext());
+        filterDialog.setTitle(getString(R.string.filter_title));
+        filterDialog.setMessage(getString(R.string.filter_message));
+        //add custom layout
+        LayoutInflater alertInflater = filterDialog.create().getLayoutInflater();
+        View alertView = alertInflater.inflate(R.layout.filter_dialog, null);
+        filterDialog.setView(alertView);
+
+        TextView filterOp1 = alertView.findViewById(R.id.filterOp1);
+        TextView filterOp2 = alertView.findViewById(R.id.filterOp2);
+        TextView filterOp3 = alertView.findViewById(R.id.filterOp3);
+        TextView filterOp4 = alertView.findViewById(R.id.filterOp4);
+        TextView filterOp5 = alertView.findViewById(R.id.filterOp5);
+        TextView[] filterOptions = new TextView[] {filterOp1, filterOp2, filterOp3, filterOp4, filterOp5};
+        AppDatabase db = new AppDatabase(getContext());
+
+        Button resetBtn = alertView.findViewById(R.id.resetBtn);
+        resetBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //on click, reset the filters and set the villagers back to all in the viewModel
+                filters = new HashMap<>();
+                villagers = viewModel.getVillagers();
+            }
+        });
+
+        for(TextView filter : filterOptions) {
+            //for each textview add an on click listener
+            filter.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    presentFilterOptions(filter.getText().toString());
+                }
+            });
+        }
+
+        filterDialog.setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //if there are filters in the hashmap
+                if(!filters.isEmpty()) {
+                    //for each key in the hashmap
+                    for(String key : filters.keySet()) {
+                        //if the key has no values, remove the key
+                        if(filters.get(key).size() == 0) {
+                            filters.remove(key);
+                        }
+                    }
+                    //set the villagers to be the return value from the filtering method
+                    villagers = new ArrayList<>(db.getFilteredVillagers(filters));
+                    //retain only the villagers that were already present in the current list
+                    villagers.retainAll(viewModel.getVillagers());
+                }
+                //refresh adapter and recyclerview
+                adapter = new VillagerListRecyclerAdapter(villagers, onClickListener, getContext());
+                recyclerView.setAdapter(adapter);
+            }
+        });
+        filterDialog.setNegativeButton(getString(R.string.cancel_label), null);
+        filterDialog.show();
+    }
+
+    /**
+     * Creates and presents a dialog box with specific options for a chosen filter in a ListView
+     * @param filter the property that the user wants to filter by (species, hobby, etc)
+     * @author Ashley McCallum
+     */
+    private void presentFilterOptions(String filter) {
+        AppDatabase db = new AppDatabase(getContext());
+        List<String> options = new ArrayList<>(db.getVillagerProperty(filter));
+
+        AlertDialog.Builder optionDialog = new AlertDialog.Builder(getContext());
+        optionDialog.setTitle(getString(R.string.selection_title, filter));
+        optionDialog.setMessage(getString(R.string.selection_message, filter));
+        //add custom layout
+        LayoutInflater alertInflater = optionDialog.create().getLayoutInflater();
+        View alertView = alertInflater.inflate(R.layout.add_listview, null);
+        optionDialog.setView(alertView);
+
+        ListView optionList = alertView.findViewById(R.id.listList);
+        FilterListViewAdapter adapter = new FilterListViewAdapter(getContext(), options, filters.get(filter));
+        optionList.setAdapter(adapter);
+
+        optionDialog.setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                filters.put(filter, adapter.getSelection());
+            }
+        });
+        optionDialog.setNegativeButton(getString(R.string.cancel_label), null);
+        optionDialog.show();
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -59,13 +177,15 @@ public class VillagerRecyclerFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        RecyclerView recyclerView = binding.villagerList;
+        recyclerView = binding.villagerList;
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        filters = new HashMap<>();
+
         Button filterBtn = binding.filterBtn;
         filterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                presentFilters();
             }
         });
 
@@ -101,7 +221,7 @@ public class VillagerRecyclerFragment extends Fragment {
 
         //find the view used for the tablet layout
         View itemDetailFragmentContainer = view.findViewById(R.id.villager_detail_nav_container);
-        View.OnClickListener onClickListener = itemView -> {
+        onClickListener = itemView -> {
             Bundle arguments = new Bundle();
             arguments.putString(VillagerDetailFragment.ARG_ITEM_ID, itemView.getTag().toString());
             //if the tablet layout is not null, navigate to that, else navigate to the detail fragment for phones
@@ -112,7 +232,12 @@ public class VillagerRecyclerFragment extends Fragment {
             }
         };
 
-        recyclerView.setAdapter(new VillagerListRecyclerAdapter(viewModel.getVillagers(), onClickListener, getContext()));
+        //if this is the first time loading, set the villagers to be the list from the viewModel to display all
+        if(villagers == null) {
+            villagers = viewModel.getVillagers();
+        }
+        adapter = new VillagerListRecyclerAdapter(villagers, onClickListener, getContext());
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
@@ -176,7 +301,6 @@ public class VillagerRecyclerFragment extends Fragment {
                                 .setNegativeButton(context.getString(R.string.cancel_label), null)
                                 .show();
                     }
-                    Log.d("-----", "onLongClick: ");
                     return true;
                 }
             });
