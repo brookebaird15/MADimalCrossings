@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/AndroidStudioProjects.MADimalCrossing.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/AndroidStudioProjects.MADimalCrossing.app.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/MADimalCrossing.iml" filepath="$PROJECT_DIR$/.idea/modules/MADimalCrossing.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/MADimalCrossing.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/MADimalCrossing.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/MADimalCrossings.MADimalCrossing.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/MADimalCrossings.MADimalCrossing.app.iml" />
     </modules>
   </component>
 </project>
