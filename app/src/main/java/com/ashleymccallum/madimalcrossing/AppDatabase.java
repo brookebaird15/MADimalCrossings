@@ -566,7 +566,6 @@ public class AppDatabase extends SQLiteOpenHelper {
         return list;
     }
 
-    //TODO: verify all methods below work correctly for villager list relation table
     /**
      * Adds a single villager to a list
      * @param list the list being added to
@@ -639,7 +638,6 @@ public class AppDatabase extends SQLiteOpenHelper {
      */
     public void removeVillagerFromList(int villagerID, int listID) {
         SQLiteDatabase db = this.getWritableDatabase();
-        //TODO: check placeholders in where clause function correctly
         db.delete(LIST_VILLAGER_TABLE, LIST_FK_COLUMN + "=? AND "
                 + VILLAGER_FK_COLUMN + "=?", new String[]{String.valueOf(listID), String.valueOf(villagerID)});
 
