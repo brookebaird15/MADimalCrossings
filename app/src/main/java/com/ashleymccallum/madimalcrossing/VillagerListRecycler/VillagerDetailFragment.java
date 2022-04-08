@@ -129,7 +129,7 @@ public class VillagerDetailFragment extends Fragment {
             hobby.setText(villager.getHobby());
             catchphrase.setText(getString(R.string.catchphrase, villager.getCatchphrase()));
             birthday.setText(getDateString(villager));
-            sign.setText(villager.getSign());
+            sign.setText(getSignString(villager));
 
             ImageView gender = rootView.findViewById(R.id.villagerGender);
             if (villager.getGender().equals(MALE)) {
@@ -231,6 +231,44 @@ public class VillagerDetailFragment extends Fragment {
         } else {
             return null;
         }
+    }
+
+    /**
+     * Selects the string resource to use for the villager
+     * @param villager the villager to generate the String for
+     * @return the String representing their sign
+     * @author Ashley McCallum
+     */
+    private String getSignString(Villager villager) {
+        String sign = villager.getSign();
+        switch (sign) {
+            case "Aries":
+                return getString(R.string.aries);
+            case "Taurus":
+                return getString(R.string.taurus);
+            case "Gemini":
+                return getString(R.string.gemini);
+            case "Cancer":
+                return getString(R.string.cancer);
+            case "Leo":
+                return getString(R.string.leo);
+            case "Virgo":
+                return getString(R.string.virgo);
+            case "Libra":
+                return getString(R.string.libra);
+            case "Scorpio":
+                return getString(R.string.scorpio);
+            case "Sagittarius":
+                return getString(R.string.sagittarius);
+            case "Capricorn":
+                return getString(R.string.capricorn);
+            case "Aquarius":
+                return getString(R.string.aquarius);
+            case "Pisces":
+                return getString(R.string.pisces);
+        }
+
+        return sign;
     }
 
     /**
