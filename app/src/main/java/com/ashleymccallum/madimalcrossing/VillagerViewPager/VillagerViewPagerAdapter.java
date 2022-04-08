@@ -1,29 +1,54 @@
 package com.ashleymccallum.madimalcrossing.VillagerViewPager;
 
+import static com.ashleymccallum.madimalcrossing.VillagerListRecycler.VillagerDetailHostActivity.ALL_VILLAGER_KEY;
+
+import android.content.Context;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-public class VillagerViewPagerAdapter extends FragmentStateAdapter {
+import com.ashleymccallum.madimalcrossing.R;
+import com.ashleymccallum.madimalcrossing.pojos.VillagerList;
 
-    public VillagerViewPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
+import java.util.ArrayList;
+
+public class VillagerViewPagerAdapter extends FragmentStateAdapter {
+    ArrayList<VillagerList> lists;
+    Context context;
+
+    public VillagerViewPagerAdapter(@NonNull FragmentActivity fragmentActivity, ArrayList<VillagerList> lists, Context context) {
         super(fragmentActivity);
+        this.lists = lists;
+        this.context = context;
     }
 
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        switch (position) {
-            case 0: return VillagerListFragment.newInstance("All villagers", "");
-            case 1: return VillagerListFragment.newInstance("My villagers", "");
-            case 2: return VillagerListFragment.newInstance("My dreamies", "");
-            default: return VillagerListFragment.newInstance("Issue Loading", "");
+        if(position == 0) {
+            //first page is always "all villagers"
+            return VillagerListFragment.newInstance(context.getString(R.string.all_villagers), ALL_VILLAGER_KEY);
         }
+        //get the list at the position -1 because the first position is always "all villagers"
+        VillagerList list = lists.get(position - 1);
+        return VillagerListFragment.newInstance(list.getName(), String.valueOf(list.getId()));
     }
 
     @Override
     public int getItemCount() {
-        return 3;
+        //if there are lists in the db
+        if(lists.size() > 0) {
+            //return lists + 1 to account for default "all villagers" list
+            return lists.size() + 1;
+        }
+        //if db empty return 1 for "all villagers" list
+        return 1;
+    }
+
+    public void updateData(ArrayList<VillagerList> lists) {
+        this.lists = lists;
+        this.notifyDataSetChanged();
     }
 }

@@ -4,10 +4,95 @@
     <string name="title_bingo">BINGO</string>
     <string name="title_news">News</string>
     <string name="title_music">KK Tunes</string>
+    <string name="settings">Settings</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_villager_detail_host">VillagerDetailHostActivity</string>
     <string name="title_villager_list">Villagers</string>
     <string name="title_villager_detail">Villager Detail</string>
+    <string name="all_villagers">All Villagers</string>
+    <string name="add_list">Add New List</string>
+    <string name="edit_name">Edit List Name</string>
+    <string name="delete_title">Delete List</string>
+    <string name="delete_message">Are you sure you want to delete %1$s? This cannot be undone.</string>
+    <string name="remove_villager">Remove Villager</string>
+    <string name="delete_villager">Are you sure you want to remove %1$s from this list?</string>
+    <string name="empty_list_title">This list is empty!</string>
+    <string name="empty_list_message">Add a villager to this list to view it.</string>
+    <string name="edit_phrase">Change %1$s\'s catchphrase:</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="save_label">Save</string>
+    <string name="cancel_label">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="ext_app_error">Could not launch application</string>
+    <string name="empty_btn">Clear List</string>
+    <string name="empty_title">Clear this list?</string>
+    <string name="empty_message">Are you sure you want to clear this list? This cannot be undone.</string>
+    <string name="filter_btn">Filter</string>
+    <string name="hobby_label">Hobby: </string>
+    <string name="personality_label">Personality: </string>
+    <string name="species_label">Species: </string>
+    <string name="catchphrase_label">Catchphrase: </string>
+    <string name="birthday_label">Birthday: </string>
+    <string name="sign_label">Sign: </string>
+    <string name="catchphrase">\"%1$s\"</string>
+    <string name="villager_fab">Add villager to list</string>
+    <string name="select_list">Select List:</string>
+<!--    FILTER     -->
+    <string name="collected_switch">Filter by collected</string>
+    <string name="filter_title">Filter Villagers</string>
+    <string name="filter_message">Select a filter option:</string>
+    <string name="selection_title">%1$s Filters</string>
+    <string name="selection_message">Select a %1$s to filter by:</string>
+    <string name="reset_btn">Reset</string>
+    <string name="species">Species</string>
+    <string name="hobby">Hobby</string>
+    <string name="personality">Personality</string>
+    <string name="gender">Gender</string>
+    <string name="gender_f">Female</string>
+    <string name="gender_m">Male</string>
+    <string name="sign">Sign</string>
+    <string name="aries">Aries &#9800;</string>
+    <string name="taurus">Taurus &#9801;</string>
+    <string name="gemini">Gemini &#9802;</string>
+    <string name="cancer">Cancer &#9803;</string>
+    <string name="leo">Leo &#9804;</string>
+    <string name="virgo">Virgo &#9805;</string>
+    <string name="libra">Libra &#9806;</string>
+    <string name="scorpio">Scorpio &#9807;</string>
+    <string name="sagittarius">Sagittarius &#9808;</string>
+    <string name="capricorn">Capricorn &#9809;</string>
+    <string name="aquarius">Aquarius &#9810;</string>
+    <string name="pisces">Pisces &#9811;</string>
+
+<!--    KK TUNES    -->
+    <string name="song_buy">Buy Price: </string>
+    <string name="song_sell">Sell Price: </string>
+    <string name="song_orderable">Can be ordered: </string>
+    <string name="song_collected">Collected: </string>
+<!--    BINGO   -->
+    <string name="bingo_selector">Select Mode: </string>
+    <string name="bingo_row">5-in-a-Row</string>
+    <string name="bingo_corners">4 Corners</string>
+    <string name="bingo_x">X Combo</string>
+    <string name="bingo_blackout">Blackout</string>
+    <string name="bingo_ring">Ring</string>
+    <string name="game_over">You Won!</string>
+    <string name="continue_btn">Continue</string>
+    <string name="new_game_btn">New Game</string>
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
 </resources>

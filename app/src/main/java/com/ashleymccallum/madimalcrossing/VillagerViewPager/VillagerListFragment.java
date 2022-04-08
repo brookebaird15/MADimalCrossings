@@ -1,19 +1,27 @@
 package com.ashleymccallum.madimalcrossing.VillagerViewPager;
 
+import static com.ashleymccallum.madimalcrossing.VillagerListRecycler.VillagerDetailHostActivity.ALL_VILLAGER_KEY;
+import static com.ashleymccallum.madimalcrossing.VillagerListRecycler.VillagerDetailHostActivity.LIST_ID;
+import static com.ashleymccallum.madimalcrossing.pojos.VillagerList.EDIT_KEY;
+
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.ashleymccallum.madimalcrossing.AppDatabase;
 import com.ashleymccallum.madimalcrossing.R;
-import com.ashleymccallum.madimalcrossing.VillagerDetailHostActivity;
+import com.ashleymccallum.madimalcrossing.VillagerListRecycler.VillagerDetailHostActivity;
+import com.ashleymccallum.madimalcrossing.pojos.VillagerList;
 import com.google.android.material.snackbar.Snackbar;
 
 /**
@@ -23,12 +31,10 @@ import com.google.android.material.snackbar.Snackbar;
  */
 public class VillagerListFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
@@ -44,7 +50,6 @@ public class VillagerListFragment extends Fragment {
      * @param param2 Parameter 2.
      * @return A new instance of fragment VillagerListFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static VillagerListFragment newInstance(String param1, String param2) {
         VillagerListFragment fragment = new VillagerListFragment();
         Bundle args = new Bundle();
@@ -77,10 +82,11 @@ public class VillagerListFragment extends Fragment {
                 @Override
                 public void onClick(View view) {
                     Intent i = new Intent(getActivity(), VillagerDetailHostActivity.class);
+                    i.putExtra(LIST_ID, mParam2);
                     try {
                         startActivity(i);
                     }catch (ActivityNotFoundException e) {
-                        Snackbar.make(view, "Could not open list", Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(view, getString(R.string.ext_app_error), Snackbar.LENGTH_LONG).show();
                     }
                 }
             });

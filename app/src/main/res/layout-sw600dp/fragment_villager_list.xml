@@ -5,19 +5,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <Button
+        android:id="@+id/emptyBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/empty_btn"
+        app:layout_constraintEnd_toEndOf="@+id/villager_list"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/filterBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/filter_btn"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/villager_list"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/villager_list"
         android:name="com.ashleymccallum.madimalcrossing.VillagerListFragment"
         android:layout_width="0dp"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_marginStart="@dimen/container_margin"
         android:layout_marginEnd="@dimen/container_margin"
         app:layoutManager="LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/guideline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:context="com.ashleymccallum.madimalcrossing.VillagerDetailHostActivity"
+        app:layout_constraintTop_toBottomOf="@+id/emptyBtn"
+        tools:context="com.ashleymccallum.madimalcrossing.VillagerListRecycler.VillagerDetailHostActivity"
         tools:listitem="@layout/villager_list_content" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -35,8 +53,16 @@
         android:layout_marginStart="@dimen/container_margin"
         app:defaultNavHost="false"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/guideline"
         app:layout_constraintTop_toTopOf="parent"
         app:navGraph="@navigation/primary_details_sub_nav_graph" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="184dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
