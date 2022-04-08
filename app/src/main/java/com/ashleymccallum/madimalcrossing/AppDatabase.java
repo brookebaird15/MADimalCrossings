@@ -284,6 +284,12 @@ public class AppDatabase extends SQLiteOpenHelper {
         return villagers;
     }
 
+    /**
+     * Searches the database for villagers that match the provided filters
+     * @param filters the filters to be applied
+     * @return an ArrayList of Villager objects
+     * @author Ashley McCallum
+     */
     public ArrayList<Villager> getFilteredVillagers(HashMap<String, Set<String>> filters) {
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<Villager> villagers = new ArrayList<>();
