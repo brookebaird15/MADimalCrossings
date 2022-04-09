@@ -96,6 +96,7 @@ public class VillagerListFragment extends Fragment {
                                     @Override
                                     public void onAnimationStopEnd() {
                                         Intent i = new Intent(getActivity(), VillagerDetailHostActivity.class);
+                                        //TODO: button no longer loads correct list on click, always loads full villager list
                                         i.putExtra(LIST_ID, mParam2);
                                         i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                                         try {
