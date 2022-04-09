@@ -9,7 +9,7 @@
         android:id="@+id/songDetailImg"
         android:layout_width="0dp"
         android:layout_height="200dp"
-        android:background="@color/purple_200"
+        android:background="@color/acgreen"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

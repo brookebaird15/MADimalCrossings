@@ -78,7 +78,7 @@ public class BingoFragment extends Fragment implements OnGameWinListener {
     }
 
     private BingoGame game;
-    private TextView modeText;
+    private TextView selectModeText;
     private KonfettiView konfettiView;
     private Party party;
     private RecyclerView recyclerView;
@@ -114,13 +114,12 @@ public class BingoFragment extends Fragment implements OnGameWinListener {
                 .position(new Position.Relative(0.5, 0.3))
                 .build();
 
-        modeText = view.findViewById(R.id.bingoModeText);
-        modeText.setText(game.currentMode);
-        TextView selectModeText = view.findViewById(R.id.bingoModeSelector);
+        selectModeText = view.findViewById(R.id.bingoModeSelector);
+        selectModeText.setText(getString(R.string.bingo_selector, game.currentMode));
         selectModeText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                presentModeSelectDialog(game, modeText);
+                presentModeSelectDialog(game, selectModeText);
             }
         });
 
@@ -175,7 +174,7 @@ public class BingoFragment extends Fragment implements OnGameWinListener {
             gameOverDialog.setPositiveButton(getString(R.string.continue_btn), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    presentModeSelectDialog(game, modeText);
+                    presentModeSelectDialog(game, selectModeText);
                 }
             });
         }
@@ -197,7 +196,7 @@ public class BingoFragment extends Fragment implements OnGameWinListener {
      */
     private void presentModeSelectDialog(BingoGame game, TextView modeText) {
         AlertDialog.Builder modeDialog = new AlertDialog.Builder(getContext());
-        modeDialog.setTitle(getString(R.string.bingo_selector));
+        modeDialog.setTitle(getString(R.string.bingo_selector, ""));
         //add custom layout
         LayoutInflater alertInflater = modeDialog.create().getLayoutInflater();
         View alertView = alertInflater.inflate(R.layout.bingo_mode_select, null);
@@ -245,7 +244,7 @@ public class BingoFragment extends Fragment implements OnGameWinListener {
                         break;
                 }
                 if(game.canChangeMode(modeSelection)) {
-                    modeText.setText(modeSelection);
+                    modeText.setText(getString(R.string.bingo_selector, modeSelection));
                 }
             }
         });
