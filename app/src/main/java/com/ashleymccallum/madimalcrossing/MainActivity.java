@@ -1,6 +1,7 @@
 package com.ashleymccallum.madimalcrossing;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.AudioAttributes;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -30,6 +31,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.ashleymccallum.madimalcrossing.databinding.ActivityMainBinding;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -91,6 +93,8 @@ public class MainActivity extends AppCompatActivity {
         } else {
             loadArticles(this);
         }
+
+        db.close();
     }
 
     @Override
