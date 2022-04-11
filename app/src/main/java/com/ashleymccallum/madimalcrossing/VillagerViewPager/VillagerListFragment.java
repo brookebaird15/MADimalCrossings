@@ -1,5 +1,7 @@
 package com.ashleymccallum.madimalcrossing.VillagerViewPager;
 
+import static com.ashleymccallum.madimalcrossing.VillagerListRecycler.VillagerDetailHostActivity.LIST_ID;
+
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Bundle;
@@ -72,6 +74,7 @@ public class VillagerListFragment extends Fragment {
                 @Override
                 public void onClick(View view) {
                     Intent i = new Intent(getActivity(), VillagerDetailHostActivity.class);
+                    i.putExtra(LIST_ID, mParam2);
                     try {
                         startActivity(i);
                     }catch (ActivityNotFoundException e) {
