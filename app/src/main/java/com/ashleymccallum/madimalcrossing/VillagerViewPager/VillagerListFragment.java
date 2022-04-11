@@ -115,7 +115,7 @@ public class VillagerListFragment extends Fragment {
 
                             }
                         }
-                    }, 1000);
+                    }, 2000);
                 }
             });
         }
