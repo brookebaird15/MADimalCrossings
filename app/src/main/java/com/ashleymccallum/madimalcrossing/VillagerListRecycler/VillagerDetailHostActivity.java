@@ -51,7 +51,7 @@ public class VillagerDetailHostActivity extends AppCompatActivity {
                 .build();
 
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -60,8 +60,8 @@ public class VillagerDetailHostActivity extends AppCompatActivity {
         return navController.navigateUp() || super.onSupportNavigateUp();
     }
 
-    public boolean onOptionsItemSelected(MenuItem item) {
-        this.finish();
-        return true;
-    }
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        this.finish();
+//        return true;
+//    }
 }
