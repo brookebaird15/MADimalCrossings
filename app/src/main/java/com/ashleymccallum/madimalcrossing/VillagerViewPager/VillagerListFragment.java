@@ -78,7 +78,7 @@ public class VillagerListFragment extends Fragment {
                     try {
                         startActivity(i);
                     }catch (ActivityNotFoundException e) {
-                        Snackbar.make(view, "Could not open list", Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(view, getString(R.string.list_error), Snackbar.LENGTH_LONG).show();
                     }
                 }
             });

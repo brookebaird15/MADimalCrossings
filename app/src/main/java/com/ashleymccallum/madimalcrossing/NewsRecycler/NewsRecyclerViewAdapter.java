@@ -19,7 +19,11 @@ import com.ashleymccallum.madimalcrossing.pojos.NewsItem;
 import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 
+import java.time.Instant;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<NewsRecyclerViewAdapter.NewsViewHolder> {
     ArrayList<NewsItem> items;
@@ -43,6 +47,8 @@ public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<NewsRecyclerVi
         holder.title.setText(item.getTitle());
         holder.author.setText(item.getAuthorName());
         holder.publisher.setText(item.getPublisherName());
+        //todo: parse timestamp
+//        Date date = Date.from(Instant.parse(item.getTimestamp()));
         holder.date.setText(item.getTimestamp());
         holder.description.setText(item.getDescription());
         Picasso.get().load(item.getImgURL()).into(holder.image);

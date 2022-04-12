@@ -1,5 +1,8 @@
 package com.ashleymccallum.madimalcrossing.NewsRecycler;
 
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,9 +12,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.ashleymccallum.madimalcrossing.AppDatabase;
 import com.ashleymccallum.madimalcrossing.R;
+import com.google.android.material.snackbar.Snackbar;
+
+import nl.dionsegijn.konfetti.core.Party;
 
 
 /**
@@ -65,11 +72,51 @@ public class NewsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_news, container, false);
         AppDatabase db = new AppDatabase(getContext());
 
-
         RecyclerView recyclerView = view.findViewById(R.id.newsRecycler);
         recyclerView.setAdapter(new NewsRecyclerViewAdapter(db.getArticles(), getContext()));
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        ImageView facebook = view.findViewById(R.id.logoFacebook);
+        facebook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri site = Uri.parse("https://www.facebook.com/animalcrossingcommunity/");
+                Intent i = new Intent(Intent.ACTION_VIEW, site);
+                try {
+                    startActivity(i);
+                } catch (ActivityNotFoundException e) {
+                    Snackbar.make(view, getString(R.string.ext_app_error), Snackbar.LENGTH_LONG).show();
+                }
+            }
+        });
+
+        ImageView twitter = view.findViewById(R.id.logoTwitter);
+        twitter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri site = Uri.parse("https://twitter.com/animalcrossing");
+                Intent i = new Intent(Intent.ACTION_VIEW, site);
+                try {
+                    startActivity(i);
+                } catch (ActivityNotFoundException e) {
+                    Snackbar.make(view, getString(R.string.ext_app_error), Snackbar.LENGTH_LONG).show();
+                }
+            }
+        });
+
+        ImageView instagram = view.findViewById(R.id.logoInstagram);
+        instagram.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri site = Uri.parse("https://www.instagram.com/animalcrossing_official/");
+                Intent i = new Intent(Intent.ACTION_VIEW, site);
+                try {
+                    startActivity(i);
+                } catch (ActivityNotFoundException e) {
+                    Snackbar.make(view, getString(R.string.ext_app_error), Snackbar.LENGTH_LONG).show();
+                }
+            }
+        });
 
         return view;
     }
