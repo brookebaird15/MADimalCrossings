@@ -1,5 +1,7 @@
 package com.ashleymccallum.madimalcrossing.VillagerListRecycler;
 
+import android.util.Log;
+
 import androidx.lifecycle.ViewModel;
 
 import com.ashleymccallum.madimalcrossing.pojos.Villager;
@@ -13,9 +15,18 @@ import java.util.ArrayList;
  */
 public class VillagerViewModel extends ViewModel {
     private final ArrayList<Villager> villagers;
+    private ArrayList<Villager> filteredVillagers;
 
     public VillagerViewModel(ArrayList<Villager> villagers) {
         this.villagers = villagers;
+    }
+
+    public void setFilteredVillagers(ArrayList<Villager> villagers) {
+        this.filteredVillagers = villagers;
+    }
+
+    public ArrayList<Villager> getFilteredVillagers() {
+        return filteredVillagers;
     }
 
     public ArrayList<Villager> getVillagers() {

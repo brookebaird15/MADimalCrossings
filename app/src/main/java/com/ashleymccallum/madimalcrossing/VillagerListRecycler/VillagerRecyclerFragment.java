@@ -57,17 +57,17 @@ public class VillagerRecyclerFragment extends Fragment {
     private View.OnClickListener onClickListener;
     private FragmentVillagerListBinding binding;
     private HashMap<String, Set<String>> filters;
-    private static ArrayList<Villager> villagers;
+    private ArrayList<Villager> villagers;
 
-    /**
-     * Returns the villagers currently being used by the recycler
-     * Intended for use in the VillagerDetailFragment to ensure the correct villagers are loaded
-     * @return ArrayList of Villager objects
-     * @author Ashley McCallum
-     */
-    public static ArrayList<Villager> getRecyclerVillagers() {
-        return villagers;
-    }
+//    /**
+//     * Returns the villagers currently being used by the recycler
+//     * Intended for use in the VillagerDetailFragment to ensure the correct villagers are loaded
+//     * @return ArrayList of Villager objects
+//     * @author Ashley McCallum
+//     */
+//    public ArrayList<Villager> getRecyclerVillagers() {
+//        return villagers;
+//    }
 
     /**
      * Creates and presents the dialog box listing the filter options
@@ -96,7 +96,10 @@ public class VillagerRecyclerFragment extends Fragment {
             public void onClick(View view) {
                 //on click, reset the filters and set the villagers back to all in the viewModel
                 filters = new HashMap<>();
+                //get all the villagers from the view model
                 villagers = viewModel.getVillagers();
+                //set the filtered villagers in the view model back to null
+                viewModel.setFilteredVillagers(null);
             }
         });
 
@@ -126,6 +129,8 @@ public class VillagerRecyclerFragment extends Fragment {
                     villagers = new ArrayList<>(db.getFilteredVillagers(filters));
                     //retain only the villagers that were already present in the current list
                     villagers.retainAll(viewModel.getVillagers());
+                    //set the filtered villagers in the view model
+                    viewModel.setFilteredVillagers(villagers);
                 }
                 //refresh adapter and recyclerview
                 adapter = new VillagerListRecyclerAdapter(villagers, onClickListener, getContext());
@@ -232,10 +237,15 @@ public class VillagerRecyclerFragment extends Fragment {
             }
         };
 
-        //if this is the first time loading, set the villagers to be the list from the viewModel to display all
-        if(villagers == null) {
+        //if the viewmodel has filtered villagers
+        if(viewModel.getFilteredVillagers() != null) {
+            //load the filtered villagers
+            villagers = viewModel.getFilteredVillagers();
+        } else {
+            //otherwise load all the villagers
             villagers = viewModel.getVillagers();
         }
+
         adapter = new VillagerListRecyclerAdapter(villagers, onClickListener, getContext());
         recyclerView.setAdapter(adapter);
     }

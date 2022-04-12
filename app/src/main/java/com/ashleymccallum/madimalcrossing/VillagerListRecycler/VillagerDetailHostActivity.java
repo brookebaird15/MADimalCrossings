@@ -3,6 +3,7 @@ package com.ashleymccallum.madimalcrossing.VillagerListRecycler;
 import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;

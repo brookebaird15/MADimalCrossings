@@ -1,7 +1,6 @@
 package com.ashleymccallum.madimalcrossing.VillagerListRecycler;
 
 import static com.ashleymccallum.madimalcrossing.VillagerListRecycler.VillagerDetailHostActivity.viewModel;
-import static com.ashleymccallum.madimalcrossing.VillagerListRecycler.VillagerRecyclerFragment.getRecyclerVillagers;
 import static com.ashleymccallum.madimalcrossing.pojos.Villager.FEMALE;
 import static com.ashleymccallum.madimalcrossing.pojos.Villager.MALE;
 
@@ -34,6 +33,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 
+import java.lang.reflect.Array;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -63,8 +63,13 @@ public class VillagerDetailFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ArrayList<Villager> villagers = getRecyclerVillagers();
-        if(villagers == null) {
+
+        ArrayList<Villager> villagers;
+        //if there are filtered villagers, load those
+        if(viewModel.getFilteredVillagers() != null) {
+            villagers = viewModel.getFilteredVillagers();
+        } else {
+            //otherwise load all the villagers for that list
             villagers = viewModel.getVillagers();
         }
 
