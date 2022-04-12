@@ -15,13 +15,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.royrodriguez.transitionbutton.TransitionButton
+    <Button
         android:id="@+id/villagerListButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/acgreen"
         android:backgroundTint="@color/acgreen"
         android:text="@string/goto_villagers"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
