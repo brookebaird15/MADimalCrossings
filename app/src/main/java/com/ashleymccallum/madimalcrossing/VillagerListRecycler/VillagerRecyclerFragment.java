@@ -59,16 +59,6 @@ public class VillagerRecyclerFragment extends Fragment {
     private HashMap<String, Set<String>> filters;
     private ArrayList<Villager> villagers;
 
-//    /**
-//     * Returns the villagers currently being used by the recycler
-//     * Intended for use in the VillagerDetailFragment to ensure the correct villagers are loaded
-//     * @return ArrayList of Villager objects
-//     * @author Ashley McCallum
-//     */
-//    public ArrayList<Villager> getRecyclerVillagers() {
-//        return villagers;
-//    }
-
     /**
      * Creates and presents the dialog box listing the filter options
      * @author Ashley McCallum
