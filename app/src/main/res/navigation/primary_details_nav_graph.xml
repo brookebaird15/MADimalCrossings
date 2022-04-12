@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/villager_list_fragment"
         android:name="com.ashleymccallum.madimalcrossing.VillagerListRecycler.VillagerRecyclerFragment"
-        android:label="VillagerListFragment">
+        android:label="Villager List">
         <action
             android:id="@+id/show_villager_detail"
             app:destination="@id/villager_detail_fragment" />
@@ -16,7 +16,7 @@
     <fragment
         android:id="@+id/villager_detail_fragment"
         android:name="com.ashleymccallum.madimalcrossing.VillagerListRecycler.VillagerDetailFragment"
-        android:label="villager_detail"
+        android:label="About the Villager"
         tools:layout="@layout/fragment_villager_detail">
         <argument
             android:name="item_id"

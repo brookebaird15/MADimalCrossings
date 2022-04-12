@@ -8,25 +8,25 @@
     <fragment
         android:id="@+id/nav_villager"
         android:name="com.ashleymccallum.madimalcrossing.VillagerViewPager.VillagerFragment"
-        android:label="fragment_villager"
+        android:label="Home"
         tools:layout="@layout/fragment_villager" />
     <fragment
         android:id="@+id/nav_bingo"
         android:name="com.ashleymccallum.madimalcrossing.Bingo.BingoFragment"
-        android:label="fragment_bingo"
+        android:label="Bingo"
         tools:layout="@layout/fragment_bingo" />
     <fragment
         android:id="@+id/nav_song"
         android:name="com.ashleymccallum.madimalcrossing.SongRecycler.SongFragment"
-        android:label="fragment_music"
+        android:label="KK Tunes"
         tools:layout="@layout/fragment_music" />
     <fragment
         android:id="@+id/nav_news"
         android:name="com.ashleymccallum.madimalcrossing.NewsRecycler.NewsFragment"
-        android:label="fragment_news"
+        android:label="News"
         tools:layout="@layout/fragment_news" />
     <fragment
         android:id="@+id/nav_settings"
         android:name="com.ashleymccallum.madimalcrossing.SettingsFragment"
-        android:label="SettingsFragment" />
+        android:label="Settings" />
 </navigation>

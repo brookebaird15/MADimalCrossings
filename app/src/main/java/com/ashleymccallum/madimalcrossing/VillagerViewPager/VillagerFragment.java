@@ -89,7 +89,6 @@ public class VillagerFragment extends Fragment {
         adapter = new VillagerViewPagerAdapter(getActivity(), db.getAllLists(), getContext());
         viewPager2.setAdapter(adapter);
         ImageView editListBtn = view.findViewById(R.id.editListBtn);
-//        ImageView addListBtn = view.findViewById(R.id.addListBtn);
         ImageView deleteListBtn = view.findViewById(R.id.deleteListBtn);
 
         viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
