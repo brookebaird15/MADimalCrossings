@@ -202,13 +202,13 @@
                         android:layout_height="wrap_content"
                         android:text="Exterior:"
                         android:textSize="14sp"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/textView19"
                         app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
                     <ImageView
                         android:id="@+id/villagerHouse"
-                        android:layout_width="400dp"
-                        android:layout_height="450dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView"
@@ -247,6 +247,7 @@
         app:fabCradleRoundedCornerRadius="10dp"
         app:hideOnScroll="true">
     </com.google.android.material.bottomappbar.BottomAppBar>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/villagerFAB"
         android:layout_width="wrap_content"
@@ -254,5 +255,5 @@
         android:clickable="true"
         android:contentDescription="@string/villager_fab"
         android:src="@drawable/ic_baseline_favorite_24"
-        app:layout_anchor="@id/bottomAppBar"/>
+        app:layout_anchor="@id/bottomAppBar" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
