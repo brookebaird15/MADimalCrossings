@@ -1,11 +1,12 @@
 <resources>
+<!-- BOTTOM NAV TITLES -->
     <string name="app_name">MADimalCrossing</string>
     <string name="title_villager">Villagers</string>
     <string name="title_bingo">BINGO</string>
     <string name="title_news">News</string>
     <string name="title_music">KK Tunes</string>
     <string name="settings">Settings</string>
-
+<!-- GENERAL LAYOUT -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_villager_detail_host">VillagerDetailHostActivity</string>
     <string name="title_villager_list">Villagers</string>
@@ -39,6 +40,7 @@
     <string name="catchphrase">\"%1$s\"</string>
     <string name="villager_fab">Add villager to list</string>
     <string name="select_list">Select List:</string>
+    <string name="goto_villagers">Go to Villager List</string>
 <!--    FILTER     -->
     <string name="collected_switch">Filter by collected</string>
     <string name="filter_title">Filter Villagers</string>
@@ -53,18 +55,18 @@
     <string name="gender_f">Female</string>
     <string name="gender_m">Male</string>
     <string name="sign">Sign</string>
-    <string name="aries">Aries &#9800;</string>
-    <string name="taurus">Taurus &#9801;</string>
-    <string name="gemini">Gemini &#9802;</string>
-    <string name="cancer">Cancer &#9803;</string>
-    <string name="leo">Leo &#9804;</string>
-    <string name="virgo">Virgo &#9805;</string>
-    <string name="libra">Libra &#9806;</string>
-    <string name="scorpio">Scorpio &#9807;</string>
-    <string name="sagittarius">Sagittarius &#9808;</string>
-    <string name="capricorn">Capricorn &#9809;</string>
-    <string name="aquarius">Aquarius &#9810;</string>
-    <string name="pisces">Pisces &#9811;</string>
+    <string name="aries">Aries ♈︎</string>
+    <string name="taurus">Taurus ♉︎</string>
+    <string name="gemini">Gemini ♊︎</string>
+    <string name="cancer">Cancer ♋︎</string>
+    <string name="leo">Leo ♌︎</string>
+    <string name="virgo">Virgo ♍︎</string>
+    <string name="libra">Libra ♎︎</string>
+    <string name="scorpio">Scorpio ♏︎</string>
+    <string name="sagittarius">Sagittarius ♐︎</string>
+    <string name="capricorn">Capricorn ♑︎</string>
+    <string name="aquarius">Aquarius ♒︎</string>
+    <string name="pisces">Pisces ♓︎</string>
 
 <!--    KK TUNES    -->
     <string name="song_buy">Buy Price: </string>

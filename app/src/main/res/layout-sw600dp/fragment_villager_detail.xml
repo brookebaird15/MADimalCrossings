@@ -249,7 +249,7 @@
         android:layout_width="match_parent"
         android:layout_height="53dp"
         android:layout_gravity="bottom"
-        app:backgroundTint="@color/purple_200"
+        app:backgroundTint="@color/acgreen"
         app:fabCradleMargin="10dp"
         app:fabCradleRoundedCornerRadius="10dp"
         app:hideOnScroll="true"></com.google.android.material.bottomappbar.BottomAppBar>

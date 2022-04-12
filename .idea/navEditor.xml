@@ -116,6 +116,7 @@
             </LayoutPositions>
           </value>
         </entry>
+<<<<<<< HEAD
         <entry key="primary_details_sub_nav_graph.xml">
           <value>
             <LayoutPositions>
@@ -138,6 +139,8 @@
             </LayoutPositions>
           </value>
         </entry>
+=======
+>>>>>>> e113a4a04dad031b8ac0782aac678ae46c079164
       </map>
     </option>
   </component>
