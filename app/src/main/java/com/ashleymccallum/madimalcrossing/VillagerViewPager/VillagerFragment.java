@@ -23,6 +23,7 @@ import android.widget.TextView;
 import com.ashleymccallum.madimalcrossing.AppDatabase;
 import com.ashleymccallum.madimalcrossing.R;
 import com.ashleymccallum.madimalcrossing.pojos.VillagerList;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import nl.dionsegijn.konfetti.core.Party;
 
@@ -82,12 +83,13 @@ public class VillagerFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_villager, container, false);
+        FloatingActionButton addList = view.findViewById(R.id.addList);
         db = new AppDatabase(getContext());
         viewPager2 = view.findViewById(R.id.villagerViewPager);
         adapter = new VillagerViewPagerAdapter(getActivity(), db.getAllLists(), getContext());
         viewPager2.setAdapter(adapter);
         ImageView editListBtn = view.findViewById(R.id.editListBtn);
-        ImageView addListBtn = view.findViewById(R.id.addListBtn);
+//        ImageView addListBtn = view.findViewById(R.id.addListBtn);
         ImageView deleteListBtn = view.findViewById(R.id.deleteListBtn);
 
         viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
@@ -107,7 +109,7 @@ public class VillagerFragment extends Fragment {
             }
         });
 
-        addListBtn.setOnClickListener(new View.OnClickListener() {
+        addList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 addEditListName(ADD_KEY, getContext(), null);
