@@ -43,7 +43,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="B"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textSize="@dimen/news_title"
+            app:fontFamily="@font/fredoka_one" />
 
         <TextView
             android:id="@+id/textView4"
@@ -51,7 +53,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="I"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textSize="@dimen/news_title"
+            app:fontFamily="@font/fredoka_one" />
 
         <TextView
             android:id="@+id/textView5"
@@ -59,7 +63,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="N"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textSize="@dimen/news_title"
+            app:fontFamily="@font/fredoka_one" />
 
         <TextView
             android:id="@+id/textView6"
@@ -67,7 +73,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="G"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textSize="@dimen/news_title"
+            app:fontFamily="@font/fredoka_one" />
 
         <TextView
             android:id="@+id/textView12"
@@ -75,7 +83,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="O"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textSize="@dimen/news_title"
+            app:fontFamily="@font/fredoka_one" />
 
     </LinearLayout>
 
