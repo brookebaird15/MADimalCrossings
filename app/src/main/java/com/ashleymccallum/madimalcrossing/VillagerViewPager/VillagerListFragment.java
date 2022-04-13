@@ -63,6 +63,54 @@ public class VillagerListFragment extends Fragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        listButton.setText(R.string.goto_villagers);
+        listButton.clearAnimation();
+        listButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Log.d("buttonClick", "onClick: Button's Been Clicked");
+                listButton.startAnimation();
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        boolean isSuccessful = true;
+
+                        if (isSuccessful) {
+                            listButton.stopAnimation(TransitionButton.StopAnimationStyle.EXPAND, new TransitionButton.OnAnimationStopEndListener() {
+                                @Override
+                                public void onAnimationStopEnd() {
+                                    Intent i = new Intent(getActivity(), VillagerDetailHostActivity.class);
+                                    //TODO: button no longer loads correct list on click, always loads full villager list
+                                    i.putExtra(LIST_ID, mParam2);
+                                    i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                                    try {
+                                        startActivity(i);
+                                    } catch (ActivityNotFoundException e) {
+                                        Snackbar.make(view, getString(R.string.ext_app_error), Snackbar.LENGTH_LONG).show();
+                                    }
+//                                        listButton.clearAnimation();
+//
+
+
+                                }
+                            });
+                        } else {
+                            listButton.stopAnimation(TransitionButton.StopAnimationStyle.SHAKE, null);
+
+                        }
+                    }
+                }, 1000);
+            }
+        });
+//        listButton.setLayoutParams(new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_CONSTRAINT, ConstraintLayout.LayoutParams.MATCH_CONSTRAINT));
+
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
@@ -82,8 +130,10 @@ public class VillagerListFragment extends Fragment {
         if(mParam1 != null && mParam2 != null) {
             listName.setText(mParam1);
             listButton.setOnClickListener(new View.OnClickListener() {
+
                 @Override
                 public void onClick(View view) {
+                    Log.d("buttonClick", "onClick: Button's Been Clicked");
                     listButton.startAnimation();
                     final Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
@@ -104,8 +154,8 @@ public class VillagerListFragment extends Fragment {
                                         } catch (ActivityNotFoundException e) {
                                             Snackbar.make(view, getString(R.string.ext_app_error), Snackbar.LENGTH_LONG).show();
                                         }
-                                        listButton.clearAnimation();
-                                        listButton.setText(R.string.goto_villagers);
+//                                        listButton.clearAnimation();
+//
 
 
                                     }
