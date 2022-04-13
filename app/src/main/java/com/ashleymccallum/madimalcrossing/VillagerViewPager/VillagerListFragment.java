@@ -1,10 +1,12 @@
 package com.ashleymccallum.madimalcrossing.VillagerViewPager;
 
 import static com.ashleymccallum.madimalcrossing.VillagerListRecycler.VillagerDetailHostActivity.LIST_ID;
+import static com.ashleymccallum.madimalcrossing.VillagerListRecycler.VillagerDetailHostActivity.listID;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +22,7 @@ import com.ashleymccallum.madimalcrossing.R;
 import com.ashleymccallum.madimalcrossing.VillagerListRecycler.VillagerDetailHostActivity;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -91,25 +94,35 @@ public class VillagerListFragment extends Fragment {
         }
 
         AppDatabase db = new AppDatabase(getContext());
-        //TODO: get images from db
+        List<String> imgResources = db.getVillagerImages(mParam2);
+        if(imgResources.isEmpty()) {
+            //TODO: refresh images after villagers have been added to the list
+            //if there are no villagers for that list, use a default image
+            imgResources.add("https://upload.wikimedia.org/wikipedia/commons/5/58/Animal_Crossing_Leaf.png");
+        }
+        //add a null value to the end of the list so looping can occur
+        imgResources.add(null);
+
         ViewPager2 slideshow = view.findViewById(R.id.imgSlideshow);
-        SlideshowViewPagerAdapter slideshowAdapter = new SlideshowViewPagerAdapter(getActivity(), db.getVillagerImages(mParam2));
+        SlideshowViewPagerAdapter slideshowAdapter = new SlideshowViewPagerAdapter(getActivity(), imgResources);
         slideshow.setAdapter(slideshowAdapter);
         slideshow.setPageTransformer(slideshowAdapter);
         slideshow.setUserInputEnabled(false);
 
-        //imageCount is the total number of ImageFragments
-        int imageCount = slideshow.getAdapter().getItemCount();
+        //imageCount is the total number of images
+        int imageCount = imgResources.size();
 
-        //timerTask changes the ImageFragment to the next item
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
                 slideshow.post(new Runnable() {
                     @Override
                     public void run() {
+                        //move to the next slideshow image
                         slideshow.setCurrentItem((slideshow.getCurrentItem() + 1), false);
+                        //if the images are at the end of the list
                         if (slideshow.getCurrentItem() == imageCount - 1) {
+                            //return to image at 0
                             slideshow.setCurrentItem(0, false);
                         }
                     }
@@ -120,6 +133,7 @@ public class VillagerListFragment extends Fragment {
         //timer controls the speed of the timerTask
         Timer timer = new Timer();
         timer.schedule(timerTask, 3000, 3000);
+
 
         return view;
     }

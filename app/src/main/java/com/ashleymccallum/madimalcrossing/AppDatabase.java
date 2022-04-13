@@ -299,7 +299,7 @@ public class AppDatabase extends SQLiteOpenHelper {
         if(listID.equals(ALL_VILLAGER_KEY)) {
             cursor = db.rawQuery("SELECT " + ICON_COLUMN + " FROM " + VILLAGER_TABLE + " ORDER BY RANDOM() LIMIT 10", null);
         } else {
-            cursor = db.rawQuery("SELECT v." + ICON_COLUMN + " FROM " + VILLAGER_TABLE + "AS v INNER JOIN "
+            cursor = db.rawQuery("SELECT v." + ICON_COLUMN + " FROM " + VILLAGER_TABLE + " AS v INNER JOIN "
                             + LIST_VILLAGER_TABLE + " AS lvr ON v." + ID_COLUMN + "=lvr."
                             + VILLAGER_FK_COLUMN + " INNER JOIN " + LIST_TABLE + " AS l on lvr."
                             + LIST_FK_COLUMN + "=l." + ID_COLUMN + " WHERE l." + ID_COLUMN
@@ -310,6 +310,7 @@ public class AppDatabase extends SQLiteOpenHelper {
             imgURIs.add(cursor.getString(0));
         }
 
+        Log.d("-----------------------", "getVillagerImages: " + imgURIs.toString());
         return imgURIs;
     }
 

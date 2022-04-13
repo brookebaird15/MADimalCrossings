@@ -27,7 +27,14 @@ public class SlideshowViewPagerAdapter extends FragmentStateAdapter implements V
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        String imgURI = imgURIs.get(position);
+        String imgURI;
+        if(position != imgURIs.size() - 1) {
+            imgURI = imgURIs.get(position);
+        } else {
+            //if the position is at the last image, use the uri for the item at 0
+            imgURI = imgURIs.get(0);
+        }
+
         return SlideshowFragment.newInstance(imgURI, null);
     }
 
