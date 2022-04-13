@@ -32,4 +32,9 @@ public class VillagerViewModel extends ViewModel {
     public ArrayList<Villager> getVillagers() {
         return villagers;
     }
+
+    public void removeVillager(Villager villager) {
+        villagers.remove(villager);
+        filteredVillagers.remove(villager);
+    }
 }

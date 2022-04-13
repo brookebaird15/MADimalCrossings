@@ -284,7 +284,7 @@ public class VillagerRecyclerFragment extends Fragment {
                                     public void onClick(DialogInterface dialogInterface, int i) {
                                         AppDatabase db = new AppDatabase(context);
                                         db.removeVillagerFromList(villager.getId(), Integer.parseInt(listID));
-                                        villagers.remove(holder.getAbsoluteAdapterPosition());
+                                        viewModel.removeVillager(villager);
                                         notifyItemRemoved(holder.getAbsoluteAdapterPosition());
                                         db.close();
                                         if(villagers.isEmpty()) {
