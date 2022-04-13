@@ -10,4 +10,5 @@
     <dimen name="container_horizontal_margin">16dp</dimen>
 
     <dimen name="med_margin">10dp</dimen>
+    <dimen name="news_title">30sp</dimen>
 </resources>

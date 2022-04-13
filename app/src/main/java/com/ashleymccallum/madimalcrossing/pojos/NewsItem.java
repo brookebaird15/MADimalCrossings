@@ -5,16 +5,16 @@ package com.ashleymccallum.madimalcrossing.pojos;
  * Represents a news result from the API
  */
 public class NewsItem {
-    private String publisherName;
-    private String authorName;
-    private String title;
-    private String description;
-    private String articleURL;
-    private String imgURL;
-    private String timestamp;
-    private long lastUpdated;
+    private final String publisherName;
+    private final String authorName;
+    private final String title;
+    private final String description;
+    private final String articleURL;
+    private final String imgURL;
+    private final String timestamp;
+    private final long lastUpdated;
 
-    public NewsItem(String publisherName, String authorName, String title, String description, String articleURL, String imgURL, String timestamp, long lastUpdated) {
+    public NewsItem(String title, String authorName, String publisherName, String description, String articleURL, String imgURL, String timestamp, long lastUpdated) {
         this.publisherName = publisherName;
         this.authorName = authorName;
         this.title = title;
@@ -23,9 +23,6 @@ public class NewsItem {
         this.imgURL = imgURL;
         this.timestamp = timestamp;
         this.lastUpdated = lastUpdated;
-    }
-
-    public NewsItem() {
     }
 
     public String getPublisherName() {
