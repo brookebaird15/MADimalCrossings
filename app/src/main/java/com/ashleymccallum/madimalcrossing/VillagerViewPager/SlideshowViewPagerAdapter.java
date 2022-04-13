@@ -38,7 +38,6 @@ public class SlideshowViewPagerAdapter extends FragmentStateAdapter implements V
 
     @Override
     public void transformPage(@NonNull View page, float position) {
-        //TODO: load animation
         //load animation preference and add animation
         Animation animation = (Animation) AnimationUtils.loadAnimation(page.getContext(), R.anim.slideshow_anim);
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(page.getContext());
