@@ -1,12 +1,12 @@
 <resources>
-<!-- BOTTOM NAV TITLES -->
+    <!-- BOTTOM NAV TITLES -->
     <string name="app_name">MADimalCrossing</string>
     <string name="title_villager">Villagers</string>
     <string name="title_bingo">BINGO</string>
     <string name="title_news">News</string>
     <string name="title_music">KK Tunes</string>
     <string name="settings">Settings</string>
-<!-- GENERAL LAYOUT -->
+    <!-- GENERAL LAYOUT -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_villager_detail_host">VillagerDetailHostActivity</string>
     <string name="title_villager_list">Villagers</string>
@@ -42,12 +42,12 @@
     <string name="villager_fab">Add villager to list</string>
     <string name="select_list">Select List:</string>
     <string name="goto_villagers">View</string>
-<!--    NEWS    -->
+    <!--    NEWS    -->
     <string name="facebook">Facebook Logo</string>
     <string name="twitter">Twitter Logo</string>
     <string name="instagram">Instagram Logo</string>
     <string name="keep_reading">Keep Reading</string>
-<!--    FILTER     -->
+    <!--    FILTER     -->
     <string name="collected_switch">Filter by collected</string>
     <string name="filter_title">Filter Villagers</string>
     <string name="filter_message">Select a filter option:</string>
@@ -74,12 +74,12 @@
     <string name="aquarius">Aquarius ♒︎</string>
     <string name="pisces">Pisces ♓︎</string>
 
-<!--    KK TUNES    -->
+    <!--    KK TUNES    -->
     <string name="song_buy">Buy Price: </string>
     <string name="song_sell">Sell Price: </string>
     <string name="song_orderable">Can be ordered: </string>
     <string name="song_collected">Collected: </string>
-<!--    BINGO   -->
+    <!--    BINGO   -->
     <string name="bingo_selector">Select Mode: %1$s</string>
     <string name="bingo_row">5-in-a-Row</string>
     <string name="bingo_corners">4 Corners</string>

@@ -8,14 +8,20 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+import androidx.viewpager2.widget.ViewPager2;
 
+import com.ashleymccallum.madimalcrossing.AppDatabase;
 import com.ashleymccallum.madimalcrossing.R;
 import com.ashleymccallum.madimalcrossing.VillagerListRecycler.VillagerDetailHostActivity;
 import com.google.android.material.snackbar.Snackbar;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -83,6 +89,37 @@ public class VillagerListFragment extends Fragment {
                 }
             });
         }
+
+        AppDatabase db = new AppDatabase(getContext());
+        //TODO: get images from db
+        ViewPager2 slideshow = view.findViewById(R.id.imgSlideshow);
+        SlideshowViewPagerAdapter slideshowAdapter = new SlideshowViewPagerAdapter(getActivity(), db.getVillagerImages(mParam2));
+        slideshow.setAdapter(slideshowAdapter);
+        slideshow.setPageTransformer(slideshowAdapter);
+        slideshow.setUserInputEnabled(false);
+
+        //imageCount is the total number of ImageFragments
+        int imageCount = slideshow.getAdapter().getItemCount();
+
+        //timerTask changes the ImageFragment to the next item
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                slideshow.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        slideshow.setCurrentItem((slideshow.getCurrentItem() + 1), false);
+                        if (slideshow.getCurrentItem() == imageCount - 1) {
+                            slideshow.setCurrentItem(0, false);
+                        }
+                    }
+                });
+            }
+        };
+
+        //timer controls the speed of the timerTask
+        Timer timer = new Timer();
+        timer.schedule(timerTask, 3000, 3000);
 
         return view;
     }
