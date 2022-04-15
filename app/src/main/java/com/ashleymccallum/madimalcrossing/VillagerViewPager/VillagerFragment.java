@@ -115,18 +115,22 @@ public class VillagerFragment extends Fragment {
                 if(viewPagerIndex == 0) {
                     editList.setVisibility(View.INVISIBLE);
                     deleteList.setVisibility(View.INVISIBLE);
-                } else {
-                    editList.setVisibility(View.VISIBLE);
-                    deleteList.setVisibility(View.VISIBLE);
                 }
+//                else {
+//                    editList.setVisibility(View.VISIBLE);
+//                    deleteList.setVisibility(View.VISIBLE);
+//                }
             }
         });
 
         addList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addEditListName(ADD_KEY, getContext(), null);
+                if(viewPagerIndex == 0){
+                    addEditListName(ADD_KEY, getContext(), null);
+                }
                 animateFAB();
+
             }
         });
 
@@ -210,15 +214,17 @@ public class VillagerFragment extends Fragment {
      * @Author Brooke Baird
      */
     public void animateFAB(){
-        if(fabClick){
-            addList.startAnimation(rotate_backwards);
-            editList.startAnimation(fab_close);
-            deleteList.startAnimation(fab_close);
-            //set edit and delete to non-clickable
-            editList.setClickable(false);
-            deleteList.setClickable(false);
-            fabClick = false;
-        } else {
+        if(viewPagerIndex == 0) {
+            if (fabClick) {
+                addList.startAnimation(rotate_backwards);
+                editList.startAnimation(fab_close);
+                deleteList.startAnimation(fab_close);
+                //set edit and delete to non-clickable
+                editList.setClickable(false);
+                deleteList.setClickable(false);
+                fabClick = false;
+            }
+        }else {
             addList.startAnimation(rotate_forward);
             editList.startAnimation(fab_open);
             deleteList.startAnimation(fab_open);

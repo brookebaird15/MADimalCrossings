@@ -24,12 +24,12 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="16dp"
         android:src="@drawable/ic_baseline_delete_24"
         android:visibility="invisible"
         app:backgroundTint="@color/fabcolor2"
         app:elevation="6dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/editList"
         app:layout_constraintEnd_toEndOf="parent"
         app:pressedTranslationZ="12dp" />
 
@@ -39,12 +39,12 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="16dp"
         android:src="@drawable/ic_baseline_edit_24"
         android:visibility="invisible"
         app:backgroundTint="@color/fabcolor1"
         app:elevation="6dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/addList"
         app:layout_constraintEnd_toEndOf="parent"
         app:pressedTranslationZ="12dp" />
 
