@@ -31,4 +31,11 @@
     <dimen name="arrow_width">50dp</dimen>
     <dimen name="villager_img_height">350dp</dimen>
     <dimen name="villager_img_width">200dp</dimen>
+
+    <!--    KK TUNES    -->
+    <dimen name="song_img">150dp</dimen>
+    <dimen name="song_btn">75dp</dimen>
+    <dimen name="song_title">25sp</dimen>
+    <dimen name="song_switch_font">25sp</dimen>
+    <dimen name="song_margin">20dp</dimen>
 </resources>
