@@ -245,10 +245,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         app:backgroundTint="@color/acgreen"
-        app:fabCradleMargin="10dp"
-        app:fabCradleRoundedCornerRadius="10dp"
-        app:hideOnScroll="true">
-    </com.google.android.material.bottomappbar.BottomAppBar>
+        app:fabCradleMargin="@dimen/med_margin"
+        app:fabCradleRoundedCornerRadius="@dimen/med_margin"
+        app:hideOnScroll="true"></com.google.android.material.bottomappbar.BottomAppBar>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/villagerFAB"
