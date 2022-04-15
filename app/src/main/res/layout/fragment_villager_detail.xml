@@ -40,7 +40,7 @@
                     android:id="@+id/constraintLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#FFD8B6">
+                    android:background="@color/purple_500">
 
                     <ImageView
                         android:id="@+id/villagerSiteBtn"
