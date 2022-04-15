@@ -4,9 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/side_padding"
+    android:layout_marginTop="@dimen/med_margin"
+    android:layout_marginEnd="@dimen/side_padding"
+    android:layout_marginBottom="@dimen/med_margin"
     android:orientation="horizontal"
-    app:cardCornerRadius="10dp"
-    app:cardUseCompatPadding="true">
+    app:cardCornerRadius="10dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,9 +18,10 @@
         <ImageView
             android:id="@+id/villagerListImg"
             android:layout_width="0dp"
-            android:layout_height="200dp"
+            android:layout_height="@dimen/list_item_img"
             android:background="@color/acgreen"
             android:cropToPadding="false"
+            android:padding="@dimen/med_margin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -28,11 +32,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@color/teal_200"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
+            android:paddingTop="@dimen/med_margin"
+            android:paddingBottom="@dimen/med_margin"
             android:text="VILLAGER"
             android:textAlignment="center"
             android:textAppearance="?attr/textAppearanceListItem"
+            android:textSize="@dimen/list_item_text"
+            app:fontFamily="@font/fredoka_one"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/villagerListImg" />

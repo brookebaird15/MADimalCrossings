@@ -10,6 +10,13 @@
     <dimen name="container_horizontal_margin">16dp</dimen>
 
     <dimen name="med_margin">10dp</dimen>
+    <dimen name="btn_corner">20dp</dimen>
+    <dimen name="btn_text">18sp</dimen>
+
+<!--    VILLAGER LIST   -->
+    <dimen name="list_item_text">26sp</dimen>
+    <dimen name="list_item_img">200dp</dimen>
+    <dimen name="side_padding">5dp</dimen>
 
 <!--    NEWS FRAGMENT      -->
     <dimen name="news_title">20sp</dimen>
