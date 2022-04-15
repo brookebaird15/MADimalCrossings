@@ -10,6 +10,18 @@
     <dimen name="container_horizontal_margin">16dp</dimen>
 
     <dimen name="med_margin">10dp</dimen>
+
+<!--    NEWS FRAGMENT      -->
     <dimen name="news_title">20sp</dimen>
     <dimen name="body_font">16sp</dimen>
+
+<!--    VILLAGER DETAIL     -->
+    <dimen name="name_padding">20dp</dimen>
+    <dimen name="name_padding2">15dp</dimen>
+    <dimen name="name_size">20sp</dimen>
+    <dimen name="info_text">15sp</dimen>
+    <dimen name="gender_img">25dp</dimen>
+    <dimen name="info_text_padding">16dp</dimen>
+    <dimen name="info_line_padding">20dp</dimen>
+    <dimen name="line_height">1dp</dimen>
 </resources>
