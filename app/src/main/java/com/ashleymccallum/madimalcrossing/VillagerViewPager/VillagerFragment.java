@@ -84,12 +84,13 @@ public class VillagerFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_villager, container, false);
         FloatingActionButton addList = view.findViewById(R.id.addList);
+        FloatingActionButton editList = view.findViewById(R.id.editList);
         db = new AppDatabase(getContext());
         viewPager2 = view.findViewById(R.id.villagerViewPager);
         adapter = new VillagerViewPagerAdapter(getActivity(), db.getAllLists(), getContext());
         viewPager2.setAdapter(adapter);
-        ImageView editListBtn = view.findViewById(R.id.editListBtn);
-        ImageView deleteListBtn = view.findViewById(R.id.deleteListBtn);
+//        ImageView editListBtn = view.findViewById(R.id.editListBtn);
+//        ImageView deleteListBtn = view.findViewById(R.id.deleteListBtn);
 
         viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
@@ -98,13 +99,13 @@ public class VillagerFragment extends Fragment {
                 viewPagerIndex = viewPager2.getCurrentItem();
                 nameText = view.findViewById(R.id.listName);
 
-                if(viewPagerIndex == 0) {
-                    editListBtn.setVisibility(View.INVISIBLE);
-                    deleteListBtn.setVisibility(View.INVISIBLE);
-                } else {
-                    editListBtn.setVisibility(View.VISIBLE);
-                    deleteListBtn.setVisibility(View.VISIBLE);
-                }
+//                if(viewPagerIndex == 0) {
+//                    editListBtn.setVisibility(View.INVISIBLE);
+//                    deleteListBtn.setVisibility(View.INVISIBLE);
+//                } else {
+//                    editListBtn.setVisibility(View.VISIBLE);
+//                    deleteListBtn.setVisibility(View.VISIBLE);
+//                }
             }
         });
 
@@ -115,35 +116,35 @@ public class VillagerFragment extends Fragment {
             }
         });
 
-        editListBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String listName = nameText.getText().toString();
-                VillagerList list = db.getList(listName);
-                addEditListName(EDIT_KEY, getContext(), list);
-            }
-        });
+//        editListBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                String listName = nameText.getText().toString();
+//                VillagerList list = db.getList(listName);
+//                addEditListName(EDIT_KEY, getContext(), list);
+//            }
+//        });
 
-        deleteListBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String listName = nameText.getText().toString();
-                VillagerList list = db.getList(listName);
-                new AlertDialog.Builder(getContext())
-                        .setTitle(getString(R.string.delete_title))
-                        .setMessage(getString(R.string.delete_message, list.getName()))
-                        .setPositiveButton(getString(R.string.continue_btn), new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                db.deleteList(list.getId());
-                                adapter.updateData(db.getAllLists());
-                                viewPager2.setAdapter(adapter);
-                            }
-                        })
-                        .setNegativeButton(getString(R.string.cancel_label), null)
-                        .show();
-            }
-        });
+//        deleteListBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                String listName = nameText.getText().toString();
+//                VillagerList list = db.getList(listName);
+//                new AlertDialog.Builder(getContext())
+//                        .setTitle(getString(R.string.delete_title))
+//                        .setMessage(getString(R.string.delete_message, list.getName()))
+//                        .setPositiveButton(getString(R.string.continue_btn), new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialogInterface, int i) {
+//                                db.deleteList(list.getId());
+//                                adapter.updateData(db.getAllLists());
+//                                viewPager2.setAdapter(adapter);
+//                            }
+//                        })
+//                        .setNegativeButton(getString(R.string.cancel_label), null)
+//                        .show();
+//            }
+//        });
 
         return view;
     }

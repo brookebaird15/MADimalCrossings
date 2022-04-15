@@ -8,4 +8,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="bingo_stamp">#C1FFD300</color>
+    <color name="fabcolor1">#62bab3</color> <!-- Edit -->
+    <color name="fabcolor2">#92aa92</color> <!-- Delete -->
 </resources>
