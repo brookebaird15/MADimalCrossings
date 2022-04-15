@@ -7,37 +7,39 @@
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/imgSlideshow"
-        android:layout_width="400dp"
-        android:layout_height="400dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="@dimen/viewpager_size"
+        android:layout_height="@dimen/viewpager_size"
+        android:layout_marginTop="@dimen/vp_top_margin"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:textSize="@dimen/list_name"
         android:id="@+id/listName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="@dimen/med_margin"
         android:text="villager view pager"
-        android:textSize="34sp"
+        app:fontFamily="@font/fredoka_one"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgSlideshow" />
 
     <Button
         android:id="@+id/villagerListButton"
-        android:layout_width="231dp"
-        android:layout_height="81dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/round_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/med_margin"
         android:backgroundTint="@color/acgreen"
+        android:paddingStart="@dimen/btn_padding"
         android:text="@string/goto_villagers"
-        android:textColor="@color/black"
-        android:textSize="34sp"
+        android:textSize="@dimen/btn_text"
+        app:cornerRadius="@dimen/btn_corner"
+        app:fontFamily="@font/fredoka_one"
+        app:icon="@drawable/ic_baseline_arrow_right_24"
+        app:iconGravity="textEnd"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/listName" />
 

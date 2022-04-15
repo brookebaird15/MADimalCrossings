@@ -2,4 +2,8 @@
 <resources>
     <dimen name="fab_margin">48dp</dimen>
     <dimen name="container_horizontal_margin">48dp</dimen>
+
+    <!--    LIST VIEWPAGER  -->
+    <dimen name="list_name">18sp</dimen>
+    <dimen name="viewpager_size">100dp</dimen>
 </resources>

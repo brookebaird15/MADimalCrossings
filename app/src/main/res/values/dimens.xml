@@ -13,6 +13,12 @@
     <dimen name="btn_corner">20dp</dimen>
     <dimen name="btn_text">18sp</dimen>
     <dimen name="card_corners">10dp</dimen>
+    <dimen name="btn_padding">25dp</dimen>
+
+<!--    LIST VIEWPAGER  -->
+    <dimen name="list_name">18sp</dimen>
+    <dimen name="viewpager_size">200dp</dimen>
+    <dimen name="vp_top_margin">50dp</dimen>
 
 <!--    VILLAGER LIST   -->
     <dimen name="list_item_text">26sp</dimen>
@@ -26,18 +32,18 @@
 <!--    VILLAGER DETAIL     -->
     <dimen name="bottom_app_bar_height">53dp</dimen>
     <dimen name="name_padding">20dp</dimen>
-    <dimen name="name_padding2">15dp</dimen>
-    <dimen name="name_size">20sp</dimen>
+    <dimen name="name_padding2">10dp</dimen>
+    <dimen name="name_size">25sp</dimen>
     <dimen name="info_text">15sp</dimen>
     <dimen name="gender_img">25dp</dimen>
-    <dimen name="info_text_padding">16dp</dimen>
+    <dimen name="info_text_padding">8dp</dimen>
     <dimen name="info_line_padding">20dp</dimen>
     <dimen name="line_height">1dp</dimen>
     <dimen name="scrollview_bottom">90dp</dimen>
-    <dimen name="villager_card_margin">20dp</dimen>
-    <dimen name="arrow_width">50dp</dimen>
-    <dimen name="villager_img_height">200dp</dimen>
-    <dimen name="villager_img_width">150dp</dimen>
+    <dimen name="villager_card_margin">10dp</dimen>
+    <dimen name="arrow_width">25dp</dimen>
+    <dimen name="villager_img_height">175dp</dimen>
+    <dimen name="villager_img_width">120dp</dimen>
 
 <!--    KK TUNES    -->
     <dimen name="song_img">100dp</dimen>
