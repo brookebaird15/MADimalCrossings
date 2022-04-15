@@ -30,48 +30,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import nl.dionsegijn.konfetti.core.Party;
 
 /**
- * A simple {@link Fragment} subclass.
- * Use the {@link VillagerFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * A simple {@link Fragment} subclass..
  */
 public class VillagerFragment extends Fragment {
-
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    private String mParam1;
-    private String mParam2;
-
-    public VillagerFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment VillagerFragment.
-     */
-    public static VillagerFragment newInstance(String param1, String param2) {
-        VillagerFragment fragment = new VillagerFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     int viewPagerIndex;
     VillagerViewPagerAdapter adapter;
@@ -113,14 +74,14 @@ public class VillagerFragment extends Fragment {
                 nameText = view.findViewById(R.id.listName);
 
                 if(viewPagerIndex == 0) {
-                    editList.setVisibility(View.INVISIBLE);
+                    animateFAB();
                     deleteList.setVisibility(View.INVISIBLE);
+                    editList.setVisibility(View.INVISIBLE);
+                    editList.setClickable(false);
+                    deleteList.setClickable(false);
                 }
-//                else {
-//                    editList.setVisibility(View.VISIBLE);
-//                    deleteList.setVisibility(View.VISIBLE);
-//                }
             }
+
         });
 
         addList.setOnClickListener(new View.OnClickListener() {
@@ -128,6 +89,8 @@ public class VillagerFragment extends Fragment {
             public void onClick(View view) {
                 if(viewPagerIndex == 0){
                     addEditListName(ADD_KEY, getContext(), null);
+                    deleteList.hide();
+                    editList.hide();
                 }
                 animateFAB();
 
@@ -225,13 +188,23 @@ public class VillagerFragment extends Fragment {
                 fabClick = false;
             }
         }else {
-            addList.startAnimation(rotate_forward);
-            editList.startAnimation(fab_open);
-            deleteList.startAnimation(fab_open);
-            //set edit and delete to clickable
-            editList.setClickable(true);
-            deleteList.setClickable(true);
-            fabClick = true;
+            if (fabClick) {
+                addList.startAnimation(rotate_backwards);
+                editList.startAnimation(fab_close);
+                deleteList.startAnimation(fab_close);
+                //set edit and delete to non-clickable
+                editList.setClickable(false);
+                deleteList.setClickable(false);
+                fabClick = false;
+            } else {
+                addList.startAnimation(rotate_forward);
+                editList.startAnimation(fab_open);
+                deleteList.startAnimation(fab_open);
+                //set edit and delete to clickable
+                editList.setClickable(true);
+                deleteList.setClickable(true);
+                fabClick = true;
+            }
         }
     }
 

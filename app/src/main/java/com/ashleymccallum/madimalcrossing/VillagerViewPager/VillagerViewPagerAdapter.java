@@ -36,6 +36,7 @@ public class VillagerViewPagerAdapter extends FragmentStateAdapter {
         return VillagerListFragment.newInstance(list.getName(), String.valueOf(list.getId()));
     }
 
+
     @Override
     public int getItemCount() {
         //if there are lists in the db
