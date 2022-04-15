@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.provider.CalendarContract;
@@ -118,6 +119,31 @@ public class VillagerDetailFragment extends Fragment {
         binding = FragmentVillagerDetailBinding.inflate(inflater, container, false);
         View rootView = binding.getRoot();
 
+        CardView infoCard = rootView.findViewById(R.id.infoCardView);
+        CardView houseCard = rootView.findViewById(R.id.houseCardView);
+        ImageView rightBtn = rootView.findViewById(R.id.rightBtn);
+        ImageView leftBtn = rootView.findViewById(R.id.leftBtn);
+
+        leftBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                houseCard.setVisibility(View.INVISIBLE);
+                leftBtn.setVisibility(View.INVISIBLE);
+                rightBtn.setVisibility(View.VISIBLE);
+                infoCard.setVisibility(View.VISIBLE);
+            }
+        });
+
+        rightBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                houseCard.setVisibility(View.VISIBLE);
+                leftBtn.setVisibility(View.VISIBLE);
+                rightBtn.setVisibility(View.INVISIBLE);
+                infoCard.setVisibility(View.INVISIBLE);
+            }
+        });
+
         if(villager != null) {
             //TODO: use int spotted property
             TextView name = rootView.findViewById(R.id.villagerName);
@@ -137,10 +163,10 @@ public class VillagerDetailFragment extends Fragment {
             sign.setText(getSignString(villager));
 
             ImageView gender = rootView.findViewById(R.id.villagerGender);
-            if (villager.getGender().equals(MALE)) {
+            if (villager.getGender().equalsIgnoreCase(MALE)) {
                 gender.setImageResource(R.drawable.ic_baseline_male_24);
                 gender.setContentDescription(getString(R.string.gender_m));
-            } else if (villager.getGender().equals(FEMALE)) {
+            } else if (villager.getGender().equalsIgnoreCase(FEMALE)) {
                 gender.setImageResource(R.drawable.ic_baseline_female_24);
                 gender.setContentDescription(getString(R.string.gender_f));
             }
