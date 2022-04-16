@@ -104,7 +104,7 @@ public class VillagerListFragment extends Fragment {
         imgResources.add(null);
 
         ViewPager2 slideshow = view.findViewById(R.id.imgSlideshow);
-        SlideshowViewPagerAdapter slideshowAdapter = new SlideshowViewPagerAdapter(getActivity(), imgResources);
+        SlideshowViewPagerAdapter slideshowAdapter = new SlideshowViewPagerAdapter(getActivity(), imgResources, getContext());
         slideshow.setAdapter(slideshowAdapter);
         slideshow.setPageTransformer(slideshowAdapter);
         slideshow.setUserInputEnabled(false);

@@ -142,8 +142,8 @@ public class BingoFragment extends Fragment implements OnGameWinListener {
     @Override
     public void onGameWin(BingoGame game) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-        int bingoToggle = Integer.parseInt(sharedPreferences.getString("bingoMenu", "1"));
-        String soundToggle = sharedPreferences.getString("soundMenu", "royal_horns");
+        int bingoToggle = Integer.parseInt(sharedPreferences.getString(getString(R.string.bingo_key), "1"));
+        String soundToggle = sharedPreferences.getString(getString(R.string.sound_key), "royal_horns");
 
         int file = R.raw.royal_horns;
         switch (soundToggle) {

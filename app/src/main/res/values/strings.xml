@@ -108,9 +108,12 @@
     <!-- SETTINGS -->
     <string name="animations_title">Animations</string>
     <string name="animations_summary">Toggle animations</string>
-    <string name="clear_title">Clear Records</string>
     <string name="bingo_effects">Bingo Party</string>
     <string name="bingo_summary">Toggle the bingo celebration</string>
     <string name="sound_title">Select Celebration Sound</string>
     <string name="sound_summary">Select the sound that plays during the Bingo celebration</string>
+    <string name="bingo_key">bingoMenu</string>
+    <string name="animations_key">animationsMenu</string>
+    <string name="sound_key">soundMenu</string>
+    <string name="credits_summary">View credits</string>
 </resources>
