@@ -32,6 +32,8 @@
     <dimen name="social_img_size">45dp</dimen>
     <dimen name="news_margin">5dp</dimen>
     <dimen name="news_info_margin">15dp</dimen>
+    <dimen name="news_img_height">150dp</dimen>
+    <dimen name="news_img_width">300dp</dimen>
 
 <!--    VILLAGER DETAIL     -->
     <dimen name="bottom_app_bar_height">53dp</dimen>

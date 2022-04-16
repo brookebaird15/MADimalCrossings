@@ -7,6 +7,7 @@
     android:layout_marginStart="@dimen/news_margin"
     android:layout_marginTop="@dimen/med_margin"
     android:layout_marginEnd="@dimen/news_margin"
+    app:cardBackgroundColor="@color/purple_500"
     app:cardCornerRadius="@dimen/card_corners"
     app:cardUseCompatPadding="false">
 
@@ -67,6 +68,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/news_title"
+            app:cardBackgroundColor="@color/purple_700"
             app:cardCornerRadius="@dimen/med_margin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -78,8 +80,8 @@
 
                 <ImageView
                     android:id="@+id/newsImg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/news_img_width"
+                    android:layout_height="@dimen/news_img_height"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"

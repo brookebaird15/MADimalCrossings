@@ -20,6 +20,8 @@
     <dimen name="social_img_size">45dp</dimen>
     <dimen name="news_margin">5dp</dimen>
     <dimen name="news_info_margin">20dp</dimen>
+    <dimen name="news_img_height">250dp</dimen>
+    <dimen name="news_img_width">500dp</dimen>
 
 <!--    VILLAGER DETAIL     -->
     <dimen name="name_padding">50dp</dimen>
