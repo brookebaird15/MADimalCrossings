@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void loadArticles(Context context) {
 
-        String url = "https://newsapi.org/v2/everything?q=animal%20crossing&excludeDomains=theguardian.com&language=en&pageSize=15";
+        String url = "https://newsapi.org/v2/everything?q=nintendo&language=en&pageSize=15";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
