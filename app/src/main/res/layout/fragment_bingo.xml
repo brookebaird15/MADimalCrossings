@@ -6,17 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".Bingo.BingoFragment">
 
-    <TextView
-        android:textSize="@dimen/mode_text"
+    <Button
         android:id="@+id/bingoModeSelector"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/med_margin"
-        android:layout_marginTop="@dimen/med_margin"
+        android:layout_marginEnd="@dimen/med_margin"
+        android:fontFamily="@font/fredoka_one"
+        android:paddingStart="@dimen/btn_padding"
         android:text="@string/bingo_selector"
-        app:fontFamily="@font/nunito"
+        android:textSize="@dimen/bingo_btn"
+        app:cornerRadius="@dimen/btn_corner"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <Button
         android:id="@+id/bingoCardButton"
