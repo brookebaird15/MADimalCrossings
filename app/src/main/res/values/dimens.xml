@@ -63,7 +63,7 @@
     <dimen name="bingo_img_padding">5dp</dimen>
     <dimen name="bingo_corners">5dp</dimen>
     <dimen name="bingo_margin">5dp</dimen>
-    <dimen name="mode_text">18sp</dimen>
+    <dimen name="mode_text">14sp</dimen>
     <dimen name="tile_text">20sp</dimen>
     <dimen name="bingo_text">20sp</dimen>
     <dimen name="bingo_btn">15sp</dimen>
@@ -71,4 +71,5 @@
 <!--    CREDITS     -->
     <dimen name="credit_title">30sp</dimen>
     <dimen name="credit_margin">20dp</dimen>
+
 </resources>
