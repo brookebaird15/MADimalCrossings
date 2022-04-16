@@ -4,8 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="@dimen/med_margin"
-    app:cardUseCompatPadding="true">
+    android:layout_marginStart="@dimen/news_margin"
+    android:layout_marginTop="@dimen/med_margin"
+    android:layout_marginEnd="@dimen/news_margin"
+    app:cardCornerRadius="@dimen/card_corners"
+    app:cardUseCompatPadding="false">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -54,7 +57,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/newsDate" />
+            app:layout_constraintTop_toBottomOf="@+id/newsAuthor" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView2"
@@ -82,21 +85,16 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
-        <TextView
-            android:id="@+id/newsDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textSize="@dimen/body_font"
-            app:fontFamily="@font/nunito"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/newsAuthor" />
-
         <Button
             android:id="@+id/newsBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/fredoka_one"
+            android:paddingStart="@dimen/btn_padding"
             android:text="@string/keep_reading"
+            app:cornerRadius="@dimen/btn_corner"
+            app:icon="@drawable/ic_baseline_arrow_right_24"
+            app:iconGravity="textEnd"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/newsDescription"
             app:layout_constraintTop_toBottomOf="@+id/newsDescription" />

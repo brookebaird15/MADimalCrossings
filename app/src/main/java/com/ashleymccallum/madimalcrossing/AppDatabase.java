@@ -126,7 +126,6 @@ public class AppDatabase extends SQLiteOpenHelper {
 
     public static final String NEWS_TABLE = "news";
     public static final String PUBLISHER_COLUMN = "publisher";
-    public static final String TIMESTAMP_COLUMN = "timestamp";
     public static final String LAST_UPDATE_COLUMN = "last_updated";
     public static final String AUTHOR_COLUMN = "author";
     public static final String DESCRIPTION_COLUMN = "description";
@@ -136,7 +135,7 @@ public class AppDatabase extends SQLiteOpenHelper {
             TITLE_COLUMN + " TEXT," + AUTHOR_COLUMN + " TEXT," +
             PUBLISHER_COLUMN + " TEXT," + DESCRIPTION_COLUMN + " TEXT," +
             URL_COLUMN + " TEXT," + IMG_COLUMN + " TEXT," +
-            TIMESTAMP_COLUMN + " TEXT," + LAST_UPDATE_COLUMN + " INTEGER)";
+            LAST_UPDATE_COLUMN + " INTEGER)";
 
     public AppDatabase(@Nullable Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -178,7 +177,6 @@ public class AppDatabase extends SQLiteOpenHelper {
                 values.put(DESCRIPTION_COLUMN, article.getString("description"));
                 values.put(URL_COLUMN, article.getString("url"));
                 values.put(IMG_COLUMN, article.getString("urlToImage"));
-                values.put(TIMESTAMP_COLUMN, article.getString("publishedAt"));
                 values.put(LAST_UPDATE_COLUMN, System.currentTimeMillis());
                 db.insert(NEWS_TABLE, null, values);
             }
@@ -204,8 +202,7 @@ public class AppDatabase extends SQLiteOpenHelper {
                     cursor.getString(4),
                     cursor.getString(5),
                     cursor.getString(6),
-                    cursor.getString(7),
-                    cursor.getLong(8)));
+                    cursor.getLong(7)));
         }
         return items;
     }

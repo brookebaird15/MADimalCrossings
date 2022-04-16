@@ -48,9 +48,6 @@ public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<NewsRecyclerVi
         holder.title.setText(item.getTitle());
         holder.author.setText(item.getAuthorName());
         holder.publisher.setText(item.getPublisherName());
-        //todo: parse timestamp
-//        Date date = Date.from(Instant.parse(item.getTimestamp()));
-        holder.date.setText(item.getTimestamp());
         holder.description.setText(item.getDescription());
         Picasso.get().load(item.getImgURL()).into(holder.image);
         holder.readButton.setOnClickListener(new View.OnClickListener() {
@@ -76,7 +73,6 @@ public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<NewsRecyclerVi
         TextView title;
         TextView publisher;
         TextView author;
-        TextView date;
         TextView description;
         Button readButton;
         ImageView image;
@@ -86,7 +82,6 @@ public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<NewsRecyclerVi
             this.title = itemView.findViewById(R.id.newsTitle);
             this.publisher = itemView.findViewById(R.id.newsPublisher);
             this.author = itemView.findViewById(R.id.newsAuthor);
-            this.date = itemView.findViewById(R.id.newsDate);
             this.description = itemView.findViewById(R.id.newsDescription);
             this.readButton = itemView.findViewById(R.id.newsBtn);
             this.image = itemView.findViewById(R.id.newsImg);

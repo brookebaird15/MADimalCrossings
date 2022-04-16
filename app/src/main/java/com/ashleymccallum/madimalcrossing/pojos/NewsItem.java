@@ -11,17 +11,15 @@ public class NewsItem {
     private final String description;
     private final String articleURL;
     private final String imgURL;
-    private final String timestamp;
     private final long lastUpdated;
 
-    public NewsItem(String title, String authorName, String publisherName, String description, String articleURL, String imgURL, String timestamp, long lastUpdated) {
+    public NewsItem(String title, String authorName, String publisherName, String description, String articleURL, String imgURL, long lastUpdated) {
         this.publisherName = publisherName;
         this.authorName = authorName;
         this.title = title;
         this.description = description;
         this.articleURL = articleURL;
         this.imgURL = imgURL;
-        this.timestamp = timestamp;
         this.lastUpdated = lastUpdated;
     }
 
@@ -47,10 +45,6 @@ public class NewsItem {
 
     public String getImgURL() {
         return imgURL;
-    }
-
-    public String getTimestamp() {
-        return timestamp;
     }
 
     public long getLastUpdated() {

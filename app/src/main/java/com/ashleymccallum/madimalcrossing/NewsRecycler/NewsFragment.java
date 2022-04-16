@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,8 +18,6 @@ import android.widget.ImageView;
 import com.ashleymccallum.madimalcrossing.AppDatabase;
 import com.ashleymccallum.madimalcrossing.R;
 import com.google.android.material.snackbar.Snackbar;
-
-import nl.dionsegijn.konfetti.core.Party;
 
 
 /**
@@ -72,9 +71,15 @@ public class NewsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_news, container, false);
         AppDatabase db = new AppDatabase(getContext());
 
-        RecyclerView recyclerView = view.findViewById(R.id.newsRecycler);
+        RecyclerView recyclerView = view.findViewById(R.id.largeNewsRecycler);
+        if(recyclerView != null) {
+            recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        } else {
+            recyclerView = view.findViewById(R.id.newsRecycler);
+            recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        }
         recyclerView.setAdapter(new NewsRecyclerViewAdapter(db.getArticles(), getContext()));
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
 
         ImageView facebook = view.findViewById(R.id.logoFacebook);
         facebook.setOnClickListener(new View.OnClickListener() {
