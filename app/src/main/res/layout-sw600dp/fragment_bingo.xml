@@ -7,32 +7,32 @@
     tools:context=".Bingo.BingoFragment">
 
     <TextView
-        android:textSize="@dimen/mode_text"
         android:id="@+id/bingoModeSelector"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/med_margin"
         android:layout_marginTop="@dimen/med_margin"
         android:text="@string/bingo_selector"
+        android:textSize="@dimen/mode_text"
         app:fontFamily="@font/nunito"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:fontFamily="@font/fredoka_one"
+        android:textSize="@dimen/btn_text"
         android:id="@+id/bingoCardButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/med_margin"
-        android:fontFamily="@font/fredoka_one"
         android:paddingStart="@dimen/btn_padding"
         android:text="@string/new_card"
-        android:textSize="@dimen/bingo_btn"
         app:cornerRadius="@dimen/btn_corner"
+        android:layout_marginEnd="@dimen/med_margin"
         app:icon="@drawable/ic_baseline_casino_24"
-        app:iconGravity="textEnd"
         app:layout_constraintBottom_toBottomOf="@+id/bingoModeSelector"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/bingoModeSelector" />
+        app:layout_constraintTop_toTopOf="@+id/bingoModeSelector"
+        app:iconGravity="textEnd" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -105,7 +105,7 @@
         android:layout_marginStart="@dimen/bingo_margin"
         android:layout_marginTop="@dimen/bingo_margin"
         android:layout_marginEnd="@dimen/bingo_margin"
-        android:layout_marginBottom="@dimen/med_margin"
+        android:layout_marginBottom="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

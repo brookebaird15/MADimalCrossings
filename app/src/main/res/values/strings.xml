@@ -91,6 +91,7 @@
     <string name="game_over">You Won!</string>
     <string name="continue_btn">Continue</string>
     <string name="new_game_btn">New Game</string>
+    <string name="new_card">New Card</string>
     <!-- Preference Titles -->
     <string name="messages_header">Messages</string>
     <string name="sync_header">Sync</string>

@@ -124,7 +124,7 @@ public class BingoFragment extends Fragment implements OnGameWinListener {
         });
 
         //generate a new bingo card when the dice button is clicked
-        ImageView bingoButton = view.findViewById(R.id.bingoCardButton);
+        Button bingoButton = view.findViewById(R.id.bingoCardButton);
         bingoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

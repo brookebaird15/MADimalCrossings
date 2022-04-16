@@ -5,7 +5,10 @@
       <map>
         <entry key="..\:/AndroidStudioProjects/MADimalCrossing/app/src/main/res/drawable/ic_acmusic.xml" value="0.3728205128205128" />
         <entry key="..\:/AndroidStudioProjects/MADimalCrossing/app/src/main/res/drawable/round_button.xml" value="0.3728205128205128" />
+        <entry key="..\:/AndroidStudioProjects/MADimalCrossing/app/src/main/res/layout-land/fragment_bingo.xml" value="0.30687830687830686" />
         <entry key="..\:/AndroidStudioProjects/MADimalCrossing/app/src/main/res/layout-land/fragment_villager_viewpager.xml" value="0.30687830687830686" />
+        <entry key="..\:/AndroidStudioProjects/MADimalCrossing/app/src/main/res/layout-sw600dp/bingo_tile.xml" value="0.271875" />
+        <entry key="..\:/AndroidStudioProjects/MADimalCrossing/app/src/main/res/layout-sw600dp/fragment_bingo.xml" value="0.271875" />
         <entry key="..\:/AndroidStudioProjects/MADimalCrossing/app/src/main/res/layout-sw600dp/fragment_music.xml" value="0.271875" />
         <entry key="..\:/AndroidStudioProjects/MADimalCrossing/app/src/main/res/layout-sw600dp/fragment_villager_detail.xml" value="0.5" />
         <entry key="..\:/AndroidStudioProjects/MADimalCrossing/app/src/main/res/layout-sw600dp/fragment_villager_list.xml" value="0.3727905731119443" />
