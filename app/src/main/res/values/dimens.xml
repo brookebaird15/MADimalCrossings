@@ -67,4 +67,8 @@
     <dimen name="tile_text">20sp</dimen>
     <dimen name="bingo_text">20sp</dimen>
     <dimen name="bingo_btn">15sp</dimen>
+
+<!--    CREDITS     -->
+    <dimen name="credit_title">30sp</dimen>
+    <dimen name="credit_margin">20dp</dimen>
 </resources>
