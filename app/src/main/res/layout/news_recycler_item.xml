@@ -12,14 +12,15 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/med_margin">
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/newsTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/med_margin"
+            android:layout_marginStart="@dimen/news_info_margin"
+            android:layout_marginTop="@dimen/news_info_margin"
+            android:layout_marginEnd="@dimen/news_info_margin"
             android:text="TextView"
             android:textSize="@dimen/news_title"
             app:fontFamily="@font/fredoka_one"
@@ -31,10 +32,11 @@
             android:id="@+id/newsPublisher"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/news_info_margin"
             android:text="TextView"
             android:textSize="@dimen/body_font"
             app:fontFamily="@font/nunito"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/newsTitle"
             app:layout_constraintTop_toBottomOf="@+id/newsTitle" />
 
         <TextView
@@ -44,19 +46,20 @@
             android:text="TextView"
             android:textSize="@dimen/body_font"
             app:fontFamily="@font/nunito"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/newsPublisher"
             app:layout_constraintTop_toBottomOf="@+id/newsPublisher" />
 
         <TextView
             android:id="@+id/newsDescription"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/news_info_margin"
             android:text="TextView"
             android:textSize="@dimen/body_font"
             app:fontFamily="@font/nunito"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/newsTitle"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/newsAuthor"
             app:layout_constraintTop_toBottomOf="@+id/newsAuthor" />
 
         <androidx.cardview.widget.CardView
@@ -89,6 +92,8 @@
             android:id="@+id/newsBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/news_info_margin"
+            android:layout_marginBottom="@dimen/news_info_margin"
             android:fontFamily="@font/fredoka_one"
             android:paddingStart="@dimen/btn_padding"
             android:text="@string/keep_reading"
