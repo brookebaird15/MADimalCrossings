@@ -157,6 +157,15 @@ public class AppDatabase extends SQLiteOpenHelper {
 
     }
 
+    public void clearDatabase() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(VILLAGER_TABLE, null, null);
+        db.delete(LIST_TABLE, null, null);
+        db.delete(SONG_TABLE, null, null);
+        db.delete(LIST_VILLAGER_TABLE, null, null);
+        db.delete(BINGO_TABLE, null, null);
+    }
+
     /**
      * Adds articles to the database
      * @param response the JSONObject retrieved from the API
