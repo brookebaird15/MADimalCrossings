@@ -307,7 +307,6 @@ public class AppDatabase extends SQLiteOpenHelper {
             imgURIs.add(cursor.getString(0));
         }
 
-        Log.d("-----------------------", "getVillagerImages: " + imgURIs.toString());
         return imgURIs;
     }
 
