@@ -11,7 +11,7 @@
 
     <dimen name="med_margin">10dp</dimen>
     <dimen name="btn_corner">20dp</dimen>
-    <dimen name="btn_text">18sp</dimen>
+    <dimen name="btn_text">14sp</dimen>
     <dimen name="card_corners">10dp</dimen>
     <dimen name="btn_padding">25dp</dimen>
 
@@ -40,7 +40,7 @@
     <dimen name="name_padding">20dp</dimen>
     <dimen name="name_padding2">10dp</dimen>
     <dimen name="name_size">25sp</dimen>
-    <dimen name="info_text">15sp</dimen>
+    <dimen name="info_text">13sp</dimen>
     <dimen name="gender_img">25dp</dimen>
     <dimen name="info_text_padding">8dp</dimen>
     <dimen name="info_line_padding">20dp</dimen>

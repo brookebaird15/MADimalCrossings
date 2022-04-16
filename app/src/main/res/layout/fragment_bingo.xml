@@ -106,11 +106,12 @@
         android:layout_marginStart="@dimen/bingo_margin"
         android:layout_marginTop="@dimen/bingo_margin"
         android:layout_marginEnd="@dimen/bingo_margin"
-        android:layout_marginBottom="@dimen/med_margin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="1.0" />
 
     <nl.dionsegijn.konfetti.xml.KonfettiView
         android:id="@+id/konfettiView"
