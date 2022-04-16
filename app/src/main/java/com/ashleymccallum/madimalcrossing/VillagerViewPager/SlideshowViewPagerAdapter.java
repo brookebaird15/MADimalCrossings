@@ -1,5 +1,6 @@
 package com.ashleymccallum.madimalcrossing.VillagerViewPager;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.view.View;
@@ -18,10 +19,12 @@ import java.util.List;
 
 public class SlideshowViewPagerAdapter extends FragmentStateAdapter implements ViewPager2.PageTransformer {
     List<String> imgURIs;
+    Context context;
 
-    public SlideshowViewPagerAdapter(@NonNull FragmentActivity fragmentActivity, List<String> imgURIs) {
+    public SlideshowViewPagerAdapter(@NonNull FragmentActivity fragmentActivity, List<String> imgURIs, Context context) {
         super(fragmentActivity);
         this.imgURIs = imgURIs;
+        this.context = context;
     }
 
     @NonNull
@@ -48,7 +51,7 @@ public class SlideshowViewPagerAdapter extends FragmentStateAdapter implements V
         //load animation preference and add animation
         Animation animation = (Animation) AnimationUtils.loadAnimation(page.getContext(), R.anim.slideshow_anim);
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(page.getContext());
-        int animToggle = Integer.parseInt(sharedPreferences.getString("animationsMenu", "1"));
+        int animToggle = Integer.parseInt(sharedPreferences.getString(context.getString(R.string.animations_key), "1"));
 
         //if 1 animations are on, if 0 animations are off
         if(animToggle == 1) {
