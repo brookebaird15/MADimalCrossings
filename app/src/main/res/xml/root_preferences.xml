@@ -33,6 +33,12 @@
 
     <PreferenceCategory>
         <Preference
+            app:key="@string/clear_key"
+            app:title="@string/clear_title"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory>
+        <Preference
             app:key="@string/credits_title"
             app:title="@string/credits_summary"/>
     </PreferenceCategory>

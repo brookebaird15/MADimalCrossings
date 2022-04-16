@@ -115,5 +115,10 @@
     <string name="bingo_key">bingoMenu</string>
     <string name="animations_key">animationsMenu</string>
     <string name="sound_key">soundMenu</string>
-    <string name="credits_summary">View credits</string>
+    <string name="credits_summary">View Credits</string>
+    <string name="clear_key">clearMenu</string>
+    <string name="clear_title">Reset Data</string>
+    <string name="reset_title">Reset all data?</string>
+    <string name="reset_message">This will remove all custom lists, all music collection progress, and all changes made to villagers. \n\nThis cannot be undone.</string>
+
 </resources>
