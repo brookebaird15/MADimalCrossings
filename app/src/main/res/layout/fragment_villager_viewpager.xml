@@ -1,36 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/imgSlideshow"
-        android:layout_width="@dimen/viewpager_size"
-        android:layout_height="@dimen/viewpager_size"
-        android:layout_marginTop="@dimen/vp_top_margin"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        android:paddingTop="100dp"
+        android:paddingBottom="100dp"
+        android:id="@+id/slideshowImg1"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        app:srcCompat="@drawable/ic_baseline_casino_24"
+        android:layout_weight="1"/>
 
     <TextView
-        android:textSize="@dimen/list_name"
-        android:id="@+id/listName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/med_margin"
+        android:id="@+id/listName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="villager view pager"
-        app:fontFamily="@font/fredoka_one"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgSlideshow" />
+        android:textAlignment="center"
+        android:textSize="@dimen/list_name"
+        app:fontFamily="@font/fredoka_one" />
 
     <Button
         android:id="@+id/villagerListButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/med_margin"
+        android:layout_marginBottom="@dimen/med_margin"
         android:backgroundTint="@color/acgreen"
         android:paddingStart="@dimen/btn_padding"
         android:text="@string/goto_villagers"
@@ -38,9 +39,15 @@
         app:cornerRadius="@dimen/btn_corner"
         app:fontFamily="@font/fredoka_one"
         app:icon="@drawable/ic_baseline_arrow_right_24"
-        app:iconGravity="textEnd"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/listName" />
+        app:iconGravity="textEnd" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:paddingTop="100dp"
+        android:paddingBottom="100dp"
+        android:id="@+id/slideshowImg2"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        app:srcCompat="@drawable/ic_baseline_casino_24"
+        android:layout_weight="1"/>
+
+</LinearLayout>

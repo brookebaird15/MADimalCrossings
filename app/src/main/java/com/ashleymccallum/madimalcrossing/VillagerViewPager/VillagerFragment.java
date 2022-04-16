@@ -65,6 +65,7 @@ public class VillagerFragment extends Fragment {
         viewPager2 = view.findViewById(R.id.villagerViewPager);
         adapter = new VillagerViewPagerAdapter(getActivity(), db.getAllLists(), getContext());
         viewPager2.setAdapter(adapter);
+        viewPager2.setPageTransformer(adapter);
 
         viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override

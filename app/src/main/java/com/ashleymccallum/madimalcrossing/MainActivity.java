@@ -90,7 +90,8 @@ public class MainActivity extends AppCompatActivity {
                 loadArticles(this);
             }
         } else {
-            loadArticles(this);
+            //TODO: uncomment when done working on animation bug
+            //loadArticles(this);
         }
 
         db.close();

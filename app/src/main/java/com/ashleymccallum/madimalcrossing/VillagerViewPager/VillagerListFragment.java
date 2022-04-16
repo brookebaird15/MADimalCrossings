@@ -1,26 +1,28 @@
 package com.ashleymccallum.madimalcrossing.VillagerViewPager;
 
 import static com.ashleymccallum.madimalcrossing.VillagerListRecycler.VillagerDetailHostActivity.LIST_ID;
-import static com.ashleymccallum.madimalcrossing.VillagerListRecycler.VillagerDetailHostActivity.listID;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
-import androidx.viewpager2.widget.ViewPager2;
 
 import com.ashleymccallum.madimalcrossing.AppDatabase;
 import com.ashleymccallum.madimalcrossing.R;
 import com.ashleymccallum.madimalcrossing.VillagerListRecycler.VillagerDetailHostActivity;
 import com.google.android.material.snackbar.Snackbar;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 import java.util.Timer;
@@ -67,7 +69,12 @@ public class VillagerListFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
+
+    int index = 0;
+    ImageView img1;
+    ImageView img2;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -100,31 +107,20 @@ public class VillagerListFragment extends Fragment {
             //if there are no villagers for that list, use a default image
             imgResources.add("https://upload.wikimedia.org/wikipedia/commons/5/58/Animal_Crossing_Leaf.png");
         }
-        //add a null value to the end of the list so looping can occur
-        imgResources.add(null);
 
-        ViewPager2 slideshow = view.findViewById(R.id.imgSlideshow);
-        SlideshowViewPagerAdapter slideshowAdapter = new SlideshowViewPagerAdapter(getActivity(), imgResources, getContext());
-        slideshow.setAdapter(slideshowAdapter);
-        slideshow.setPageTransformer(slideshowAdapter);
-        slideshow.setUserInputEnabled(false);
+        img1 = view.findViewById(R.id.slideshowImg1);
+        img2 = view.findViewById(R.id.slideshowImg2);
 
-        //imageCount is the total number of images
-        int imageCount = imgResources.size();
+        loadImages(imgResources);
 
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
-                slideshow.post(new Runnable() {
+                img1.post(new Runnable() {
                     @Override
                     public void run() {
-                        //move to the next slideshow image
-                        slideshow.setCurrentItem((slideshow.getCurrentItem() + 1), false);
-                        //if the images are at the end of the list
-                        if (slideshow.getCurrentItem() == imageCount - 1) {
-                            //return to image at 0
-                            slideshow.setCurrentItem(0, false);
-                        }
+                        //load image on timer
+                        loadImages(imgResources);
                     }
                 });
             }
@@ -132,9 +128,24 @@ public class VillagerListFragment extends Fragment {
 
         //timer controls the speed of the timerTask
         Timer timer = new Timer();
-        timer.schedule(timerTask, 3000, 3000);
+        timer.schedule(timerTask, 4000, 4000);
 
 
         return view;
+    }
+
+    private void loadImages(List<String> imgs) {
+        checkIndex(imgs);
+        Picasso.get().load(imgs.get(index)).into(img1);
+        index++;
+        checkIndex(imgs);
+        Picasso.get().load(imgs.get(index)).into(img2);
+        index++;
+    }
+
+    private void checkIndex(List<String> imgs) {
+        if(index == imgs.size()) {
+            index = 0;
+        }
     }
 }

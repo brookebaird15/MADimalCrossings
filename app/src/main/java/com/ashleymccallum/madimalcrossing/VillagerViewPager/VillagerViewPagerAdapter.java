@@ -3,18 +3,25 @@ package com.ashleymccallum.madimalcrossing.VillagerViewPager;
 import static com.ashleymccallum.madimalcrossing.VillagerListRecycler.VillagerDetailHostActivity.ALL_VILLAGER_KEY;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.ashleymccallum.madimalcrossing.R;
 import com.ashleymccallum.madimalcrossing.pojos.VillagerList;
 
 import java.util.ArrayList;
 
-public class VillagerViewPagerAdapter extends FragmentStateAdapter {
+public class VillagerViewPagerAdapter extends FragmentStateAdapter implements ViewPager2.PageTransformer {
     ArrayList<VillagerList> lists;
     Context context;
 
@@ -51,5 +58,23 @@ public class VillagerViewPagerAdapter extends FragmentStateAdapter {
     public void updateData(ArrayList<VillagerList> lists) {
         this.lists = lists;
         this.notifyDataSetChanged();
+    }
+
+    @Override
+    public void transformPage(@NonNull View page, float position) {
+        //load animations
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        int animToggle = Integer.parseInt(sharedPreferences.getString(context.getString(R.string.animations_key), "1"));
+        Animation animRtoL = AnimationUtils.loadAnimation(context, R.anim.slideshow_right_left);
+        Animation animLtoR = AnimationUtils.loadAnimation(context, R.anim.slideshow_left_right);
+
+        ImageView img1 = page.findViewById(R.id.slideshowImg1);
+        ImageView img2 = page.findViewById(R.id.slideshowImg2);
+
+        //if 1 animations are on, if 0 animations are off
+        if(animToggle == 1) {
+            img1.setAnimation(animRtoL);
+            img2.setAnimation(animLtoR);
+        }
     }
 }

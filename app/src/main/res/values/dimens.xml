@@ -16,7 +16,7 @@
     <dimen name="btn_padding">25dp</dimen>
 
 <!--    LIST VIEWPAGER  -->
-    <dimen name="list_name">18sp</dimen>
+    <dimen name="list_name">25sp</dimen>
     <dimen name="viewpager_size">200dp</dimen>
     <dimen name="vp_top_margin">50dp</dimen>
 
