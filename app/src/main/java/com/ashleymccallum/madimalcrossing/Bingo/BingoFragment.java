@@ -2,6 +2,8 @@ package com.ashleymccallum.madimalcrossing.Bingo;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -136,16 +139,42 @@ public class BingoFragment extends Fragment implements OnGameWinListener {
 
     @Override
     public void onGameWin(BingoGame game) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        int bingoToggle = Integer.parseInt(sharedPreferences.getString("bingoMenu", "1"));
+        String soundToggle = sharedPreferences.getString("soundMenu", "royal_horns");
 
-        //TODO: stop confetti animation & delay in settings
-        konfettiView.start(party);
+        int file = R.raw.royal_horns;
+        switch (soundToggle) {
+            case "birthday_cheer":
+                file = R.raw.birthday_cheer;
+                break;
+            case "party_horn_1":
+                file = R.raw.party_horn_1;
+                break;
+            case "party_horn_2":
+                file = R.raw.party_horn_2;
+                break;
+            case "royal_horns":
+                file = R.raw.royal_horns;
+                break;
+        }
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                presentGameOver(game);
-            }
-        }, 3000);
+        //if 1 animations are on, if 0 animations are off
+        if(bingoToggle == 1) {
+            konfettiView.start(party);
+            MediaPlayer fx = MediaPlayer.create(getContext(), file);
+            fx.start();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    presentGameOver(game);
+                }
+            }, 3000);
+        } else {
+            presentGameOver(game);
+        }
+
+
     }
 
     /**

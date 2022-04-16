@@ -86,7 +86,6 @@ public class MainActivity extends AppCompatActivity {
 
         if(!db.getArticles().isEmpty()) {
             if(System.currentTimeMillis() - db.getArticles().get(0).getLastUpdated() > 7200000) {
-                Log.d("----NEWS-----", "ARTICLES REFRESHED");
                 db.clearArticles();
                 loadArticles(this);
             }
@@ -108,6 +107,8 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.action_settings) {
             navController.navigate(R.id.nav_settings);
+        } else {
+            navController.navigateUp();
         }
         return super.onOptionsItemSelected(item);
     }

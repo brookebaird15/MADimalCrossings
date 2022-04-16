@@ -1,12 +1,38 @@
 <resources>
-    <!-- Reply Preference -->
-    <string-array name="reply_entries">
-        <item>Reply</item>
-        <item>Reply to all</item>
+
+    <string-array name="animations_menu">
+        <item>Enable Animations</item>
+        <item>Disable Animations</item>
     </string-array>
 
-    <string-array name="reply_values">
-        <item>reply</item>
-        <item>reply_all</item>
+    <string-array name="animations_value">
+        <item>1</item>
+        <item>0</item>
     </string-array>
+
+    <string-array name="bingo_menu">
+        <item>Enable Party</item>
+        <item>Disable Party</item>
+    </string-array>
+
+    <string-array name="bingo_value">
+        <item>1</item>
+        <item>0</item>
+    </string-array>
+
+    <string-array name="sound_menu">
+        <item>Crowd Cheer</item>
+        <item>Party Horn 1</item>
+        <item>Party Horn 2</item>
+        <item>Royal Fanfare</item>
+    </string-array>
+
+    <string-array name="sound_value">
+        <item>birthday_cheer</item>
+        <item>party_horn_1</item>
+        <item>party_horn_2</item>
+        <item>royal_horns</item>
+    </string-array>
+
+
 </resources>

@@ -105,18 +105,12 @@
     <string name="konfetti_copyright">Copyright © 2017 Dion Segijn</string>
     <string name="konfetti_permission">Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.</string>
 
-    <!-- Preference Titles -->
-    <string name="messages_header">Messages</string>
-    <string name="sync_header">Sync</string>
-
-    <!-- Messages Preferences -->
-    <string name="signature_title">Your signature</string>
-    <string name="reply_title">Default reply action</string>
-
-    <!-- Sync Preferences -->
-    <string name="sync_title">Sync email periodically</string>
-    <string name="attachment_title">Download incoming attachments</string>
-    <string name="attachment_summary_on">Automatically download attachments for incoming emails
-    </string>
-    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <!-- SETTINGS -->
+    <string name="animations_title">Animations</string>
+    <string name="animations_summary">Toggle animations</string>
+    <string name="clear_title">Clear Records</string>
+    <string name="bingo_effects">Bingo Party</string>
+    <string name="bingo_summary">Toggle the bingo celebration</string>
+    <string name="sound_title">Select Celebration Sound</string>
+    <string name="sound_summary">Select the sound that plays during the Bingo celebration</string>
 </resources>

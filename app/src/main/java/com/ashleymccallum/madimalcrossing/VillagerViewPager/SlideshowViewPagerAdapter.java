@@ -48,12 +48,11 @@ public class SlideshowViewPagerAdapter extends FragmentStateAdapter implements V
         //load animation preference and add animation
         Animation animation = (Animation) AnimationUtils.loadAnimation(page.getContext(), R.anim.slideshow_anim);
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(page.getContext());
-        //TODO: toggle in settings
-//        int animToggle = Integer.parseInt(sharedPreferences.getString("animationsMenu", "1"));
-//
-//        //if 1 animations are on, if 0 animations are off
-//        if(animToggle == 1) {
+        int animToggle = Integer.parseInt(sharedPreferences.getString("animationsMenu", "1"));
+
+        //if 1 animations are on, if 0 animations are off
+        if(animToggle == 1) {
             page.setAnimation(animation);
-//        }
+        }
     }
 }

@@ -1,35 +1,39 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory app:title="@string/messages_header">
-
-        <EditTextPreference
-            app:key="signature"
-            app:title="@string/signature_title"
-            app:useSimpleSummaryProvider="true" />
+    <PreferenceCategory>
 
         <ListPreference
-            app:defaultValue="reply"
-            app:entries="@array/reply_entries"
-            app:entryValues="@array/reply_values"
-            app:key="reply"
-            app:title="@string/reply_title"
-            app:useSimpleSummaryProvider="true" />
+            app:defaultValue="1"
+            app:entries="@array/animations_menu"
+            app:entryValues="@array/animations_value"
+            app:key="animationsMenu"
+            app:summary="@string/animations_summary"
+            app:title="@string/animations_title" />
 
     </PreferenceCategory>
 
-    <PreferenceCategory app:title="@string/sync_header">
+    <PreferenceCategory>
 
-        <SwitchPreferenceCompat
-            app:key="sync"
-            app:title="@string/sync_title" />
+        <ListPreference
+            app:defaultValue="1"
+            app:entries="@array/bingo_menu"
+            app:entryValues="@array/bingo_value"
+            app:key="bingoMenu"
+            app:summary="@string/bingo_summary"
+            app:title="@string/bingo_effects" />
 
-        <SwitchPreferenceCompat
-            app:dependency="sync"
-            app:key="attachment"
-            app:summaryOff="@string/attachment_summary_off"
-            app:summaryOn="@string/attachment_summary_on"
-            app:title="@string/attachment_title" />
+    </PreferenceCategory>
+
+    <PreferenceCategory>
+
+        <ListPreference
+            app:defaultValue="royal_horns"
+            app:entries="@array/sound_menu"
+            app:entryValues="@array/sound_value"
+            app:key="soundMenu"
+            app:summary="@string/sound_summary"
+            app:title="@string/sound_title" />
 
     </PreferenceCategory>
 
