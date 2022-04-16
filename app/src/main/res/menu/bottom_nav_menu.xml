@@ -3,7 +3,7 @@
 
     <item
         android:id="@+id/nav_villager"
-        android:icon="@drawable/ic_baseline_house_24"
+        android:icon="@drawable/achome"
         android:title="@string/title_villager" />
 
     <item
