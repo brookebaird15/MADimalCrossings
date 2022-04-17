@@ -62,19 +62,20 @@ public class VillagerViewPagerAdapter extends FragmentStateAdapter implements Vi
 
     @Override
     public void transformPage(@NonNull View page, float position) {
+        //TODO: add vp2 transformation
         //load animations
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        int animToggle = Integer.parseInt(sharedPreferences.getString(context.getString(R.string.animations_key), "1"));
-        Animation animRtoL = AnimationUtils.loadAnimation(context, R.anim.slideshow_right_left);
-        Animation animLtoR = AnimationUtils.loadAnimation(context, R.anim.slideshow_left_right);
-
-        ImageView img1 = page.findViewById(R.id.slideshowImg1);
-        ImageView img2 = page.findViewById(R.id.slideshowImg2);
-
-        //if 1 animations are on, if 0 animations are off
-        if(animToggle == 1) {
-            img1.setAnimation(animRtoL);
-            img2.setAnimation(animLtoR);
-        }
+//        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+//        int animToggle = Integer.parseInt(sharedPreferences.getString(context.getString(R.string.animations_key), "1"));
+//        Animation animRtoL = AnimationUtils.loadAnimation(context, R.anim.slideshow_right_left);
+//        Animation animLtoR = AnimationUtils.loadAnimation(context, R.anim.slideshow_left_right);
+//
+//        ImageView img1 = page.findViewById(R.id.slideshowImg1);
+//        ImageView img2 = page.findViewById(R.id.slideshowImg2);
+//
+//        //if 1 animations are on, if 0 animations are off
+//        if(animToggle == 1) {
+//            img1.setAnimation(animRtoL);
+//            img2.setAnimation(animLtoR);
+//        }
     }
 }

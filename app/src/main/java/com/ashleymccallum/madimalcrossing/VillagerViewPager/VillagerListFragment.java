@@ -19,7 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+//import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.ashleymccallum.madimalcrossing.AppDatabase;
 import com.ashleymccallum.madimalcrossing.R;
@@ -72,13 +72,7 @@ public class VillagerListFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
     }
-
-    int index = 0;
-    ImageView img1;
-    ImageView img2;
-    List<String> imgResources;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -103,84 +97,6 @@ public class VillagerListFragment extends Fragment {
                 }
             });
         }
-
-        img1 = view.findViewById(R.id.slideshowImg1);
-        Picasso.get().load("https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Animal_Crossing_Leaf.svg/150px-Animal_Crossing_Leaf.svg.png").into(img1);
-        img2 = view.findViewById(R.id.slideshowImg2);
-        Picasso.get().load("https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Animal_Crossing_Leaf.svg/150px-Animal_Crossing_Leaf.svg.png").into(img2);
-
-        AppDatabase db = new AppDatabase(getContext());
-
-        SwipeRefreshLayout layout = view.findViewById(R.id.swipeRefresh);
-        layout.post(new Runnable() {
-            @Override
-            public void run() {
-                imgResources = db.getVillagerImages(mParam2);
-                //if there are no images
-                if(imgResources.size() == 0) {
-                    //if the list is either ALL villagers or a list that HAS villagers
-                    if(mParam2.equals(ALL_VILLAGER_KEY) || !db.getAllVillagersForList(Integer.parseInt(mParam2)).isEmpty()) {
-                        //refresh
-                        Log.d("----", "trying to refresh");
-                        layout.setRefreshing(true);
-                    } else {
-                        //otherwise it is an empty list, add a placeholder image
-                        imgResources.add("https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Animal_Crossing_Leaf.svg/150px-Animal_Crossing_Leaf.svg.png");
-                    }
-                }
-            }
-        });
-
-        layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                Log.d("------", "onRefresh: triggered");
-                imgResources = db.getVillagerImages(mParam2);
-
-                try {
-                    loadImages(imgResources);
-                }catch (Exception e) {
-                    Snackbar.make(view, getString(R.string.list_img_error), Snackbar.LENGTH_LONG).show();
-                }
-
-                layout.setRefreshing(false);
-            }
-        });
-
-        if(imgResources != null) {
-            TimerTask timerTask = new TimerTask() {
-                @Override
-                public void run() {
-                    img1.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            //load image on timer
-                            loadImages(imgResources);
-                        }
-                    });
-                }
-            };
-
-            //timer controls the speed of the timerTask
-            Timer timer = new Timer();
-            timer.schedule(timerTask, 4000, 4000);
-        }
-
         return view;
-    }
-
-    private void loadImages(List<String> imgs) {
-        checkIndex(imgs);
-        Picasso.get().load(imgs.get(index)).into(img1);
-        index++;
-        checkIndex(imgs);
-        Picasso.get().load(imgs.get(index)).into(img2);
-        index++;
-    }
-
-    private void checkIndex(List<String> imgs) {
-        if(index == imgs.size()) {
-            index = 0;
-        }
     }
 }

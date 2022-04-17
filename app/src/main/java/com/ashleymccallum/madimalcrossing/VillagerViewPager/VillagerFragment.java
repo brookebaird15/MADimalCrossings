@@ -20,6 +20,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ashleymccallum.madimalcrossing.AppDatabase;
@@ -66,6 +67,7 @@ public class VillagerFragment extends Fragment {
         adapter = new VillagerViewPagerAdapter(getActivity(), db.getAllLists(), getContext());
         viewPager2.setAdapter(adapter);
         viewPager2.setPageTransformer(adapter);
+        LinearLayout layout = view.findViewById(R.id.listLayout);
 
         viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
@@ -80,6 +82,25 @@ public class VillagerFragment extends Fragment {
                     editList.setVisibility(View.INVISIBLE);
                     editList.setClickable(false);
                     deleteList.setClickable(false);
+                }
+
+                //TODO: use images
+                switch (position % 5) {
+                    case 0:
+                        viewPager2.setBackgroundResource(R.color.teal_200);
+                        break;
+                    case 1:
+                        viewPager2.setBackgroundResource(R.color.purple_700);
+                        break;
+                    case 2:
+                        viewPager2.setBackgroundResource(R.color.purple_500);
+                        break;
+                    case 3:
+                        viewPager2.setBackgroundResource(R.color.acgreen);
+                        break;
+                    case 4:
+                        viewPager2.setBackgroundResource(R.color.black);
+                        break;
                 }
             }
 
