@@ -15,6 +15,10 @@
     <dimen name="card_corners">10dp</dimen>
     <dimen name="btn_padding">25dp</dimen>
 
+<!--    DIALOGS     -->
+    <dimen name="dialog_margin">30dp</dimen>
+    <dimen name="dialog_text">16sp</dimen>
+
 <!--    LIST VIEWPAGER  -->
     <dimen name="list_name">25sp</dimen>
     <dimen name="viewpager_size">200dp</dimen>

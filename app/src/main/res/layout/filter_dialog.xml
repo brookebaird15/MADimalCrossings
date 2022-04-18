@@ -6,6 +6,10 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:layout_marginStart="@dimen/dialog_margin"
+        android:layout_marginEnd="@dimen/dialog_margin"
+        android:textSize="@dimen/dialog_text"
+        android:fontFamily="@font/nunito"
         android:id="@+id/filterOp1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -15,6 +19,9 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:layout_marginTop="@dimen/med_margin"
+        android:fontFamily="@font/nunito"
+        android:textSize="@dimen/dialog_text"
         android:id="@+id/filterOp2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -24,6 +31,9 @@
         app:layout_constraintTop_toBottomOf="@+id/filterOp1" />
 
     <TextView
+        android:layout_marginTop="@dimen/med_margin"
+        android:fontFamily="@font/nunito"
+        android:textSize="@dimen/dialog_text"
         android:id="@+id/filterOp3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -33,6 +43,9 @@
         app:layout_constraintTop_toBottomOf="@+id/filterOp2" />
 
     <TextView
+        android:layout_marginTop="@dimen/med_margin"
+        android:fontFamily="@font/nunito"
+        android:textSize="@dimen/dialog_text"
         android:id="@+id/filterOp4"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -42,6 +55,9 @@
         app:layout_constraintTop_toBottomOf="@+id/filterOp3" />
 
     <TextView
+        android:layout_marginTop="@dimen/med_margin"
+        android:fontFamily="@font/nunito"
+        android:textSize="@dimen/dialog_text"
         android:id="@+id/filterOp5"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -51,10 +67,13 @@
         app:layout_constraintTop_toBottomOf="@+id/filterOp4" />
 
     <Button
+        android:fontFamily="@font/fredoka_one"
         android:id="@+id/resetBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/reset_btn"
+        app:cornerRadius="@dimen/btn_corner"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/filterOp5"
         app:layout_constraintTop_toBottomOf="@+id/filterOp5" />
 

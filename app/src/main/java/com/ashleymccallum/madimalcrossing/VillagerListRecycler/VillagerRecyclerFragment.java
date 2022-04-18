@@ -142,7 +142,7 @@ public class VillagerRecyclerFragment extends Fragment {
 
         AlertDialog.Builder optionDialog = new AlertDialog.Builder(getContext());
         optionDialog.setTitle(getString(R.string.selection_title, filter));
-        optionDialog.setMessage(getString(R.string.selection_message, filter));
+        optionDialog.setMessage(getString(R.string.selection_message, filter.toLowerCase()));
         //add custom layout
         LayoutInflater alertInflater = optionDialog.create().getLayoutInflater();
         View alertView = alertInflater.inflate(R.layout.add_listview, null);
