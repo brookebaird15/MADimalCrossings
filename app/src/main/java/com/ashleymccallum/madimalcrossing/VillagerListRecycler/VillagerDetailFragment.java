@@ -8,17 +8,21 @@ import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import android.preference.PreferenceManager;
 import android.provider.CalendarContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -30,6 +34,7 @@ import com.ashleymccallum.madimalcrossing.R;
 import com.ashleymccallum.madimalcrossing.pojos.Villager;
 import com.ashleymccallum.madimalcrossing.databinding.FragmentVillagerDetailBinding;
 import com.ashleymccallum.madimalcrossing.pojos.VillagerList;
+import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
@@ -119,8 +124,16 @@ public class VillagerDetailFragment extends Fragment {
         binding = FragmentVillagerDetailBinding.inflate(inflater, container, false);
         View rootView = binding.getRoot();
 
-        CardView infoCard = rootView.findViewById(R.id.infoCardView);
-        CardView houseCard = rootView.findViewById(R.id.houseCardView);
+        CardView mainCard = rootView.findViewById(R.id.detailCard);
+        Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.item_load);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        int animToggle = Integer.parseInt(sharedPreferences.getString(getString(R.string.animations_key), "1"));
+        if(animToggle == 1) {
+            mainCard.setAnimation(animation);
+        }
+
+        MaterialCardView infoCard = rootView.findViewById(R.id.infoCardView);
+        MaterialCardView houseCard = rootView.findViewById(R.id.houseCardView);
         ImageView rightBtn = rootView.findViewById(R.id.rightBtn);
         ImageView leftBtn = rootView.findViewById(R.id.leftBtn);
 

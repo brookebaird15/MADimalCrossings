@@ -6,12 +6,14 @@ import static com.ashleymccallum.madimalcrossing.pojos.VillagerList.EDIT_KEY;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -66,8 +68,11 @@ public class VillagerFragment extends Fragment {
         viewPager2 = view.findViewById(R.id.villagerViewPager);
         adapter = new VillagerViewPagerAdapter(getActivity(), db.getAllLists(), getContext());
         viewPager2.setAdapter(adapter);
-        viewPager2.setPageTransformer(adapter);
-        LinearLayout layout = view.findViewById(R.id.listLayout);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        int animToggle = Integer.parseInt(sharedPreferences.getString(getString(R.string.animations_key), "1"));
+        if(animToggle == 1) {
+            viewPager2.setPageTransformer(adapter);
+        }
 
         viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
