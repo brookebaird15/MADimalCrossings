@@ -23,6 +23,7 @@
     <dimen name="list_name">25sp</dimen>
     <dimen name="viewpager_size">200dp</dimen>
     <dimen name="vp_top_margin">50dp</dimen>
+    <dimen name="vp_bottom_margin">70dp</dimen>
 
 <!--    VILLAGER LIST   -->
     <dimen name="list_item_text">26sp</dimen>

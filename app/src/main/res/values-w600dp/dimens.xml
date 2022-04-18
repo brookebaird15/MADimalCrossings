@@ -12,6 +12,11 @@
     <dimen name="dialog_margin">30dp</dimen>
     <dimen name="dialog_text">16sp</dimen>
 
+    <!--    LIST VIEWPAGER  -->
+    <dimen name="list_name">50sp</dimen>
+    <dimen name="viewpager_size">200dp</dimen>
+    <dimen name="vp_top_margin">50dp</dimen>
+
 <!--    VILLAGER LIST   -->
     <dimen name="list_item_text">26sp</dimen>
     <dimen name="list_item_img">200dp</dimen>
