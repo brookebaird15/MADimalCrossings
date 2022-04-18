@@ -20,6 +20,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ashleymccallum.madimalcrossing.AppDatabase;
@@ -65,6 +66,8 @@ public class VillagerFragment extends Fragment {
         viewPager2 = view.findViewById(R.id.villagerViewPager);
         adapter = new VillagerViewPagerAdapter(getActivity(), db.getAllLists(), getContext());
         viewPager2.setAdapter(adapter);
+        viewPager2.setPageTransformer(adapter);
+        LinearLayout layout = view.findViewById(R.id.listLayout);
 
         viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override

@@ -101,7 +101,7 @@ public class BingoGame {
      * @author Ashley McCallum
      */
     private void generateTiles(ArrayList<Villager> villagers) {
-        villagers.add(12, new Villager("Free Space", "https://upload.wikimedia.org/wikipedia/commons/5/58/Animal_Crossing_Leaf.png"));
+        villagers.add(12, new Villager("Free Space", "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Animal_Crossing_Leaf.svg/150px-Animal_Crossing_Leaf.svg.png"));
         for (int i = 0; i < villagers.size(); i++) {
             Villager villager = villagers.get(i);
             tiles[i] = new BingoTile(i + 1, villager.getName(), villager.getIconURI(), (int) Math.pow(2, i));
