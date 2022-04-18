@@ -1,56 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    app:cardCornerRadius="@dimen/card_corners">
 
-    <ImageView
-        android:id="@+id/bgImage"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/beach"
-        android:scaleType="centerCrop"/>
+        android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/listLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-
-        <TextView
-            android:id="@+id/listName"
+        <ImageView
+            android:id="@+id/bgImage"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/med_margin"
-            android:text="villager view pager"
-            android:textAlignment="center"
-            android:textSize="@dimen/list_name"
-            app:fontFamily="@font/fredoka_one" />
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/beach" />
 
-        <Button
-            android:id="@+id/villagerListButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/med_margin"
-            android:layout_marginBottom="@dimen/med_margin"
-            android:backgroundTint="@color/acgreen"
-            android:paddingStart="@dimen/btn_padding"
-            android:text="@string/goto_villagers"
-            android:textSize="@dimen/btn_text"
-            app:cornerRadius="@dimen/btn_corner"
-            app:fontFamily="@font/fredoka_one"
-            app:icon="@drawable/ic_baseline_arrow_right_24"
-            app:iconGravity="textEnd" />
-    </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:id="@+id/listLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <TextView
+                android:id="@+id/listName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/med_margin"
+                android:text="villager view pager"
+                android:textAlignment="center"
+                android:textSize="@dimen/list_name"
+                app:fontFamily="@font/fredoka_one" />
+
+            <Button
+                android:id="@+id/villagerListButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/med_margin"
+                android:layout_marginBottom="@dimen/med_margin"
+                android:backgroundTint="@color/acgreen"
+                android:paddingStart="@dimen/btn_padding"
+                android:text="@string/goto_villagers"
+                android:textSize="@dimen/btn_text"
+                app:cornerRadius="@dimen/btn_corner"
+                app:fontFamily="@font/fredoka_one"
+                app:icon="@drawable/ic_baseline_arrow_right_24"
+                app:iconGravity="textEnd" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

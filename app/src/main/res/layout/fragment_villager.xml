@@ -6,30 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".VillagerViewPager.VillagerFragment">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginStart="@dimen/med_margin"
-        android:layout_marginTop="@dimen/med_margin"
-        android:layout_marginEnd="@dimen/med_margin"
-        android:layout_marginBottom="60dp"
-        app:cardCornerRadius="@dimen/card_corners"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/villagerViewPager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/med_margin"
+            android:layout_marginTop="@dimen/med_margin"
+            android:layout_marginEnd="@dimen/med_margin"
+            android:layout_marginBottom="60dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
         </androidx.viewpager2.widget.ViewPager2>
-    </androidx.cardview.widget.CardView>
-
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

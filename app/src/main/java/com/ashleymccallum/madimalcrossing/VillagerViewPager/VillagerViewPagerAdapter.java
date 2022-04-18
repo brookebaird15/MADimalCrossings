@@ -62,20 +62,40 @@ public class VillagerViewPagerAdapter extends FragmentStateAdapter implements Vi
 
     @Override
     public void transformPage(@NonNull View page, float position) {
-        //TODO: add vp2 transformation
-        //load animations
-//        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-//        int animToggle = Integer.parseInt(sharedPreferences.getString(context.getString(R.string.animations_key), "1"));
-//        Animation animRtoL = AnimationUtils.loadAnimation(context, R.anim.slideshow_right_left);
-//        Animation animLtoR = AnimationUtils.loadAnimation(context, R.anim.slideshow_left_right);
-//
-//        ImageView img1 = page.findViewById(R.id.slideshowImg1);
-//        ImageView img2 = page.findViewById(R.id.slideshowImg2);
-//
-//        //if 1 animations are on, if 0 animations are off
-//        if(animToggle == 1) {
-//            img1.setAnimation(animRtoL);
-//            img2.setAnimation(animLtoR);
-//        }
+        float MIN_SCALE = 0.75f;
+
+        int pageWidth = page.getWidth();
+
+        if (position < -1) { // [-Infinity,-1)
+            // This page is way off-screen to the left.
+            page.setAlpha(0f);
+
+        } else if (position <= 0) { // [-1,0]
+            // Use the default slide transition when moving to the left page
+            page.setAlpha(1f);
+            page.setTranslationX(0f);
+            page.setTranslationZ(0f);
+            page.setScaleX(1f);
+            page.setScaleY(1f);
+
+        } else if (position <= 1) { // (0,1]
+            // Fade the page out.
+            page.setAlpha(1 - position);
+
+            // Counteract the default slide transition
+            page.setTranslationX(pageWidth * -position);
+            // Move it behind the left page
+            page.setTranslationZ(-1f);
+
+            // Scale the page down (between MIN_SCALE and 1)
+            float scaleFactor = MIN_SCALE
+                    + (1 - MIN_SCALE) * (1 - Math.abs(position));
+            page.setScaleX(scaleFactor);
+            page.setScaleY(scaleFactor);
+
+        } else { // (1,+Infinity]
+            // This page is way off-screen to the right.
+            page.setAlpha(0f);
+        }
     }
 }
