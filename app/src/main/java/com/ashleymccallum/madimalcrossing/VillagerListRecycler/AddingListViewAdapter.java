@@ -36,7 +36,7 @@ public class AddingListViewAdapter extends ArrayAdapter<VillagerList> {
         TextView name = convertView.findViewById(R.id.addListName);
         name.setText(getItem(position).getName());
         ImageView checkbox = convertView.findViewById(R.id.addToListCheck);
-        checkbox.setOnClickListener(new View.OnClickListener() {
+        convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 adding = addRemove(checkbox, adding);

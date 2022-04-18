@@ -55,7 +55,7 @@ public class FilterListViewAdapter extends ArrayAdapter<String> {
         TextView name = convertView.findViewById(R.id.addListName);
         name.setText(getItem(position));
 
-        checkbox.setOnClickListener(new View.OnClickListener() {
+        convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 adding = addRemove(checkbox, getItem(position));
