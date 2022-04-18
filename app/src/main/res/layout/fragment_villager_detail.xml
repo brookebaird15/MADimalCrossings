@@ -85,14 +85,16 @@
                     app:layout_constraintTop_toTopOf="@+id/infoCardView"
                     app:srcCompat="@drawable/ic_baseline_arrow_right_24" />
 
-                <androidx.cardview.widget.CardView
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/imgCardView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/arrow_width"
                     app:cardCornerRadius="@dimen/card_corners"
                     app:layout_constraintStart_toEndOf="@+id/leftBtn"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:strokeColor="@color/acgreen"
+                    app:strokeWidth="3dp">
 
                     <ImageView
                         android:id="@+id/villagerDetailImg"
@@ -103,9 +105,9 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/ic_baseline_casino_24" />
-                </androidx.cardview.widget.CardView>
+                </com.google.android.material.card.MaterialCardView>
 
-                <androidx.cardview.widget.CardView
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/houseCardView"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
@@ -115,14 +117,16 @@
                     app:layout_constraintBottom_toBottomOf="@+id/infoCardView"
                     app:layout_constraintEnd_toStartOf="@+id/rightBtn"
                     app:layout_constraintStart_toStartOf="@+id/infoCardView"
-                    app:layout_constraintTop_toTopOf="@+id/infoCardView">
+                    app:layout_constraintTop_toTopOf="@+id/infoCardView"
+                    app:strokeColor="@color/acgreen"
+                    app:strokeWidth="2dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="@dimen/villager_card_margin">
 
-                        <androidx.cardview.widget.CardView
+                        <com.google.android.material.card.MaterialCardView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             app:cardCornerRadius="@dimen/med_margin"
@@ -138,15 +142,15 @@
                                 android:layout_margin="@dimen/villager_card_margin"
                                 android:contentDescription="@string/house_alt"
                                 app:srcCompat="@drawable/ic_baseline_casino_24" />
-                        </androidx.cardview.widget.CardView>
+                        </com.google.android.material.card.MaterialCardView>
 
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-                </androidx.cardview.widget.CardView>
+                </com.google.android.material.card.MaterialCardView>
 
-                <androidx.cardview.widget.CardView
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/infoCardView"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -158,7 +162,13 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/rightBtn"
                     app:layout_constraintStart_toEndOf="@+id/leftBtn"
+<<<<<<< HEAD
                     app:layout_constraintTop_toBottomOf="@+id/cardView">
+=======
+                    app:layout_constraintTop_toBottomOf="@+id/imgCardView"
+                    app:strokeColor="@color/acgreen"
+                    app:strokeWidth="2dp">
+>>>>>>> fefbf37999d7a3dd3e72a9efc989c6c9bf978998
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/constraintLayout"
@@ -249,6 +259,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/info_text_padding"
+                            android:layout_marginBottom="8dp"
                             app:layout_constraintBottom_toBottomOf="@+id/villagerCatchphrase"
                             app:layout_constraintStart_toEndOf="@+id/villagerCatchphrase"
                             app:layout_constraintTop_toTopOf="@+id/villagerCatchphrase"
@@ -369,14 +380,18 @@
                             app:layout_constraintTop_toBottomOf="@+id/view2" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
-                </androidx.cardview.widget.CardView>
+                </com.google.android.material.card.MaterialCardView>
 
                 <TextView
                     android:id="@+id/villagerName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+<<<<<<< HEAD
                     android:layout_marginStart="@dimen/name_padding"
                     android:layout_marginTop="@dimen/name_top_margin"
+=======
+                    android:layout_marginStart="8dp"
+>>>>>>> fefbf37999d7a3dd3e72a9efc989c6c9bf978998
                     android:text="NAME"
                     android:textSize="@dimen/name_size"
                     app:fontFamily="@font/fredoka_one"
@@ -418,7 +433,8 @@
                     android:id="@+id/calendarBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/info_text_padding"
+                    android:layout_marginStart="4dp"
+                    android:paddingRight="8dp"
                     app:layout_constraintBottom_toBottomOf="@+id/villagerBirthday"
                     app:layout_constraintStart_toEndOf="@+id/villagerBirthday"
                     app:layout_constraintTop_toTopOf="@+id/villagerBirthday"
@@ -438,7 +454,8 @@
         app:backgroundTint="@color/acgreen"
         app:fabCradleMargin="@dimen/med_margin"
         app:fabCradleRoundedCornerRadius="@dimen/med_margin"
-        app:hideOnScroll="true"></com.google.android.material.bottomappbar.BottomAppBar>
+        app:hideOnScroll="true">
+    </com.google.android.material.bottomappbar.BottomAppBar>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/villagerFAB"
