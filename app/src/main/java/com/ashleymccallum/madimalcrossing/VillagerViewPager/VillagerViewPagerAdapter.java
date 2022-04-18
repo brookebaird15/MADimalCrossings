@@ -36,11 +36,11 @@ public class VillagerViewPagerAdapter extends FragmentStateAdapter implements Vi
     public Fragment createFragment(int position) {
         if(position == 0) {
             //first page is always "all villagers"
-            return VillagerListFragment.newInstance(context.getString(R.string.all_villagers), ALL_VILLAGER_KEY);
+            return VillagerListFragment.newInstance(context.getString(R.string.all_villagers), ALL_VILLAGER_KEY, position);
         }
         //get the list at the position -1 because the first position is always "all villagers"
         VillagerList list = lists.get(position - 1);
-        return VillagerListFragment.newInstance(list.getName(), String.valueOf(list.getId()));
+        return VillagerListFragment.newInstance(list.getName(), String.valueOf(list.getId()), position);
     }
 
 

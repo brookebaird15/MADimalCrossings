@@ -83,25 +83,6 @@ public class VillagerFragment extends Fragment {
                     editList.setClickable(false);
                     deleteList.setClickable(false);
                 }
-
-                //TODO: use images
-                switch (position % 5) {
-                    case 0:
-                        viewPager2.setBackgroundResource(R.color.teal_200);
-                        break;
-                    case 1:
-                        viewPager2.setBackgroundResource(R.color.purple_700);
-                        break;
-                    case 2:
-                        viewPager2.setBackgroundResource(R.color.purple_500);
-                        break;
-                    case 3:
-                        viewPager2.setBackgroundResource(R.color.acgreen);
-                        break;
-                    case 4:
-                        viewPager2.setBackgroundResource(R.color.black);
-                        break;
-                }
             }
 
         });
