@@ -292,34 +292,6 @@ public class AppDatabase extends SQLiteOpenHelper {
     }
 
     /**
-     * Selects random images from the database
-     * @param listID the VillagerList to load the images from
-     * @return a List of Strings representing the images
-     * @author Ashley McCallum
-     */
-    public List<String> getVillagerImages(String listID) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        List<String> imgURIs = new ArrayList<>();
-        Cursor cursor;
-
-        if(listID.equals(ALL_VILLAGER_KEY)) {
-            cursor = db.rawQuery("SELECT " + ICON_COLUMN + " FROM " + VILLAGER_TABLE + " ORDER BY RANDOM() LIMIT 10", null);
-        } else {
-            cursor = db.rawQuery("SELECT v." + ICON_COLUMN + " FROM " + VILLAGER_TABLE + " AS v INNER JOIN "
-                            + LIST_VILLAGER_TABLE + " AS lvr ON v." + ID_COLUMN + "=lvr."
-                            + VILLAGER_FK_COLUMN + " INNER JOIN " + LIST_TABLE + " AS l on lvr."
-                            + LIST_FK_COLUMN + "=l." + ID_COLUMN + " WHERE l." + ID_COLUMN
-                            + "=" + listID + " ORDER BY RANDOM() LIMIT 10", null);
-        }
-
-        while(cursor.moveToNext()) {
-            imgURIs.add(cursor.getString(0));
-        }
-
-        return imgURIs;
-    }
-
-    /**
      * Searches the database for villagers that match the provided filters
      * @param filters the filters to be applied
      * @return an ArrayList of Villager objects
