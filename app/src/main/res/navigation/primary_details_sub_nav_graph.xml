@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/fragment_villager_detail"
         android:name="com.ashleymccallum.madimalcrossing.VillagerListRecycler.VillagerDetailFragment"
-        android:label="@string/title_villager_detail"
+        android:label="@string/nav_detail"
         tools:layout="@layout/fragment_villager_detail">
         <argument
             android:name="item_id"

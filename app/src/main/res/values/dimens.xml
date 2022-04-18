@@ -44,7 +44,7 @@
     <dimen name="name_padding">20dp</dimen>
     <dimen name="name_padding2">10dp</dimen>
     <dimen name="name_size">25sp</dimen>
-    <dimen name="info_text">13sp</dimen>
+    <dimen name="info_text">15sp</dimen>
     <dimen name="gender_img">25dp</dimen>
     <dimen name="info_text_padding">8dp</dimen>
     <dimen name="info_line_padding">20dp</dimen>
@@ -77,5 +77,6 @@
 <!--    CREDITS     -->
     <dimen name="credit_title">30sp</dimen>
     <dimen name="credit_margin">20dp</dimen>
+    <dimen name="credit_side_margin">20dp</dimen>
 
 </resources>

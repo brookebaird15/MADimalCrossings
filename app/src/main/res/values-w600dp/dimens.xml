@@ -8,6 +8,10 @@
     <dimen name="btn_text">18sp</dimen>
     <dimen name="card_corners">10dp</dimen>
 
+    <!--    DIALOGS     -->
+    <dimen name="dialog_margin">30dp</dimen>
+    <dimen name="dialog_text">16sp</dimen>
+
 <!--    VILLAGER LIST   -->
     <dimen name="list_item_text">26sp</dimen>
     <dimen name="list_item_img">200dp</dimen>
@@ -55,7 +59,8 @@
     <dimen name="bingo_text">30sp</dimen>
 
     <!--    CREDITS     -->
-    <dimen name="credit_title">30sp</dimen>
-    <dimen name="credit_margin">20dp</dimen>
+    <dimen name="credit_title">50sp</dimen>
+    <dimen name="credit_margin">30dp</dimen>
+    <dimen name="credit_side_margin">20dp</dimen>
 
 </resources>

@@ -6,6 +6,16 @@
     <string name="title_news">News</string>
     <string name="title_music">KK Tunes</string>
     <string name="settings">Settings</string>
+
+<!--    NAV TITLES  -->
+    <string name="nav_home">Home</string>
+    <string name="nav_music">KK Tunes</string>
+    <string name="nav_credits">Credits</string>
+    <string name="nav_bingo">Villager Bingo!</string>
+    <string name="nav_news">News</string>
+    <string name="nav_list">View Villagers</string>
+    <string name="nav_detail">Details</string>
+
     <!-- GENERAL LAYOUT -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_villager_detail_host">VillagerDetailHostActivity</string>
@@ -103,6 +113,7 @@
     <string name="nookipedia_credit">All villager information and assets were retrieved from the Nookipedia API</string>
     <string name="acnhapi_credit">All KK Slider music information and assets were retrieved from the ACNH API</string>
     <string name="newsapi_credit">News articles were retrieved from the News API</string>
+    <string name="assets_credit">Custom assets created by Brooke Baird</string>
     <string name="konfetti_title">Konfetti Effect: </string>
     <string name="konfetti_copyright">Copyright © 2017 Dion Segijn</string>
     <string name="konfetti_permission">Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.</string>
