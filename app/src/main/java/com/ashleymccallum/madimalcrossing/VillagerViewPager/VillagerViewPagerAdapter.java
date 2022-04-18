@@ -62,6 +62,7 @@ public class VillagerViewPagerAdapter extends FragmentStateAdapter implements Vi
 
     @Override
     public void transformPage(@NonNull View page, float position) {
+        //TODO: use different transform
         float MIN_SCALE = 0.75f;
 
         int pageWidth = page.getWidth();
