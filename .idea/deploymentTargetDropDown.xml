@@ -7,18 +7,11 @@
         <deviceKey>
           <Key>
             <type value="VIRTUAL_DEVICE_PATH" />
-
-
-            <value value="C:\Users\Matt\.android\avd\Pixel_4_API_28.avd" />
-
-
+            <value value="E:\.android\avd\Pixel_C_API_30.avd" />
           </Key>
         </deviceKey>
       </Target>
     </targetSelectedWithDropDown>
-
-    <timeTargetWasSelectedWithDropDown value="2022-04-18T20:50:34.495445900Z" />
-
->>>>>>> Stashed changes
+    <timeTargetWasSelectedWithDropDown value="2022-04-18T21:25:44.221763300Z" />
   </component>
 </project>

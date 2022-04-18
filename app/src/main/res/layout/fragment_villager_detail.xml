@@ -26,7 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <androidx.cardview.widget.CardView
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cardView"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -34,7 +34,9 @@
                     app:cardCornerRadius="@dimen/card_corners"
                     app:layout_constraintEnd_toStartOf="@+id/rightBtn"
                     app:layout_constraintStart_toStartOf="@+id/imgCardView"
-                    app:layout_constraintTop_toBottomOf="@+id/imgCardView">
+                    app:layout_constraintTop_toBottomOf="@+id/imgCardView"
+                    app:strokeColor="@color/acgreen"
+                    app:strokeWidth="@dimen/card_shading">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -64,7 +66,7 @@
                             app:fontFamily="@font/nunito" />
                     </LinearLayout>
 
-                </androidx.cardview.widget.CardView>
+                </com.google.android.material.card.MaterialCardView>
 
                 <ImageView
                     android:id="@+id/leftBtn"
@@ -94,7 +96,7 @@
                     app:layout_constraintStart_toEndOf="@+id/leftBtn"
                     app:layout_constraintTop_toTopOf="parent"
                     app:strokeColor="@color/acgreen"
-                    app:strokeWidth="3dp">
+                    app:strokeWidth="@dimen/card_shading">
 
                     <ImageView
                         android:id="@+id/villagerDetailImg"
@@ -119,7 +121,7 @@
                     app:layout_constraintStart_toStartOf="@+id/infoCardView"
                     app:layout_constraintTop_toTopOf="@+id/infoCardView"
                     app:strokeColor="@color/acgreen"
-                    app:strokeWidth="2dp">
+                    app:strokeWidth="@dimen/card_shading">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -133,7 +135,9 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:strokeColor="@color/acgreen"
+                            app:strokeWidth="@dimen/card_shading">
 
                             <ImageView
                                 android:id="@+id/villagerHouse"
@@ -162,11 +166,10 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/rightBtn"
                     app:layout_constraintStart_toEndOf="@+id/leftBtn"
-
-                    app:layout_constraintTop_toBottomOf="@+id/cardView">
-
-
-
+                    app:layout_constraintTop_toBottomOf="@+id/cardView"
+                    app:strokeColor="@color/acgreen"
+                    app:strokeWidth="@dimen/card_shading"
+                    >
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/constraintLayout"
@@ -384,11 +387,8 @@
                     android:id="@+id/villagerName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:layout_marginStart="@dimen/name_padding"
                     android:layout_marginTop="@dimen/name_top_margin"
-
-
                     android:text="NAME"
                     android:textSize="@dimen/name_size"
                     app:fontFamily="@font/fredoka_one"

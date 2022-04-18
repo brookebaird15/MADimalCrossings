@@ -1,5 +1,6 @@
 package com.ashleymccallum.madimalcrossing;
 
+import static com.ashleymccallum.madimalcrossing.VillagerListRecycler.VillagerDetailHostActivity.ALL_VILLAGER_KEY;
 import static com.ashleymccallum.madimalcrossing.pojos.Song.COLLECTED;
 
 import android.content.ContentValues;
@@ -29,6 +30,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 /**

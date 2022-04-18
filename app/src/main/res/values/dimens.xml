@@ -51,6 +51,7 @@
     <dimen name="villager_img_height">200dp</dimen>
     <dimen name="villager_img_width">120dp</dimen>
     <dimen name="name_top_margin">50dp</dimen>
+    <dimen name="card_shading">2dp</dimen>
 
 <!--    KK TUNES    -->
     <dimen name="song_img">100dp</dimen>
