@@ -5,6 +5,8 @@
     android:layout_height="wrap_content">
 
     <RadioGroup
+        android:layout_marginStart="@dimen/dialog_margin"
+        android:layout_marginEnd="@dimen/dialog_margin"
         android:id="@+id/bingoGroup"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -14,6 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <RadioButton
+            android:fontFamily="@font/nunito"
             android:id="@+id/rowBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -21,6 +24,7 @@
             android:text="@string/bingo_row" />
 
         <RadioButton
+            android:fontFamily="@font/nunito"
             android:id="@+id/xBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -28,6 +32,7 @@
             android:text="@string/bingo_x" />
 
         <RadioButton
+            android:fontFamily="@font/nunito"
             android:id="@+id/cornerBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -35,6 +40,7 @@
             android:text="@string/bingo_corners" />
 
         <RadioButton
+            android:fontFamily="@font/nunito"
             android:id="@+id/ringBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -42,6 +48,7 @@
             android:text="@string/bingo_ring" />
 
         <RadioButton
+            android:fontFamily="@font/nunito"
             android:id="@+id/blackoutBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
