@@ -26,6 +26,46 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/info_line_padding"
+                    app:cardCornerRadius="@dimen/card_corners"
+                    app:layout_constraintEnd_toStartOf="@+id/rightBtn"
+                    app:layout_constraintStart_toStartOf="@+id/imgCardView"
+                    app:layout_constraintTop_toBottomOf="@+id/imgCardView">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="@dimen/med_margin">
+
+                        <TextView
+                            android:id="@+id/villagerSaying"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:gravity="center"
+                            android:text="SAYING"
+                            android:textSize="@dimen/info_text"
+                            app:fontFamily="@font/nunito" />
+
+                        <TextView
+                            android:id="@+id/villagerQuote"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/med_margin"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical|end"
+                            android:text="- QUOTE"
+                            android:textSize="@dimen/info_text"
+                            app:fontFamily="@font/nunito" />
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
                 <ImageView
                     android:id="@+id/leftBtn"
                     android:layout_width="@dimen/arrow_width"
@@ -110,15 +150,15 @@
                     android:id="@+id/infoCardView"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/info_line_padding"
                     android:layout_marginBottom="@dimen/arrow_width"
                     android:visibility="visible"
                     app:cardBackgroundColor="@color/purple_700"
+                    android:layout_marginTop="@dimen/info_line_padding"
                     app:cardCornerRadius="@dimen/card_corners"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/rightBtn"
                     app:layout_constraintStart_toEndOf="@+id/leftBtn"
-                    app:layout_constraintTop_toBottomOf="@+id/imgCardView">
+                    app:layout_constraintTop_toBottomOf="@+id/cardView">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/constraintLayout"
@@ -336,6 +376,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/name_padding"
+                    android:layout_marginTop="@dimen/name_top_margin"
                     android:text="NAME"
                     android:textSize="@dimen/name_size"
                     app:fontFamily="@font/fredoka_one"
@@ -356,6 +397,7 @@
                     android:id="@+id/textView10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/name_padding"
                     android:text="@string/birthday_label"
                     android:textSize="@dimen/info_text"
                     app:fontFamily="@font/nunito"
@@ -366,13 +408,11 @@
                     android:id="@+id/villagerBirthday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/info_text_padding"
                     android:text="BIRTHDAY"
                     android:textSize="@dimen/info_text"
                     app:fontFamily="@font/nunito"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView10"
-                    app:layout_constraintStart_toEndOf="@+id/textView10"
-                    app:layout_constraintTop_toTopOf="@+id/textView10" />
+                    app:layout_constraintStart_toStartOf="@+id/textView10"
+                    app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
                 <ImageView
                     android:id="@+id/calendarBtn"

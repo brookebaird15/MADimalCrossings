@@ -39,6 +39,7 @@
     <string name="birthday_label">Birthday: </string>
     <string name="sign_label">Sign: </string>
     <string name="catchphrase">\"%1$s\"</string>
+    <string name="quote">— %1$s</string>
     <string name="nookipedia_link">Get more info at Nookipedia.com!</string>
     <string name="house_alt">Image of the villager\'s home</string>
     <string name="villager_fab">Add villager to list</string>

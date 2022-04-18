@@ -48,8 +48,9 @@
     <dimen name="scrollview_bottom">90dp</dimen>
     <dimen name="villager_card_margin">10dp</dimen>
     <dimen name="arrow_width">25dp</dimen>
-    <dimen name="villager_img_height">175dp</dimen>
+    <dimen name="villager_img_height">200dp</dimen>
     <dimen name="villager_img_width">120dp</dimen>
+    <dimen name="name_top_margin">50dp</dimen>
 
 <!--    KK TUNES    -->
     <dimen name="song_img">100dp</dimen>

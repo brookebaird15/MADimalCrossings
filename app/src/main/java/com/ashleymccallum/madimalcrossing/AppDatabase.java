@@ -1,6 +1,5 @@
 package com.ashleymccallum.madimalcrossing;
 
-import static com.ashleymccallum.madimalcrossing.VillagerListRecycler.VillagerDetailHostActivity.ALL_VILLAGER_KEY;
 import static com.ashleymccallum.madimalcrossing.pojos.Song.COLLECTED;
 
 import android.content.ContentValues;
@@ -27,12 +26,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -56,18 +52,18 @@ public class AppDatabase extends SQLiteOpenHelper {
     public static final String CATCHPHRASE_COLUMN = "catchphrase";
     public static final String ICON_COLUMN = "icon_uri";
     public static final String IMG_COLUMN = "img_uri";
-    public static final String SPOTTED_COLUMN = "spotted";  //an int (0/1) if the player has seen the villager
+    public static final String SAYING_COLUMN = "saying";
     public static final String URL_COLUMN = "url";
     public static final String BIRTH_MONTH_COLUMN = "birth_month";
     public static final String BIRTH_DAY_COLUMN = "birth_day";
     public static final String SIGN_COLUMN = "sign";
     public static final String HOUSE_EXT_COLUMN = "house_ext_uri";
 
-    //villager table columns: id, spotted, name, personality, species, url, gender, hobby, catchphrase, icon_uri, img_uri,
+    //villager table columns: id, saying, name, personality, species, url, gender, hobby, catchphrase, icon_uri, img_uri,
     //birth_month, birth_day, star_sign, house_ext_uri
     public static final String CREATE_VILLAGER_TABLE = "CREATE TABLE " +
             VILLAGER_TABLE + "(" + ID_COLUMN + " INTEGER PRIMARY KEY," +
-            SPOTTED_COLUMN + " INTEGER," + NAME_COLUMN + " TEXT," +
+            SAYING_COLUMN + " TEXT," + NAME_COLUMN + " TEXT," +
             PERSONALITY_COLUMN + " TEXT," + SPECIES_COLUMN + " TEXT," +
             URL_COLUMN + " TEXT," + GENDER_COLUMN + " TEXT," +
             HOBBY_COLUMN + " TEXT," + CATCHPHRASE_COLUMN + " TEXT," +
@@ -238,7 +234,7 @@ public class AppDatabase extends SQLiteOpenHelper {
             try {
                 JSONObject main = response.getJSONObject(i);
                 values.put(ID_COLUMN, i + 1);
-                values.put(SPOTTED_COLUMN, 0);
+                values.put(SAYING_COLUMN, main.getString("quote"));
                 values.put(URL_COLUMN, main.getString("url"));
                 values.put(NAME_COLUMN, main.getString("name"));
                 values.put(SPECIES_COLUMN, main.getString("species"));
@@ -272,7 +268,7 @@ public class AppDatabase extends SQLiteOpenHelper {
         while (cursor.moveToNext()) {
             villagers.add(new Villager(
                     cursor.getInt(0),
-                    cursor.getInt(1),
+                    cursor.getString(1),
                     cursor.getString(2),
                     cursor.getString(3),
                     cursor.getString(4),
@@ -350,7 +346,7 @@ public class AppDatabase extends SQLiteOpenHelper {
         while (cursor.moveToNext()) {
             villagers.add(new Villager(
                     cursor.getInt(0),
-                    cursor.getInt(1),
+                    cursor.getString(1),
                     cursor.getString(2),
                     cursor.getString(3),
                     cursor.getString(4),
@@ -378,7 +374,7 @@ public class AppDatabase extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(CATCHPHRASE_COLUMN, villager.getCatchphrase());
-        values.put(SPOTTED_COLUMN, villager.getSpotted());
+        values.put(SAYING_COLUMN, villager.getSaying());
         db.update(VILLAGER_TABLE, values, ID_COLUMN + "=?", new String[]{String.valueOf(villager.getId())});
 
     }
@@ -635,7 +631,7 @@ public class AppDatabase extends SQLiteOpenHelper {
         while (cursor.moveToNext()) {
             villagers.add(new Villager(
                     cursor.getInt(0),
-                    cursor.getInt(1),
+                    cursor.getString(1),
                     cursor.getString(2),
                     cursor.getString(3),
                     cursor.getString(4),

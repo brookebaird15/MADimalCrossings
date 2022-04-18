@@ -11,7 +11,7 @@
         <entry key="..\:/AndroidStudioProjects/MADimalCrossing/app/src/main/res/layout-sw600dp/fragment_bingo.xml" value="0.271875" />
         <entry key="..\:/AndroidStudioProjects/MADimalCrossing/app/src/main/res/layout-sw600dp/fragment_music.xml" value="0.271875" />
         <entry key="..\:/AndroidStudioProjects/MADimalCrossing/app/src/main/res/layout-sw600dp/fragment_news.xml" value="0.271875" />
-        <entry key="..\:/AndroidStudioProjects/MADimalCrossing/app/src/main/res/layout-sw600dp/fragment_villager_detail.xml" value="0.5" />
+        <entry key="..\:/AndroidStudioProjects/MADimalCrossing/app/src/main/res/layout-sw600dp/fragment_villager_detail.xml" value="0.33" />
         <entry key="..\:/AndroidStudioProjects/MADimalCrossing/app/src/main/res/layout-sw600dp/fragment_villager_list.xml" value="0.3727905731119443" />
         <entry key="..\:/AndroidStudioProjects/MADimalCrossing/app/src/main/res/layout-sw600dp/fragment_villager_viewpager.xml" value="0.67" />
         <entry key="..\:/AndroidStudioProjects/MADimalCrossing/app/src/main/res/layout-sw600dp/news_recycler_item.xml" value="0.271875" />
@@ -26,8 +26,13 @@
         <entry key="..\:/AndroidStudioProjects/MADimalCrossing/app/src/main/res/layout/fragment_music.xml" value="0.3625" />
         <entry key="..\:/AndroidStudioProjects/MADimalCrossing/app/src/main/res/layout/fragment_news.xml" value="0.3625" />
         <entry key="..\:/AndroidStudioProjects/MADimalCrossing/app/src/main/res/layout/fragment_slideshow.xml" value="0.3625" />
+<<<<<<< Updated upstream
         <entry key="..\:/AndroidStudioProjects/MADimalCrossing/app/src/main/res/layout/fragment_villager.xml" value="0.3625" />
         <entry key="..\:/AndroidStudioProjects/MADimalCrossing/app/src/main/res/layout/fragment_villager_detail.xml" value="0.3625" />
+=======
+        <entry key="..\:/AndroidStudioProjects/MADimalCrossing/app/src/main/res/layout/fragment_villager.xml" value="0.33" />
+        <entry key="..\:/AndroidStudioProjects/MADimalCrossing/app/src/main/res/layout/fragment_villager_detail.xml" value="0.33" />
+>>>>>>> Stashed changes
         <entry key="..\:/AndroidStudioProjects/MADimalCrossing/app/src/main/res/layout/fragment_villager_list.xml" value="0.3625" />
         <entry key="..\:/AndroidStudioProjects/MADimalCrossing/app/src/main/res/layout/fragment_villager_viewpager.xml" value="0.3625" />
         <entry key="..\:/AndroidStudioProjects/MADimalCrossing/app/src/main/res/layout/news_recycler_item.xml" value="0.33" />
