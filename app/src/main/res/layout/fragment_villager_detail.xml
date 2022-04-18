@@ -162,13 +162,11 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/rightBtn"
                     app:layout_constraintStart_toEndOf="@+id/leftBtn"
-<<<<<<< HEAD
+
                     app:layout_constraintTop_toBottomOf="@+id/cardView">
-=======
-                    app:layout_constraintTop_toBottomOf="@+id/imgCardView"
-                    app:strokeColor="@color/acgreen"
-                    app:strokeWidth="2dp">
->>>>>>> fefbf37999d7a3dd3e72a9efc989c6c9bf978998
+
+
+
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/constraintLayout"
@@ -386,12 +384,11 @@
                     android:id="@+id/villagerName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-<<<<<<< HEAD
+
                     android:layout_marginStart="@dimen/name_padding"
                     android:layout_marginTop="@dimen/name_top_margin"
-=======
-                    android:layout_marginStart="8dp"
->>>>>>> fefbf37999d7a3dd3e72a9efc989c6c9bf978998
+
+
                     android:text="NAME"
                     android:textSize="@dimen/name_size"
                     app:fontFamily="@font/fredoka_one"
