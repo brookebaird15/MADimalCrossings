@@ -13,7 +13,7 @@ public class Villager {
     public static final String FEMALE = "Female";
 
     private int id;
-    private int spotted;
+    private String saying;
     private String name;
     private String personality;
     private String species;
@@ -28,9 +28,9 @@ public class Villager {
     private String sign;
     private String houseExtURI;
 
-    public Villager(int id, int spotted, String name, String personality, String species, String url, String gender, String hobby, String catchphrase, String iconURI, String imgURI, String birthMonth, int birthDay, String sign, String houseExtURI) {
+    public Villager(int id, String saying, String name, String personality, String species, String url, String gender, String hobby, String catchphrase, String iconURI, String imgURI, String birthMonth, int birthDay, String sign, String houseExtURI) {
         this.id = id;
-        this.spotted = spotted;
+        this.saying = saying;
         this.name = name;
         this.personality = personality;
         this.species = species;
@@ -112,17 +112,10 @@ public class Villager {
         return imgURI;
     }
 
-    public int getSpotted() {
-        return spotted;
+    public String getSaying() {
+        return saying;
     }
 
-    public void setSpottedStatus() {
-        if(spotted == 0) {
-            spotted = 1;
-        } else {
-            spotted = 0;
-        }
-    }
 
     /**
      * Override for equality comparison

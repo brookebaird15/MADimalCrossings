@@ -145,7 +145,6 @@ public class VillagerDetailFragment extends Fragment {
         });
 
         if(villager != null) {
-            //TODO: use int spotted property
             TextView name = rootView.findViewById(R.id.villagerName);
             TextView personality = rootView.findViewById(R.id.villagerPersonality);
             TextView species = rootView.findViewById(R.id.villagerSpecies);
@@ -153,6 +152,8 @@ public class VillagerDetailFragment extends Fragment {
             TextView catchphrase = rootView.findViewById(R.id.villagerCatchphrase);
             TextView birthday = rootView.findViewById(R.id.villagerBirthday);
             TextView sign = rootView.findViewById(R.id.villagerSign);
+            TextView saying = rootView.findViewById(R.id.villagerSaying);
+            TextView quote = rootView.findViewById(R.id.villagerQuote);
 
             name.setText(villager.getName());
             personality.setText(villager.getPersonality());
@@ -161,6 +162,8 @@ public class VillagerDetailFragment extends Fragment {
             catchphrase.setText(getString(R.string.catchphrase, villager.getCatchphrase()));
             birthday.setText(getDateString(villager));
             sign.setText(getSignString(villager));
+            saying.setText(getString(R.string.catchphrase, villager.getSaying()));
+            quote.setText(getString(R.string.quote, villager.getName()));
 
             ImageView gender = rootView.findViewById(R.id.villagerGender);
             if (villager.getGender().equalsIgnoreCase(MALE)) {
