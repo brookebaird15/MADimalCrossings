@@ -64,6 +64,17 @@
             app:layout_constraintStart_toStartOf="@+id/textView18"
             app:layout_constraintTop_toBottomOf="@+id/textView26" />
 
+        <View
+            android:id="@+id/view12"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="28dp"
+            android:background="@color/purple_500"
+            app:layout_constraintEnd_toEndOf="@+id/textView18"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/textView18"
+            app:layout_constraintTop_toBottomOf="@+id/textView26" />
+
         <TextView
         android:id="@+id/textView23"
         android:layout_width="0dp"
@@ -91,7 +102,19 @@
         app:layout_constraintStart_toStartOf="@+id/textView14"
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
-    <TextView
+        <TextView
+            android:id="@+id/textView25"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/med_margin"
+            android:text="@string/nintendo_credit"
+            android:textSize="@dimen/info_text"
+            app:fontFamily="@font/nunito"
+            app:layout_constraintEnd_toEndOf="@+id/textView14"
+            app:layout_constraintStart_toStartOf="@+id/textView14"
+            app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+        <TextView
         android:textSize="@dimen/info_text"
         android:id="@+id/textView14"
         android:layout_width="0dp"
@@ -152,16 +175,30 @@
             app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
         <TextView
+            android:id="@+id/textView28"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/transformer_credit"
+            android:textSize="@dimen/info_text"
+            app:fontFamily="@font/nunito"
+            app:layout_constraintEnd_toEndOf="@+id/textView17"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/textView17"
+            app:layout_constraintTop_toBottomOf="@+id/textView26" />
+
+        <TextView
             android:id="@+id/textView20"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/credit_margin"
+            android:layout_marginTop="10dp"
             android:text="@string/konfetti_title"
             android:textSize="@dimen/info_text"
             app:fontFamily="@font/nunito"
             app:layout_constraintEnd_toEndOf="@+id/textView18"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/textView18"
-            app:layout_constraintTop_toBottomOf="@+id/view13" />
+            app:layout_constraintTop_toBottomOf="@+id/view12" />
 
         <TextView
         android:textSize="@dimen/info_text"
