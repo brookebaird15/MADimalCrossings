@@ -187,8 +187,10 @@ public class VillagerDetailFragment extends Fragment {
 
             ImageView villagerImg = rootView.findViewById(R.id.villagerDetailImg);
             Picasso.get().load(villager.getImgURI()).into(villagerImg);
+            villagerImg.setContentDescription(getString(R.string.villager_desc, villager.getGender(), villager.getSpecies()));
             ImageView houseExt = rootView.findViewById(R.id.villagerHouse);
             Picasso.get().load(villager.getHouseExtURI()).into(houseExt);
+            houseExt.setContentDescription(getString(R.string.house_desc));
 
             ImageView siteBtn = rootView.findViewById(R.id.villagerSiteBtn);
             siteBtn.setOnClickListener(new View.OnClickListener() {

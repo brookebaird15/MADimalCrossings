@@ -45,6 +45,7 @@ public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<NewsRecyclerVi
         holder.publisher.setText(item.getPublisherName());
         holder.description.setText(item.getDescription());
         Picasso.get().load(item.getImgURL()).into(holder.image);
+        holder.image.setContentDescription(context.getString(R.string.news_desc));
         holder.readButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -79,6 +79,7 @@ public class SongRecyclerViewAdapter extends RecyclerView.Adapter<SongViewHolder
         Song song = songs.get(position);
         holder.songTitle.setText(song.getTitle());
         Picasso.get().load(song.getImgURI()).into(holder.songImg);
+        holder.songImg.setContentDescription(context.getString(R.string.album_desc, song.getTitle()));
         if(currentSong == song.getId() && mediaPlayer.isPlaying()) {
             holder.musicControl.setImageResource(R.drawable.ic_baseline_pause_24);
         } else {
@@ -135,6 +136,7 @@ public class SongRecyclerViewAdapter extends RecyclerView.Adapter<SongViewHolder
                 ImageView collectedImg = alertView.findViewById(R.id.songCollectionImg);
 
                 Picasso.get().load(song.getImgURI()).into(songImg);
+                songImg.setContentDescription(view.getContext().getString(R.string.album_desc, song.getTitle()));
                 title.setText(song.getTitle());
                 buyPrice.setText(song.getBuyPrice());
                 sellPrice.setText(song.getSellPrice());

@@ -139,7 +139,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_margin="@dimen/villager_card_margin"
-                                android:contentDescription="@string/house_alt"
                                 app:srcCompat="@drawable/ic_baseline_casino_24" />
                         </androidx.cardview.widget.CardView>
 

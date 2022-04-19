@@ -269,6 +269,7 @@ public class VillagerRecyclerFragment extends Fragment {
             Villager villager = villagers.get(position);
             holder.villagerName.setText(villager.getName());
             Picasso.get().load(villager.getIconURI()).into(holder.villagerImg);
+            holder.villagerImg.setContentDescription(getString(R.string.villager_desc, villager.getGender(), villager.getSpecies()));
             holder.itemView.setTag(position);
             holder.itemView.setOnClickListener(listener);
             holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
