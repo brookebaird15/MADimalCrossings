@@ -49,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/med_margin"
                 android:layout_marginBottom="@dimen/med_margin"
-                android:backgroundTint="@color/acgreen"
+                android:backgroundTint="@color/main_green"
                 android:paddingStart="@dimen/btn_padding"
                 android:text="@string/goto_villagers"
                 android:textSize="@dimen/btn_text"

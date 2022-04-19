@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/villager_card_margin"
-            app:cardBackgroundColor="@color/purple_500"
+            app:cardBackgroundColor="@color/villager_detail_bg"
             app:cardCornerRadius="@dimen/card_corners"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -32,11 +32,12 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/info_line_padding"
+                    app:cardBackgroundColor="@color/villager_info"
                     app:cardCornerRadius="@dimen/card_corners"
                     app:layout_constraintEnd_toStartOf="@+id/rightBtn"
                     app:layout_constraintStart_toStartOf="@+id/imgCardView"
                     app:layout_constraintTop_toBottomOf="@+id/imgCardView"
-                    app:strokeColor="@color/acgreen"
+                    app:strokeColor="@color/villager_info"
                     app:strokeWidth="@dimen/card_shading">
 
                     <LinearLayout
@@ -96,7 +97,6 @@
                     app:cardCornerRadius="@dimen/card_corners"
                     app:layout_constraintStart_toEndOf="@+id/leftBtn"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:strokeColor="@color/acgreen"
                     app:strokeWidth="@dimen/card_shading">
 
                     <ImageView
@@ -115,13 +115,13 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:visibility="gone"
-                    app:cardBackgroundColor="@color/purple_700"
+                    app:cardBackgroundColor="@color/villager_info"
                     app:cardCornerRadius="@dimen/card_corners"
                     app:layout_constraintBottom_toBottomOf="@+id/infoCardView"
                     app:layout_constraintEnd_toStartOf="@+id/rightBtn"
                     app:layout_constraintStart_toStartOf="@+id/infoCardView"
                     app:layout_constraintTop_toTopOf="@+id/infoCardView"
-                    app:strokeColor="@color/acgreen"
+                    app:strokeColor="@color/villager_info"
                     app:strokeWidth="@dimen/card_shading">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -157,24 +157,22 @@
                     android:id="@+id/infoCardView"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/info_line_padding"
                     android:layout_marginBottom="@dimen/arrow_width"
                     android:visibility="visible"
-                    app:cardBackgroundColor="@color/purple_700"
-                    android:layout_marginTop="@dimen/info_line_padding"
+                    app:cardBackgroundColor="@color/villager_info"
                     app:cardCornerRadius="@dimen/card_corners"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/rightBtn"
                     app:layout_constraintStart_toEndOf="@+id/leftBtn"
                     app:layout_constraintTop_toBottomOf="@+id/cardView"
-                    app:strokeColor="@color/acgreen"
-                    app:strokeWidth="@dimen/card_shading"
-                    >
+                    app:strokeColor="@color/villager_info"
+                    app:strokeWidth="@dimen/card_shading">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/constraintLayout"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/purple_700">
+                        android:layout_height="wrap_content">
 
                         <View
                             android:id="@+id/view"
@@ -182,21 +180,10 @@
                             android:layout_height="@dimen/line_height"
                             android:layout_marginStart="@dimen/name_padding2"
                             android:layout_marginEnd="@dimen/name_padding2"
-                            android:background="@color/acgreen"
+                            android:background="@color/black"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/textView9" />
-
-                        <View
-                            android:id="@+id/view2"
-                            android:layout_width="0dp"
-                            android:layout_height="@dimen/line_height"
-                            android:layout_marginStart="@dimen/name_padding2"
-                            android:layout_marginEnd="@dimen/name_padding2"
-                            android:background="@color/acgreen"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
                         <View
                             android:id="@+id/view3"
@@ -204,21 +191,10 @@
                             android:layout_height="@dimen/line_height"
                             android:layout_marginStart="@dimen/name_padding2"
                             android:layout_marginEnd="@dimen/name_padding2"
-                            android:background="@color/acgreen"
+                            android:background="@color/black"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/textView8" />
-
-                        <View
-                            android:id="@+id/view4"
-                            android:layout_width="0dp"
-                            android:layout_height="@dimen/line_height"
-                            android:layout_marginStart="@dimen/name_padding2"
-                            android:layout_marginEnd="@dimen/name_padding2"
-                            android:background="@color/acgreen"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
                         <View
                             android:id="@+id/view5"
@@ -226,10 +202,43 @@
                             android:layout_height="@dimen/line_height"
                             android:layout_marginStart="@dimen/name_padding2"
                             android:layout_marginEnd="@dimen/name_padding2"
-                            android:background="@color/acgreen"
+                            android:background="@color/black"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+                        <View
+                            android:id="@+id/view2"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/line_height"
+                            android:layout_marginStart="@dimen/name_padding2"
+                            android:layout_marginEnd="@dimen/name_padding2"
+                            android:background="@color/black"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView19" />
+
+                        <View
+                            android:id="@+id/view15"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/line_height"
+                            android:layout_marginStart="@dimen/name_padding2"
+                            android:layout_marginEnd="@dimen/name_padding2"
+                            android:background="@color/black"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+                        <View
+                            android:id="@+id/view14"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/line_height"
+                            android:layout_marginStart="@dimen/name_padding2"
+                            android:layout_marginEnd="@dimen/name_padding2"
+                            android:background="@color/black"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
                         <TextView
                             android:id="@+id/textView9"
@@ -286,7 +295,7 @@
                             android:textSize="@dimen/info_text"
                             app:fontFamily="@font/nunito"
                             app:layout_constraintStart_toStartOf="@+id/textView7"
-                            app:layout_constraintTop_toBottomOf="@+id/view4" />
+                            app:layout_constraintTop_toBottomOf="@+id/villagerHobby" />
 
                         <TextView
                             android:id="@+id/textView7"
@@ -447,11 +456,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        app:backgroundTint="@color/acgreen"
+        app:backgroundTint="@color/main_green"
         app:fabCradleMargin="@dimen/med_margin"
         app:fabCradleRoundedCornerRadius="@dimen/med_margin"
-        app:hideOnScroll="true">
-    </com.google.android.material.bottomappbar.BottomAppBar>
+        app:hideOnScroll="true"></com.google.android.material.bottomappbar.BottomAppBar>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/villagerFAB"
@@ -460,5 +468,6 @@
         android:clickable="true"
         android:contentDescription="@string/villager_fab"
         android:src="@drawable/ic_baseline_favorite_24"
+        app:backgroundTint="@color/detail_fab"
         app:layout_anchor="@id/bottomAppBar" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -57,6 +57,7 @@
     <dimen name="villager_img_width">120dp</dimen>
     <dimen name="name_top_margin">50dp</dimen>
     <dimen name="card_shading">2dp</dimen>
+    <dimen name="detail_barrier">3dp</dimen>
 
 <!--    KK TUNES    -->
     <dimen name="song_img">100dp</dimen>
@@ -64,6 +65,7 @@
     <dimen name="song_title">18sp</dimen>
     <dimen name="song_switch_font">18sp</dimen>
     <dimen name="song_margin">10dp</dimen>
+    <dimen name="more_btn">50dp</dimen>
 
 <!--    BINGO   -->
     <dimen name="bingo_img">75dp</dimen>
@@ -74,6 +76,7 @@
     <dimen name="tile_text">20sp</dimen>
     <dimen name="bingo_text">20sp</dimen>
     <dimen name="bingo_btn">15sp</dimen>
+    <dimen name="selector_line">90dp</dimen>
 
 <!--    CREDITS     -->
     <dimen name="credit_title">30sp</dimen>

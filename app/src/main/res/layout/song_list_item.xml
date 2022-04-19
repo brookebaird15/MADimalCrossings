@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/song_margin"
+    app:cardBackgroundColor="@color/villager_info"
     app:cardCornerRadius="@dimen/card_corners"
     app:cardUseCompatPadding="false">
 
@@ -16,7 +17,7 @@
             android:id="@+id/songImg"
             android:layout_width="@dimen/song_img"
             android:layout_height="@dimen/song_img"
-            android:background="@color/acgreen"
+            android:background="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_baseline_house_24" />
