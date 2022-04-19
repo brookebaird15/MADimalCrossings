@@ -1,19 +1,19 @@
 package com.ashleymccallum.madimalcrossing.SongRecycler;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Parcelable;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.CompoundButton;
-import android.widget.MediaController;
-import android.widget.Switch;
 
 import com.ashleymccallum.madimalcrossing.AppDatabase;
 import com.ashleymccallum.madimalcrossing.R;
@@ -74,6 +74,12 @@ public class SongFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.songRecycler);
         recyclerView.setAdapter(new SongRecyclerViewAdapter(getContext(), db.getAllSongs()));
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.recycler_anim);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        int animToggle = Integer.parseInt(sharedPreferences.getString(getString(R.string.animations_key), "1"));
+        if(animToggle == 1) {
+            recyclerView.setAnimation(animation);
+        }
 
         collectionSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -86,7 +92,7 @@ public class SongFragment extends Fragment {
             }
         });
 
-
+        db.close();
 
         return view;
     }

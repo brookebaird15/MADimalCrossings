@@ -1,12 +1,8 @@
 package com.ashleymccallum.madimalcrossing.Bingo;
 
-import android.util.Log;
-
-import com.ashleymccallum.madimalcrossing.R;
 import com.ashleymccallum.madimalcrossing.pojos.Villager;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 
 /**

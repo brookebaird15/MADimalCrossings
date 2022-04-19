@@ -51,7 +51,6 @@
     <string name="catchphrase">\"%1$s\"</string>
     <string name="quote">— %1$s</string>
     <string name="nookipedia_link">Get more info at Nookipedia.com!</string>
-    <string name="house_alt">Image of the villager\'s home</string>
     <string name="villager_fab">Add villager to list</string>
     <string name="select_list">Select List:</string>
     <string name="goto_villagers">View</string>
@@ -114,7 +113,7 @@
     <string name="acnhapi_credit">All KK Slider music information and assets were retrieved from the ACNH API</string>
     <string name="newsapi_credit">News articles were retrieved from the News API</string>
     <string name="assets_credit">Custom assets created by Brooke Baird</string>
-    <string name="transformer_credit">Custom Viewpager Transform by CodeBoy722 on GitHub</string>
+    <string name="transformer_credit">Custom ViewPager2 Transform by CodeBoy722 on GitHub</string>
     <string name="konfetti_title">Konfetti Effect: </string>
     <string name="konfetti_copyright">Copyright © 2017 Dion Segijn</string>
     <string name="konfetti_permission">Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.</string>
@@ -134,5 +133,12 @@
     <string name="clear_title">Reset Data</string>
     <string name="reset_title">Reset all data?</string>
     <string name="reset_message">This will remove all custom lists, all music collection progress, and all changes made to villagers. \n\nThis cannot be undone.</string>
+
+<!--    CONTENT DESCRIPTIONS    -->
+    <string name="album_desc">%1$s album cover</string> <!-- title -->
+    <string name="news_desc">Article image</string>
+    <string name="villager_desc">Image of a %1$s %2$s character</string> <!-- species gender -->
+    <string name="house_desc">Image of a house</string>
+    <string name="background_desc">Image of scenery from an Animal Crossing island</string>
 
 </resources>

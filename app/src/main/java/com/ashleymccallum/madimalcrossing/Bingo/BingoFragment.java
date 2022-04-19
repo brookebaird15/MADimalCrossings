@@ -6,26 +6,24 @@ import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.ashleymccallum.madimalcrossing.AppDatabase;
 import com.ashleymccallum.madimalcrossing.R;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
@@ -136,6 +134,8 @@ public class BingoFragment extends Fragment implements OnGameWinListener {
                 startNewGame();
             }
         });
+
+        db.close();
         return view;
     }
 
@@ -175,8 +175,6 @@ public class BingoFragment extends Fragment implements OnGameWinListener {
         } else {
             presentGameOver(game);
         }
-
-
     }
 
     /**
@@ -190,6 +188,12 @@ public class BingoFragment extends Fragment implements OnGameWinListener {
         game.startNew(db.getBingoVillagers());
         recyclerView.setAdapter(adapter);
         db.insertTiles(game.tiles);
+        Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.item_load);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        int animToggle = Integer.parseInt(sharedPreferences.getString(getString(R.string.animations_key), "1"));
+        if(animToggle == 1) {
+            recyclerView.setAnimation(animation);
+        }
     }
 
     /**

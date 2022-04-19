@@ -9,19 +9,21 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -36,7 +38,6 @@ import com.ashleymccallum.madimalcrossing.databinding.VillagerListContentBinding
 import com.ashleymccallum.madimalcrossing.pojos.Villager;
 import com.squareup.picasso.Picasso;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -129,6 +130,7 @@ public class VillagerRecyclerFragment extends Fragment {
         });
         filterDialog.setNegativeButton(getString(R.string.cancel_label), null);
         filterDialog.show();
+        db.close();
     }
 
     /**
@@ -160,6 +162,7 @@ public class VillagerRecyclerFragment extends Fragment {
         });
         optionDialog.setNegativeButton(getString(R.string.cancel_label), null);
         optionDialog.show();
+        db.close();
     }
 
     @Override
@@ -174,6 +177,7 @@ public class VillagerRecyclerFragment extends Fragment {
 
         recyclerView = binding.villagerList;
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+
         filters = new HashMap<>();
 
         Button filterBtn = binding.filterBtn;
@@ -227,6 +231,14 @@ public class VillagerRecyclerFragment extends Fragment {
             }
         };
 
+        Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.recycler_anim);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        int animToggle = Integer.parseInt(sharedPreferences.getString(getString(R.string.animations_key), "1"));
+        //only play animation on phone layout
+        if(animToggle == 1 && itemDetailFragmentContainer == null) {
+            recyclerView.setAnimation(animation);
+        }
+
         //if the viewmodel has filtered villagers
         if(viewModel.getFilteredVillagers() != null) {
             //load the filtered villagers
@@ -270,6 +282,7 @@ public class VillagerRecyclerFragment extends Fragment {
             Villager villager = villagers.get(position);
             holder.villagerName.setText(villager.getName());
             Picasso.get().load(villager.getIconURI()).into(holder.villagerImg);
+            holder.villagerImg.setContentDescription(getString(R.string.villager_desc, villager.getGender(), villager.getSpecies()));
             holder.itemView.setTag(position);
             holder.itemView.setOnClickListener(listener);
             holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
@@ -288,7 +301,6 @@ public class VillagerRecyclerFragment extends Fragment {
                                         notifyItemRemoved(holder.getAbsoluteAdapterPosition());
                                         db.close();
                                         if(villagers.isEmpty()) {
-                                            //TODO: need some kind of message to tell user why theyre moving back?
                                             Intent intent = new Intent(getActivity(), MainActivity.class);
                                             try {
                                                 startActivity(intent);

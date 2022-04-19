@@ -1,7 +1,5 @@
 package com.ashleymccallum.madimalcrossing.VillagerListRecycler;
 
-import android.util.Log;
-
 import androidx.lifecycle.ViewModel;
 
 import com.ashleymccallum.madimalcrossing.pojos.Villager;
@@ -35,6 +33,8 @@ public class VillagerViewModel extends ViewModel {
 
     public void removeVillager(Villager villager) {
         villagers.remove(villager);
-        filteredVillagers.remove(villager);
+        if(filteredVillagers != null) {
+            filteredVillagers.remove(villager);
+        }
     }
 }

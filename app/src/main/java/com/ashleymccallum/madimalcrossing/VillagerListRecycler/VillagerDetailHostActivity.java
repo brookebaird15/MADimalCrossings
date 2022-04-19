@@ -1,10 +1,7 @@
 package com.ashleymccallum.madimalcrossing.VillagerListRecycler;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.fragment.NavHostFragment;
@@ -15,7 +12,6 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.ashleymccallum.madimalcrossing.AppDatabase;
 import com.ashleymccallum.madimalcrossing.R;
-import com.ashleymccallum.madimalcrossing.VillagerListRecycler.VillagerViewModel;
 import com.ashleymccallum.madimalcrossing.databinding.ActivityVillagerDetailBinding;
 
 public class VillagerDetailHostActivity extends AppCompatActivity {
@@ -44,6 +40,8 @@ public class VillagerDetailHostActivity extends AppCompatActivity {
             viewModel = new VillagerViewModel(db.getAllVillagersForList(Integer.parseInt(listID)));
         }
 
+        db.close();
+
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.nav_host_fragment_villager_detail);
         NavController navController = navHostFragment.getNavController();
@@ -52,7 +50,6 @@ public class VillagerDetailHostActivity extends AppCompatActivity {
                 .build();
 
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -60,9 +57,4 @@ public class VillagerDetailHostActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_villager_detail);
         return navController.navigateUp() || super.onSupportNavigateUp();
     }
-
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        this.finish();
-//        return true;
-//    }
 }
