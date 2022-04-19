@@ -10,12 +10,13 @@
 
     <!--    DIALOGS     -->
     <dimen name="dialog_margin">30dp</dimen>
-    <dimen name="dialog_text">16sp</dimen>
+    <dimen name="dialog_text">20sp</dimen>
 
     <!--    LIST VIEWPAGER  -->
     <dimen name="list_name">50sp</dimen>
     <dimen name="viewpager_size">200dp</dimen>
     <dimen name="vp_top_margin">50dp</dimen>
+    <dimen name="vp_bottom_margin">70dp</dimen>
 
 <!--    VILLAGER LIST   -->
     <dimen name="list_item_text">26sp</dimen>
@@ -55,6 +56,10 @@
     <dimen name="song_switch_font">25sp</dimen>
     <dimen name="song_margin">20dp</dimen>
     <dimen name="more_btn">50dp</dimen>
+    <dimen name="detail_img">300dp</dimen>
+    <dimen name="song_padding">8dp</dimen>
+    <dimen name="song_item_width">15dp</dimen>
+    <dimen name="song_text">20sp</dimen>
 
     <!--    BINGO   -->
     <dimen name="bingo_img">150dp</dimen>

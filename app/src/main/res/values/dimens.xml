@@ -66,6 +66,10 @@
     <dimen name="song_switch_font">18sp</dimen>
     <dimen name="song_margin">10dp</dimen>
     <dimen name="more_btn">50dp</dimen>
+    <dimen name="detail_img">200dp</dimen>
+    <dimen name="song_padding">5dp</dimen>
+    <dimen name="song_item_width">15dp</dimen>
+    <dimen name="song_text">20sp</dimen>
 
 <!--    BINGO   -->
     <dimen name="bingo_img">75dp</dimen>
