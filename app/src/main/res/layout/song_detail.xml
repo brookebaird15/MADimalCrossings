@@ -19,6 +19,7 @@
         android:id="@+id/songDetailTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="@color/kk_background"
         android:fontFamily="@font/fredoka_one"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
@@ -47,7 +48,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:fontFamily="@font/nunito"
             android:paddingStart="5dp"
             android:text="TextView" />
 
@@ -109,7 +109,7 @@
             android:layout_width="4dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:fontFamily="@font/nunito"
+
             android:paddingStart="5dp"
             android:text="TextView" />
 

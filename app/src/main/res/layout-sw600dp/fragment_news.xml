@@ -8,7 +8,6 @@
 
 
     <TextView
-        android:textSize="@dimen/body_font"
         android:id="@+id/textView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -16,6 +15,8 @@
         android:layout_marginTop="@dimen/med_margin"
         android:layout_marginEnd="@dimen/med_margin"
         android:text="@string/social_text"
+        android:textAlignment="center"
+        android:textSize="@dimen/body_font"
         app:fontFamily="@font/nunito"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
