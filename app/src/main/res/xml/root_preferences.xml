@@ -1,0 +1,46 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory>
+        <ListPreference
+            app:defaultValue="1"
+            app:entries="@array/animations_menu"
+            app:entryValues="@array/animations_value"
+            app:key="@string/animations_key"
+            app:summary="@string/animations_summary"
+            app:title="@string/animations_title" />
+    </PreferenceCategory>
+
+    <PreferenceCategory>
+        <ListPreference
+            app:defaultValue="1"
+            app:entries="@array/bingo_menu"
+            app:entryValues="@array/bingo_value"
+            app:key="@string/bingo_key"
+            app:summary="@string/bingo_summary"
+            app:title="@string/bingo_effects" />
+    </PreferenceCategory>
+
+    <PreferenceCategory>
+        <ListPreference
+            app:defaultValue="royal_horns"
+            app:entries="@array/sound_menu"
+            app:entryValues="@array/sound_value"
+            app:key="@string/sound_key"
+            app:summary="@string/sound_summary"
+            app:title="@string/sound_title" />
+    </PreferenceCategory>
+
+    <PreferenceCategory>
+        <Preference
+            app:key="@string/clear_key"
+            app:title="@string/clear_title"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory>
+        <Preference
+            app:key="@string/credits_title"
+            app:title="@string/credits_summary"/>
+    </PreferenceCategory>
+
+</PreferenceScreen>

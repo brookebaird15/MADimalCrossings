@@ -3,23 +3,39 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@id/nav_villager">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.ashleymccallum.madimalcrossing.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
-
+        android:id="@+id/nav_villager"
+        android:name="com.ashleymccallum.madimalcrossing.VillagerViewPager.VillagerFragment"
+        android:label="@string/nav_home"
+        tools:layout="@layout/fragment_villager" />
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.ashleymccallum.madimalcrossing.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
-
+        android:id="@+id/nav_bingo"
+        android:name="com.ashleymccallum.madimalcrossing.Bingo.BingoFragment"
+        android:label="@string/nav_bingo"
+        tools:layout="@layout/fragment_bingo" />
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.ashleymccallum.madimalcrossing.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/nav_song"
+        android:name="com.ashleymccallum.madimalcrossing.SongRecycler.SongFragment"
+        android:label="@string/nav_music"
+        tools:layout="@layout/fragment_music" />
+    <fragment
+        android:id="@+id/nav_news"
+        android:name="com.ashleymccallum.madimalcrossing.NewsRecycler.NewsFragment"
+        android:label="@string/nav_news"
+        tools:layout="@layout/fragment_news" />
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.ashleymccallum.madimalcrossing.SettingsFragment"
+        android:label="Settings" >
+        <action
+            android:id="@+id/action_nav_settings_to_nav_credits"
+            app:destination="@id/nav_credits" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_credits"
+        android:name="com.ashleymccallum.madimalcrossing.CreditsFragment"
+        android:label="@string/nav_credits"
+        tools:layout="@layout/fragment_credits" />
 </navigation>

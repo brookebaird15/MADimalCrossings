@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="fab_margin">48dp</dimen>
+    <dimen name="container_horizontal_margin">48dp</dimen>
+
+    <dimen name="med_margin">10dp</dimen>
+    <dimen name="btn_corner">20dp</dimen>
+    <dimen name="btn_text">18sp</dimen>
+    <dimen name="card_corners">10dp</dimen>
+
+    <!--    DIALOGS     -->
+    <dimen name="dialog_margin">30dp</dimen>
+    <dimen name="dialog_text">20sp</dimen>
+
+    <!--    LIST VIEWPAGER  -->
+    <dimen name="list_name">50sp</dimen>
+    <dimen name="viewpager_size">200dp</dimen>
+    <dimen name="vp_top_margin">50dp</dimen>
+    <dimen name="vp_bottom_margin">70dp</dimen>
+
+<!--    VILLAGER LIST   -->
+    <dimen name="list_item_text">26sp</dimen>
+    <dimen name="list_item_img">200dp</dimen>
+    <dimen name="side_padding">5dp</dimen>
+
+    <!--    NEWS FRAGMENT      -->
+    <dimen name="news_title">20sp</dimen>
+    <dimen name="body_font">18sp</dimen>
+    <dimen name="social_img_padding">5dp</dimen>
+    <dimen name="social_img_size">45dp</dimen>
+    <dimen name="news_margin">5dp</dimen>
+    <dimen name="news_info_margin">20dp</dimen>
+    <dimen name="news_img_height">250dp</dimen>
+    <dimen name="news_img_width">500dp</dimen>
+
+<!--    VILLAGER DETAIL     -->
+    <dimen name="name_padding">50dp</dimen>
+    <dimen name="name_padding2">30dp</dimen>
+    <dimen name="name_size">75sp</dimen>
+    <dimen name="info_text">25sp</dimen>
+    <dimen name="gender_img">50dp</dimen>
+    <dimen name="info_text_padding">16dp</dimen>
+    <dimen name="info_line_padding">20dp</dimen>
+    <dimen name="line_height">2dp</dimen>
+    <dimen name="scrollview_bottom">90dp</dimen>
+    <dimen name="villager_card_margin">20dp</dimen>
+    <dimen name="arrow_width">50dp</dimen>
+    <dimen name="villager_img_height">350dp</dimen>
+    <dimen name="villager_img_width">200dp</dimen>
+    <dimen name="detail_barrier">3dp</dimen>
+
+    <!--    KK TUNES    -->
+    <dimen name="song_img">150dp</dimen>
+    <dimen name="song_btn">75dp</dimen>
+    <dimen name="song_title">25sp</dimen>
+    <dimen name="song_switch_font">25sp</dimen>
+    <dimen name="song_margin">20dp</dimen>
+    <dimen name="more_btn">50dp</dimen>
+    <dimen name="detail_img">300dp</dimen>
+    <dimen name="song_padding">8dp</dimen>
+    <dimen name="song_item_width">15dp</dimen>
+    <dimen name="song_text">20sp</dimen>
+
+    <!--    BINGO   -->
+    <dimen name="bingo_img">150dp</dimen>
+    <dimen name="bingo_img_padding">5dp</dimen>
+    <dimen name="bingo_corners">5dp</dimen>
+    <dimen name="bingo_margin">5dp</dimen>
+    <dimen name="mode_text">22sp</dimen>
+    <dimen name="tile_text">20sp</dimen>
+    <dimen name="bingo_text">30sp</dimen>
+    <dimen name="selector_line">120dp</dimen>
+
+    <!--    CREDITS     -->
+    <dimen name="credit_title">50sp</dimen>
+    <dimen name="credit_margin">30dp</dimen>
+    <dimen name="credit_side_margin">20dp</dimen>
+
+</resources>
