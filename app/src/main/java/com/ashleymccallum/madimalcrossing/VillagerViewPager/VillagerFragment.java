@@ -65,9 +65,11 @@ public class VillagerFragment extends Fragment {
         adapter = new VillagerViewPagerAdapter(getActivity(), db.getAllLists(), getContext());
         viewPager2.setAdapter(adapter);
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.item_load);
         int animToggle = Integer.parseInt(sharedPreferences.getString(getString(R.string.animations_key), "1"));
         if(animToggle == 1) {
             viewPager2.setPageTransformer(adapter);
+            viewPager2.setAnimation(animation);
         }
 
         viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {

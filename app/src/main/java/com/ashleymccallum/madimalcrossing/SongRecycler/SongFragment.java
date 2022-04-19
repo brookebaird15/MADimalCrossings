@@ -74,7 +74,7 @@ public class SongFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.songRecycler);
         recyclerView.setAdapter(new SongRecyclerViewAdapter(getContext(), db.getAllSongs()));
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.recycler_anim);
+        Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.item_load);
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         int animToggle = Integer.parseInt(sharedPreferences.getString(getString(R.string.animations_key), "1"));
         if(animToggle == 1) {

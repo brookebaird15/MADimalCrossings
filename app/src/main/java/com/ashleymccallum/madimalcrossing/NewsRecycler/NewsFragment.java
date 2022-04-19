@@ -83,7 +83,7 @@ public class NewsFragment extends Fragment {
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         }
         recyclerView.setAdapter(new NewsRecyclerViewAdapter(db.getArticles(), getContext()));
-        Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.recycler_anim);
+        Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.item_load);
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         int animToggle = Integer.parseInt(sharedPreferences.getString(getString(R.string.animations_key), "1"));
         if(animToggle == 1) {
