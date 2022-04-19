@@ -177,12 +177,6 @@ public class VillagerRecyclerFragment extends Fragment {
 
         recyclerView = binding.villagerList;
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
-        Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.recycler_anim);
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-        int animToggle = Integer.parseInt(sharedPreferences.getString(getString(R.string.animations_key), "1"));
-        if(animToggle == 1) {
-            recyclerView.setAnimation(animation);
-        }
 
         filters = new HashMap<>();
 
@@ -236,6 +230,14 @@ public class VillagerRecyclerFragment extends Fragment {
                 Navigation.findNavController(itemView).navigate(R.id.show_villager_detail, arguments);
             }
         };
+
+        Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.recycler_anim);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        int animToggle = Integer.parseInt(sharedPreferences.getString(getString(R.string.animations_key), "1"));
+        //only play animation on phone layout
+        if(animToggle == 1 && itemDetailFragmentContainer == null) {
+            recyclerView.setAnimation(animation);
+        }
 
         //if the viewmodel has filtered villagers
         if(viewModel.getFilteredVillagers() != null) {
