@@ -19,6 +19,9 @@
         android:id="@+id/songDetailTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/fredoka_one"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
         android:text="TextView"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,6 +38,8 @@
             android:id="@+id/textView13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:fontFamily="@font/fredoka_one"
             android:text="@string/song_orderable" />
 
         <TextView
@@ -42,19 +47,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="@font/nunito"
+            android:paddingStart="5dp"
             android:text="TextView" />
 
         <TextView
             android:id="@+id/textView15"
-            android:layout_width="wrap_content"
+            android:layout_width="83dp"
             android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:paddingStart="5dp"
+            android:fontFamily="@font/fredoka_one"
             android:text="@string/song_collected" />
 
         <ImageView
             android:id="@+id/songCollectionImg"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="34dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:paddingStart="5dp"
+            android:paddingTop="2dp"
+            android:scaleType="fitStart"
             app:srcCompat="@drawable/ic_outline_check_box_outline_blank_24" />
     </LinearLayout>
 
@@ -69,6 +82,8 @@
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:fontFamily="@font/fredoka_one"
             android:text="@string/song_buy" />
 
         <TextView
@@ -76,20 +91,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="@font/nunito"
+            android:paddingStart="5dp"
             android:text="TextView" />
 
         <TextView
             android:id="@+id/textView6"
-            android:layout_width="wrap_content"
+            android:layout_width="87dp"
             android:layout_height="wrap_content"
             android:layout_weight="0"
+            android:padding="5dp"
+            android:fontFamily="@font/fredoka_one"
             android:text="@string/song_sell" />
 
         <TextView
             android:id="@+id/songSellText"
-            android:layout_width="wrap_content"
+            android:layout_width="4dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="@font/nunito"
+            android:paddingStart="5dp"
             android:text="TextView" />
 
     </LinearLayout>

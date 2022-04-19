@@ -67,13 +67,15 @@
         app:layout_constraintTop_toBottomOf="@+id/filterOp4" />
 
     <Button
-        android:fontFamily="@font/fredoka_one"
         android:id="@+id/resetBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/fredoka_one"
         android:text="@string/reset_btn"
         app:cornerRadius="@dimen/btn_corner"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/filterOp5"
         app:layout_constraintTop_toBottomOf="@+id/filterOp5" />
 
