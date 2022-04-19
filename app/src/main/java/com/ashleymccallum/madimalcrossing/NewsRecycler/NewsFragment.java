@@ -123,6 +123,8 @@ public class NewsFragment extends Fragment {
             }
         });
 
+        db.close();
+
         return view;
     }
 }

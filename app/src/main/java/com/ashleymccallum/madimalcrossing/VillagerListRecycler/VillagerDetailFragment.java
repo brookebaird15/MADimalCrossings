@@ -17,7 +17,6 @@ import androidx.fragment.app.Fragment;
 
 import android.preference.PreferenceManager;
 import android.provider.CalendarContract;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,7 +38,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 
-import java.lang.reflect.Array;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -258,6 +256,7 @@ public class VillagerDetailFragment extends Fragment {
                             villager.setCatchphrase(input.getText().toString());
                             AppDatabase db = new AppDatabase(getContext());
                             db.updateVillager(villager);
+                            db.close();
                             catchphrase.setText(villager.getCatchphrase());
                         }
                     });
@@ -369,5 +368,6 @@ public class VillagerDetailFragment extends Fragment {
 
         addDialog.setNegativeButton(getString(R.string.cancel_label), null);
         addDialog.show();
+        db.close();
     }
 }

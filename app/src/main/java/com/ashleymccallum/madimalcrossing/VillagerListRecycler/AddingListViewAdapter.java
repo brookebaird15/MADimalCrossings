@@ -12,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.ashleymccallum.madimalcrossing.R;
-import com.ashleymccallum.madimalcrossing.pojos.Villager;
 import com.ashleymccallum.madimalcrossing.pojos.VillagerList;
 
 import java.util.ArrayList;

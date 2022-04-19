@@ -14,15 +14,12 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ashleymccallum.madimalcrossing.AppDatabase;
@@ -30,7 +27,6 @@ import com.ashleymccallum.madimalcrossing.R;
 import com.ashleymccallum.madimalcrossing.pojos.VillagerList;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import nl.dionsegijn.konfetti.core.Party;
 
 /**
  * A simple {@link Fragment} subclass..
@@ -134,6 +130,7 @@ public class VillagerFragment extends Fragment {
                         .show();
             }
         });
+        db.close();
 
         return view;
     }

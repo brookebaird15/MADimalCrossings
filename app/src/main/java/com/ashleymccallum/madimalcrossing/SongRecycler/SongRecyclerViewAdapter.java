@@ -6,29 +6,21 @@ import static com.ashleymccallum.madimalcrossing.pojos.Song.COLLECTED;
 import static com.ashleymccallum.madimalcrossing.pojos.Song.UNCOLLECTED;
 
 import android.app.AlertDialog;
-import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.media.MediaPlayer;
-import android.net.Uri;
-import android.os.Parcelable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.MediaController;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ashleymccallum.madimalcrossing.AppDatabase;
-import com.ashleymccallum.madimalcrossing.MainActivity;
 import com.ashleymccallum.madimalcrossing.R;
 import com.ashleymccallum.madimalcrossing.pojos.Song;
-import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
@@ -170,6 +162,7 @@ public class SongRecyclerViewAdapter extends RecyclerView.Adapter<SongViewHolder
                     public void onDismiss(DialogInterface dialogInterface) {
                         AppDatabase db = new AppDatabase(context);
                         db.updateSong(song);
+                        db.close();
                     }
                 });
                 songDialog.show();

@@ -1,7 +1,5 @@
 package com.ashleymccallum.madimalcrossing.Bingo;
 
-import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,6 +45,7 @@ public class BingoRecyclerViewAdapter extends RecyclerView.Adapter<BingoRecycler
                 if(game.canSelectTile(holder.getAbsoluteAdapterPosition())) {
                     holder.bingoStamp.setVisibility(View.VISIBLE);
                     db.updateTile(tile);
+                    db.close();
                 }
                 if(game.isWon()) {
                     listener.onGameWin(game);

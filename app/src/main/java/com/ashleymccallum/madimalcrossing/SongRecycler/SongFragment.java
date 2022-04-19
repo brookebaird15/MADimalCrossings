@@ -2,18 +2,14 @@ package com.ashleymccallum.madimalcrossing.SongRecycler;
 
 import android.os.Bundle;
 
-import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
-import android.widget.MediaController;
-import android.widget.Switch;
 
 import com.ashleymccallum.madimalcrossing.AppDatabase;
 import com.ashleymccallum.madimalcrossing.R;
@@ -86,7 +82,7 @@ public class SongFragment extends Fragment {
             }
         });
 
-
+        db.close();
 
         return view;
     }

@@ -1,7 +1,6 @@
 package com.ashleymccallum.madimalcrossing.VillagerListRecycler;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.ashleymccallum.madimalcrossing.R;
-import com.ashleymccallum.madimalcrossing.pojos.VillagerList;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;

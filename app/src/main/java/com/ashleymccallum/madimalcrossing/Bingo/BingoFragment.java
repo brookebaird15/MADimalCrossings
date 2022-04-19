@@ -6,26 +6,22 @@ import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.ashleymccallum.madimalcrossing.AppDatabase;
 import com.ashleymccallum.madimalcrossing.R;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
@@ -136,6 +132,8 @@ public class BingoFragment extends Fragment implements OnGameWinListener {
                 startNewGame();
             }
         });
+
+        db.close();
         return view;
     }
 
@@ -175,8 +173,6 @@ public class BingoFragment extends Fragment implements OnGameWinListener {
         } else {
             presentGameOver(game);
         }
-
-
     }
 
     /**
