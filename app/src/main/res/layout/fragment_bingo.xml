@@ -117,6 +117,7 @@
         android:layout_marginStart="@dimen/bingo_margin"
         android:layout_marginTop="@dimen/bingo_margin"
         android:layout_marginEnd="@dimen/bingo_margin"
+        android:layout_marginBottom="@dimen/vp_bottom_margin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
