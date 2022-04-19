@@ -1,0 +1,475 @@
+<!-- Adding the same root's ID for view binding as other layout configurations -->
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/villager_detail_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <View
+        android:id="@+id/view4"
+        android:layout_width="3dp"
+        android:layout_height="match_parent"
+        android:background="@color/main_green" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/scrollview_bottom">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/detailCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/villager_card_margin"
+            app:cardBackgroundColor="@color/villager_detail_bg"
+            app:cardCornerRadius="@dimen/card_corners"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardView"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/info_line_padding"
+                    app:cardBackgroundColor="@color/light_beige"
+                    app:cardCornerRadius="@dimen/card_corners"
+                    app:layout_constraintBottom_toBottomOf="@+id/imgCardView"
+                    app:layout_constraintEnd_toStartOf="@+id/rightBtn"
+                    app:layout_constraintStart_toStartOf="@+id/textView10"
+                    app:layout_constraintTop_toBottomOf="@+id/villagerBirthday">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="@dimen/med_margin">
+
+                        <TextView
+                            android:id="@+id/villagerSaying"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:gravity="center"
+                            android:text="SAYING"
+                            android:textSize="@dimen/info_text"
+                            app:fontFamily="@font/nunito" />
+
+                        <TextView
+                            android:id="@+id/villagerQuote"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/info_line_padding"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical|end"
+                            android:text="- QUOTE"
+                            android:textSize="@dimen/info_text"
+                            app:fontFamily="@font/nunito" />
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <ImageView
+                    android:id="@+id/leftBtn"
+                    android:layout_width="@dimen/arrow_width"
+                    android:layout_height="0dp"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="@+id/houseCardView"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/infoCardView"
+                    app:srcCompat="@drawable/ic_baseline_arrow_left_24" />
+
+                <ImageView
+                    android:id="@+id/rightBtn"
+                    android:layout_width="@dimen/arrow_width"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/infoCardView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/infoCardView"
+                    app:srcCompat="@drawable/ic_baseline_arrow_right_24" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/imgCardView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/arrow_width"
+                    app:cardCornerRadius="@dimen/card_corners"
+                    app:layout_constraintStart_toEndOf="@+id/leftBtn"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:strokeWidth="@dimen/card_shading">
+
+                    <ImageView
+                        android:id="@+id/villagerDetailImg"
+                        android:layout_width="@dimen/villager_img_width"
+                        android:layout_height="@dimen/villager_img_height"
+                        android:layout_margin="@dimen/villager_card_margin"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_baseline_casino_24" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/houseCardView"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:visibility="gone"
+                    app:cardBackgroundColor="@color/light_beige"
+                    app:cardCornerRadius="@dimen/card_corners"
+                    app:layout_constraintBottom_toBottomOf="@+id/infoCardView"
+                    app:layout_constraintEnd_toStartOf="@+id/rightBtn"
+                    app:layout_constraintStart_toStartOf="@+id/infoCardView"
+                    app:layout_constraintTop_toTopOf="@+id/infoCardView">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/villager_card_margin">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:cardCornerRadius="@dimen/med_margin"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <ImageView
+                                android:id="@+id/villagerHouse"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/villager_card_margin"
+                                app:srcCompat="@drawable/ic_baseline_casino_24" />
+                        </androidx.cardview.widget.CardView>
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/infoCardView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/info_line_padding"
+                    android:layout_marginBottom="@dimen/arrow_width"
+                    android:visibility="visible"
+                    app:cardBackgroundColor="@color/light_beige"
+                    app:cardCornerRadius="@dimen/card_corners"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/rightBtn"
+                    app:layout_constraintStart_toEndOf="@+id/leftBtn"
+                    app:layout_constraintTop_toBottomOf="@+id/cardView">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraintLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <View
+                            android:id="@+id/view"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/line_height"
+                            android:layout_marginStart="@dimen/name_padding2"
+                            android:layout_marginEnd="@dimen/name_padding2"
+                            android:background="@color/black"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+                        <View
+                            android:id="@+id/view3"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/line_height"
+                            android:layout_marginStart="@dimen/name_padding2"
+                            android:layout_marginEnd="@dimen/name_padding2"
+                            android:background="@color/black"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+                        <View
+                            android:id="@+id/view5"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/line_height"
+                            android:layout_marginStart="@dimen/name_padding2"
+                            android:layout_marginEnd="@dimen/name_padding2"
+                            android:background="@color/black"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+                        <View
+                            android:id="@+id/view2"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/line_height"
+                            android:layout_marginStart="@dimen/name_padding2"
+                            android:layout_marginEnd="@dimen/name_padding2"
+                            android:background="@color/black"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView19" />
+
+                        <View
+                            android:id="@+id/view15"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/line_height"
+                            android:layout_marginStart="@dimen/name_padding2"
+                            android:layout_marginEnd="@dimen/name_padding2"
+                            android:background="@color/black"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+                        <View
+                            android:id="@+id/view14"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/line_height"
+                            android:layout_marginStart="@dimen/name_padding2"
+                            android:layout_marginEnd="@dimen/name_padding2"
+                            android:background="@color/black"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView19" />
+
+                        <TextView
+                            android:id="@+id/textView9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/info_line_padding"
+                            android:text="@string/species_label"
+                            android:textSize="@dimen/info_text"
+                            app:fontFamily="@font/nunito"
+                            app:layout_constraintStart_toStartOf="@+id/view"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/villagerSpecies"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/info_text_padding"
+                            android:text="SPECIES"
+                            android:textSize="@dimen/info_text"
+                            app:fontFamily="@font/nunito"
+                            app:layout_constraintBottom_toBottomOf="@+id/textView9"
+                            app:layout_constraintStart_toEndOf="@+id/textView9"
+                            app:layout_constraintTop_toTopOf="@+id/textView9" />
+
+                        <ImageView
+                            android:id="@+id/editPhraseBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/info_text_padding"
+                            android:layout_marginBottom="8dp"
+                            app:layout_constraintBottom_toBottomOf="@+id/villagerCatchphrase"
+                            app:layout_constraintStart_toEndOf="@+id/villagerCatchphrase"
+                            app:layout_constraintTop_toTopOf="@+id/villagerCatchphrase"
+                            app:srcCompat="@drawable/ic_baseline_edit_24" />
+
+                        <TextView
+                            android:id="@+id/villagerCatchphrase"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/info_text_padding"
+                            android:text="CATCHPHRASE"
+                            android:textSize="@dimen/info_text"
+                            app:fontFamily="@font/nunito"
+                            app:layout_constraintBottom_toBottomOf="@+id/textView11"
+                            app:layout_constraintStart_toEndOf="@+id/textView11"
+                            app:layout_constraintTop_toTopOf="@+id/textView11" />
+
+                        <TextView
+                            android:id="@+id/textView11"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/info_line_padding"
+                            android:text="@string/catchphrase_label"
+                            android:textSize="@dimen/info_text"
+                            app:fontFamily="@font/nunito"
+                            app:layout_constraintStart_toStartOf="@+id/textView7"
+                            app:layout_constraintTop_toBottomOf="@+id/villagerHobby" />
+
+                        <TextView
+                            android:id="@+id/textView7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/info_line_padding"
+                            android:text="@string/hobby_label"
+                            android:textSize="@dimen/info_text"
+                            app:fontFamily="@font/nunito"
+                            app:layout_constraintStart_toStartOf="@+id/textView8"
+                            app:layout_constraintTop_toBottomOf="@+id/view3" />
+
+                        <TextView
+                            android:id="@+id/villagerHobby"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/info_text_padding"
+                            android:text="HOBBY"
+                            android:textSize="@dimen/info_text"
+                            app:fontFamily="@font/nunito"
+                            app:layout_constraintBottom_toBottomOf="@+id/textView7"
+                            app:layout_constraintStart_toEndOf="@+id/textView7"
+                            app:layout_constraintTop_toTopOf="@+id/textView7" />
+
+                        <TextView
+                            android:id="@+id/textView8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/info_line_padding"
+                            android:text="@string/personality_label"
+                            android:textSize="@dimen/info_text"
+                            app:fontFamily="@font/nunito"
+                            app:layout_constraintStart_toStartOf="@+id/textView9"
+                            app:layout_constraintTop_toBottomOf="@+id/view" />
+
+                        <TextView
+                            android:id="@+id/villagerPersonality"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/info_text_padding"
+                            android:text="PERSONALITY"
+                            android:textSize="@dimen/info_text"
+                            app:fontFamily="@font/nunito"
+                            app:layout_constraintBottom_toBottomOf="@+id/textView8"
+                            app:layout_constraintStart_toEndOf="@+id/textView8"
+                            app:layout_constraintTop_toTopOf="@+id/textView8" />
+
+                        <TextView
+                            android:id="@+id/villagerSign"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/info_text_padding"
+                            android:text="SIGN"
+                            android:textSize="@dimen/info_text"
+                            app:fontFamily="@font/nunito"
+                            app:layout_constraintStart_toEndOf="@+id/textView19"
+                            app:layout_constraintTop_toTopOf="@+id/textView19" />
+
+                        <TextView
+                            android:id="@+id/textView19"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/info_line_padding"
+                            android:text="@string/sign_label"
+                            android:textSize="@dimen/info_text"
+                            app:fontFamily="@font/nunito"
+                            app:layout_constraintStart_toStartOf="@+id/textView11"
+                            app:layout_constraintTop_toBottomOf="@+id/view5" />
+
+                        <ImageView
+                            android:id="@+id/villagerSiteBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/info_text_padding"
+                            app:layout_constraintBottom_toBottomOf="@+id/textView2"
+                            app:layout_constraintStart_toEndOf="@+id/textView2"
+                            app:layout_constraintTop_toTopOf="@+id/textView2"
+                            app:srcCompat="@drawable/ic_baseline_launch_24" />
+
+                        <TextView
+                            android:id="@+id/textView2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/info_line_padding"
+                            android:layout_marginBottom="@dimen/info_line_padding"
+                            android:text="@string/nookipedia_link"
+                            android:textSize="@dimen/info_text"
+                            app:fontFamily="@font/nunito"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/textView19"
+                            app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:id="@+id/villagerName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/name_padding"
+                    android:text="NAME"
+                    android:textSize="@dimen/name_size"
+                    app:fontFamily="@font/fredoka_one"
+                    app:layout_constraintStart_toEndOf="@+id/imgCardView"
+                    app:layout_constraintTop_toTopOf="@+id/imgCardView" />
+
+                <ImageView
+                    android:id="@+id/villagerGender"
+                    android:layout_width="@dimen/gender_img"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="@dimen/name_padding2"
+                    app:layout_constraintBottom_toBottomOf="@+id/villagerName"
+                    app:layout_constraintStart_toEndOf="@+id/villagerName"
+                    app:layout_constraintTop_toTopOf="@+id/villagerName"
+                    app:srcCompat="@drawable/ic_baseline_female_24" />
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/name_padding2"
+                    android:text="@string/birthday_label"
+                    android:textSize="@dimen/info_text"
+                    app:fontFamily="@font/nunito"
+                    app:layout_constraintStart_toStartOf="@+id/villagerName"
+                    app:layout_constraintTop_toBottomOf="@+id/villagerName" />
+
+                <TextView
+                    android:id="@+id/villagerBirthday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/name_padding2"
+                    android:text="BIRTHDAY"
+                    android:textSize="@dimen/info_text"
+                    app:fontFamily="@font/nunito"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView10"
+                    app:layout_constraintStart_toEndOf="@+id/textView10"
+                    app:layout_constraintTop_toTopOf="@+id/textView10" />
+
+                <ImageView
+                    android:id="@+id/calendarBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/name_padding2"
+                    android:paddingRight="8dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/villagerBirthday"
+                    app:layout_constraintStart_toEndOf="@+id/villagerBirthday"
+                    app:layout_constraintTop_toTopOf="@+id/villagerBirthday"
+                    app:srcCompat="@drawable/ic_baseline_calendar_month_24" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </ScrollView>
+
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottomAppBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottom_app_bar_height"
+        android:layout_gravity="bottom"
+        app:backgroundTint="@color/main_green"
+        app:fabCradleMargin="@dimen/med_margin"
+        app:fabCradleRoundedCornerRadius="@dimen/med_margin"
+        app:hideOnScroll="true"></com.google.android.material.bottomappbar.BottomAppBar>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/villagerFAB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:contentDescription="@string/villager_fab"
+        android:src="@drawable/ic_baseline_favorite_24"
+        app:backgroundTint="@color/detail_fab"
+        app:fabSize="auto"
+        app:layout_anchor="@id/bottomAppBar" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

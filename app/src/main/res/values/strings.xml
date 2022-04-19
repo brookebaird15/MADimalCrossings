@@ -1,10 +1,144 @@
 <resources>
-    <string name="app_name">MADimalCrossing</string>
+    <!-- BOTTOM NAV TITLES -->
+    <string name="app_name">ACNH Villager Compendium</string>
     <string name="title_villager">Villagers</string>
     <string name="title_bingo">BINGO</string>
-<!--    TODO: rename fragment -->
-    <string name="title_misc">Misc Fragment</string>
+    <string name="title_news">News</string>
+    <string name="title_music">KK Tunes</string>
+    <string name="settings">Settings</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
+<!--    NAV TITLES  -->
+    <string name="nav_home">Home</string>
+    <string name="nav_music">KK Tunes</string>
+    <string name="nav_credits">Credits</string>
+    <string name="nav_bingo">Villager Bingo!</string>
+    <string name="nav_news">News</string>
+    <string name="nav_list">View Villagers</string>
+    <string name="nav_detail">Details</string>
+
+    <!-- GENERAL LAYOUT -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_villager_detail_host">VillagerDetailHostActivity</string>
+    <string name="title_villager_list">Villagers</string>
+    <string name="title_villager_detail">Villager Detail</string>
+    <string name="all_villagers">All Villagers</string>
+    <string name="add_list">Add New List</string>
+    <string name="list_error">Could not load list!</string>
+    <string name="edit_name">Edit List Name</string>
+    <string name="delete_title">Delete List</string>
+    <string name="delete_message">Are you sure you want to delete %1$s? This cannot be undone.</string>
+    <string name="remove_villager">Remove Villager</string>
+    <string name="delete_villager">Are you sure you want to remove %1$s from this list?</string>
+    <string name="empty_list_title">This list is empty!</string>
+    <string name="empty_list_message">Add a villager to this list to view it.</string>
+    <string name="edit_phrase">Change %1$s\'s catchphrase:</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="save_label">Save</string>
+    <string name="cancel_label">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="ext_app_error">Could not launch application</string>
+    <string name="empty_btn">Clear List</string>
+    <string name="empty_title">Clear this list?</string>
+    <string name="empty_message">Are you sure you want to clear this list? This cannot be undone.</string>
+    <string name="filter_btn">Filter</string>
+    <string name="hobby_label">Hobby: </string>
+    <string name="personality_label">Personality: </string>
+    <string name="species_label">Species: </string>
+    <string name="catchphrase_label">Catchphrase: </string>
+    <string name="birthday_label">Birthday: </string>
+    <string name="sign_label">Sign: </string>
+    <string name="catchphrase">\"%1$s\"</string>
+    <string name="quote">— %1$s</string>
+    <string name="nookipedia_link">Get more info at Nookipedia.com!</string>
+    <string name="villager_fab">Add villager to list</string>
+    <string name="select_list">Select List:</string>
+    <string name="goto_villagers">View</string>
+    <string name="list_img_error">Could not load images from list!</string>
+    <!--    NEWS    -->
+    <string name="facebook">Facebook Logo</string>
+    <string name="twitter">Twitter Logo</string>
+    <string name="instagram">Instagram Logo</string>
+    <string name="keep_reading">Keep Reading</string>
+    <string name="social_text">Keep up with Animal Crossing news online!</string>
+    <!--    FILTER     -->
+    <string name="collected_switch">Filter by collected</string>
+    <string name="filter_title">Filter Villagers</string>
+    <string name="filter_message">Select a filter option:</string>
+    <string name="selection_title">%1$s Filters</string>
+    <string name="selection_message">Select a %1$s to filter by:</string>
+    <string name="reset_btn">Reset</string>
+    <string name="species">Species</string>
+    <string name="hobby">Hobby</string>
+    <string name="personality">Personality</string>
+    <string name="gender">Gender</string>
+    <string name="gender_f">Female</string>
+    <string name="gender_m">Male</string>
+    <string name="sign">Sign</string>
+    <string name="aries">Aries ♈︎</string>
+    <string name="taurus">Taurus ♉︎</string>
+    <string name="gemini">Gemini ♊︎</string>
+    <string name="cancer">Cancer ♋︎</string>
+    <string name="leo">Leo ♌︎</string>
+    <string name="virgo">Virgo ♍︎</string>
+    <string name="libra">Libra ♎︎</string>
+    <string name="scorpio">Scorpio ♏︎</string>
+    <string name="sagittarius">Sagittarius ♐︎</string>
+    <string name="capricorn">Capricorn ♑︎</string>
+    <string name="aquarius">Aquarius ♒︎</string>
+    <string name="pisces">Pisces ♓︎</string>
+
+    <!--    KK TUNES    -->
+    <string name="song_buy">Buy Price: </string>
+    <string name="song_sell">Sell Price: </string>
+    <string name="song_orderable">Can be ordered: </string>
+    <string name="song_collected">Collected: </string>
+    <!--    BINGO   -->
+    <string name="bingo_selector">Select Mode: %1$s</string>
+    <string name="bingo_row">5-in-a-Row</string>
+    <string name="bingo_corners">4 Corners</string>
+    <string name="bingo_x">X Combo</string>
+    <string name="bingo_blackout">Blackout</string>
+    <string name="bingo_ring">Ring</string>
+    <string name="game_over">You Won!</string>
+    <string name="continue_btn">Continue</string>
+    <string name="new_game_btn">New Game</string>
+    <string name="new_card">New Card</string>
+
+<!--    CREDITS     -->
+    <string name="credits_title">Credits</string>
+    <string name="project_by">Project by Ashley McCallum &amp; Brooke Baird</string>
+    <string name="nintendo_credit">All villagers, images, and music are property of Nintendo Co., Ltd.</string>
+    <string name="nookipedia_credit">All villager information and assets were retrieved from the Nookipedia API</string>
+    <string name="acnhapi_credit">All KK Slider music information and assets were retrieved from the ACNH API</string>
+    <string name="newsapi_credit">News articles were retrieved from the News API</string>
+    <string name="assets_credit">Custom assets created by Brooke Baird</string>
+    <string name="transformer_credit">Custom ViewPager2 Transform by CodeBoy722 on GitHub</string>
+    <string name="konfetti_title">Konfetti Effect: </string>
+    <string name="konfetti_copyright">Copyright © 2017 Dion Segijn</string>
+    <string name="konfetti_permission">Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.</string>
+
+    <!-- SETTINGS -->
+    <string name="animations_title">Animations</string>
+    <string name="animations_summary">Toggle animations</string>
+    <string name="bingo_effects">Bingo Party</string>
+    <string name="bingo_summary">Toggle the bingo celebration</string>
+    <string name="sound_title">Select Celebration Sound</string>
+    <string name="sound_summary">Select the sound that plays during the Bingo celebration</string>
+    <string name="bingo_key">bingoMenu</string>
+    <string name="animations_key">animationsMenu</string>
+    <string name="sound_key">soundMenu</string>
+    <string name="credits_summary">View Credits</string>
+    <string name="clear_key">clearMenu</string>
+    <string name="clear_title">Reset Data</string>
+    <string name="reset_title">Reset all data?</string>
+    <string name="reset_message">This will remove all custom lists, all music collection progress, and all changes made to villagers. \n\nThis cannot be undone.</string>
+
+<!--    CONTENT DESCRIPTIONS    -->
+    <string name="album_desc">%1$s album cover</string> <!-- title -->
+    <string name="news_desc">Article image</string>
+    <string name="villager_desc">Image of a %1$s %2$s character</string> <!-- species gender -->
+    <string name="house_desc">Image of a house</string>
+    <string name="background_desc">Image of scenery from an Animal Crossing island</string>
+
 </resources>

@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
+    <color name="main_green">#119975</color>
+    <color name="villager_detail_bg">#80cabb</color>
+    <color name="light_beige">#f5f3e6</color> <!-- fab edit -->
+    <color name="dark_beige">#b8ab88</color>
+    <color name="medium_beige">#e7e0c3</color>
+    <color name="detail_fab">#c7d773</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="bingo_stamp">#d6a92d</color>
+    <color name="fab_main">#88e4bd</color>
+    <color name="fab_color2">#fda744</color> <!-- fab delete -->
+    <color name="kk_background">#94d2c5</color>
+    <color name="news_bg">#92d6c8</color>
 </resources>

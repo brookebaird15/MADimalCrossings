@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?><!-- Adding the same root's ID for view binding as other layout configurations -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/villager_list_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/emptyBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/side_padding"
+        android:layout_marginEnd="@dimen/side_padding"
+        android:fontFamily="@font/fredoka_one"
+        android:text="@string/empty_btn"
+        android:textSize="@dimen/btn_text"
+        app:cornerRadius="@dimen/btn_corner"
+        app:layout_constraintEnd_toEndOf="@+id/villager_list"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toTopOf="@+id/filterBtn" />
+
+    <Button
+        android:textSize="@dimen/btn_text"
+        android:fontFamily="@font/fredoka_one"
+        android:id="@+id/filterBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/side_padding"
+        android:layout_marginEnd="@dimen/side_padding"
+        android:layout_marginTop="@dimen/side_padding"
+        android:text="@string/filter_btn"
+        app:cornerRadius="@dimen/btn_corner"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="@+id/villager_list"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/villager_list"
+        android:name="com.ashleymccallum.madimalcrossing.VillagerListFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/side_padding"
+        android:layout_marginTop="@dimen/side_padding"
+        android:layout_marginEnd="@dimen/side_padding"
+        app:layoutManager="LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filterBtn"
+        tools:context="com.ashleymccallum.madimalcrossing.VillagerListRecycler.VillagerDetailHostActivity"
+        tools:listitem="@layout/villager_list_content" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="207dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
