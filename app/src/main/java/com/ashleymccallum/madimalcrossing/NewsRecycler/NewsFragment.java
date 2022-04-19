@@ -2,6 +2,7 @@ package com.ashleymccallum.madimalcrossing.NewsRecycler;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -10,9 +11,12 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.ashleymccallum.madimalcrossing.AppDatabase;
@@ -79,6 +83,12 @@ public class NewsFragment extends Fragment {
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         }
         recyclerView.setAdapter(new NewsRecyclerViewAdapter(db.getArticles(), getContext()));
+        Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.recycler_anim);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        int animToggle = Integer.parseInt(sharedPreferences.getString(getString(R.string.animations_key), "1"));
+        if(animToggle == 1) {
+            recyclerView.setAnimation(animation);
+        }
 
 
         ImageView facebook = view.findViewById(R.id.logoFacebook);

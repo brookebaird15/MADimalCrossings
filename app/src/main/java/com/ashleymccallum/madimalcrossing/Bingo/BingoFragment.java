@@ -15,6 +15,8 @@ import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -186,6 +188,12 @@ public class BingoFragment extends Fragment implements OnGameWinListener {
         game.startNew(db.getBingoVillagers());
         recyclerView.setAdapter(adapter);
         db.insertTiles(game.tiles);
+        Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.item_load);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        int animToggle = Integer.parseInt(sharedPreferences.getString(getString(R.string.animations_key), "1"));
+        if(animToggle == 1) {
+            recyclerView.setAnimation(animation);
+        }
     }
 
     /**

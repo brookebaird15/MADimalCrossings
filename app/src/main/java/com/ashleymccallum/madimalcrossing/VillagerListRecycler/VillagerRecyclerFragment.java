@@ -9,6 +9,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,9 +18,12 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -173,6 +177,13 @@ public class VillagerRecyclerFragment extends Fragment {
 
         recyclerView = binding.villagerList;
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.recycler_anim);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        int animToggle = Integer.parseInt(sharedPreferences.getString(getString(R.string.animations_key), "1"));
+        if(animToggle == 1) {
+            recyclerView.setAnimation(animation);
+        }
+
         filters = new HashMap<>();
 
         Button filterBtn = binding.filterBtn;
