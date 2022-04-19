@@ -52,7 +52,7 @@ public class VillagerDetailHostActivity extends AppCompatActivity {
                 .build();
 
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -61,14 +61,14 @@ public class VillagerDetailHostActivity extends AppCompatActivity {
         return navController.navigateUp() || super.onSupportNavigateUp();
     }
 
-    public boolean onOptionsItemSelected() {
-        NavDestination current = navController.getCurrentDestination();
-        if(current.getId() == R.id.nav_host_fragment_villager_detail) {
-            navController.navigateUp();
-        } else {
-            this.finish();
-        }
-
-        return true;
-    }
+//    public boolean onOptionsItemSelected() {
+//        NavDestination current = navController.getCurrentDestination();
+//        if(current.getId() == R.id.villager_detail_fragment) {
+//            navController.navigateUp();
+//        } else if (current.getId() == R.id.villager_list_fragment){
+//            this.finish();
+//        }
+//
+//        return true;
+//    }
 }
